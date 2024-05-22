@@ -1,0 +1,23 @@
+﻿using AIO.Core.Entities.Owners;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIO.Core.Entities.OwnerAttachments
+{
+    [Table("owners_attachments")]
+    public class OwnerAttachment : BaseEntityAttachment
+    {
+
+        [Required(ErrorMessage = "Owner Id is required")]
+        [Column("owner_id")]
+        public int OwnerId { get; set; }
+
+        [ForeignKey(nameof(OwnerId))]
+        public virtual Owner Owner { get; set; }
+    }
+}
