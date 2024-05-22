@@ -11,6 +11,7 @@ using AIO.Core.Entities.ProjectSuppliers;
 using AIO.Core.Entities.Statements;
 using AIO.Core.Entities.SupplierInsurances;
 using AIO.Core.Entities.SupplierItems;
+using AIO.Core.Entities.SupplierPaymentMethods;
 using AIO.Core.Entities.Taxes;
 using System;
 using System.Collections.Generic;
@@ -130,6 +131,7 @@ namespace AIO.Core.Entities.Projects
         public virtual ICollection<SupplierProjectInsurance> SupplierProjectInsurances { get; set; }
         public virtual ICollection<SupplierProjectItem> SupplierProjectItems { get; set; }
         public virtual ICollection<ProjectsAttachments> ProjectAttachments { get; set; }
+        public virtual ICollection<SupplierPaymentMethod> ProjectSupplyPaymentMethods { get; set; }
 
 
 

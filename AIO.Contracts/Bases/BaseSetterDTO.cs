@@ -6,7 +6,7 @@ namespace AIO.Contracts.Bases
     public abstract class BaseSetterDTO
     {
         [Required]
-        public long Id { get; set; } = 0;
+        public int Id { get; set; } = 0;
     }
     public abstract class BaseDeleteSetterDTO : BaseSetterDTO
     {
@@ -32,6 +32,6 @@ namespace AIO.Contracts.Bases
     public abstract class BaseUpdateTranslationDTO : BaseSetterTranslationDTO
     {
         [Required]
-        public long Id { get; set; } = 0;
+        public int Id { get; set; } = 0;
     }
 }

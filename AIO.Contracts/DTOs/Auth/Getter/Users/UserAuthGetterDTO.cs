@@ -20,7 +20,7 @@ namespace AIO.Contracts.DTOs.Auth.Getter.Users
     }
     public class AdminAuthGetterDTO : UserAuthGetterDTO
     {
-        public Dictionary<string, List<long>> Permissions { get; set; }
+        public Dictionary<string, List<int>> Permissions { get; set; }
         public List<string> Roles { get; set; }
     }
 }

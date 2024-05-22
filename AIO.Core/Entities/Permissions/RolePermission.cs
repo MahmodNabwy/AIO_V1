@@ -16,11 +16,11 @@ namespace AIO.Core.Entities
         public virtual Role Role { get; set; }
         [Column("module_id")]
         [Required(ErrorMessage = "Module Id is required")]
-        public long ModuleId { get; set; }
+        public int ModuleId { get; set; }
 
         [ForeignKey(nameof(ModuleId))]
         public virtual PermissionModule Module { get; set; }
         [Column("operation_id")]
-        public long OperationId { get; set; }
+        public int OperationId { get; set; }
     }
 }

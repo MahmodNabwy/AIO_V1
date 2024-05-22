@@ -8,8 +8,13 @@ using AIO.Contracts.IServices.Repositories.Elements;
 using AIO.Contracts.IServices.Repositories.FileUploader;
 using AIO.Contracts.IServices.Repositories.Languages;
 using AIO.Contracts.IServices.Repositories.Migrations;
+using AIO.Core.Entities.ProjectInsurances;
+using AIO.Core.Entities.ProjectPaymentMethods;
 using AIO.Core.IServices.Custom;
 using AIO.Core.IServices.Custom.Repositories;
+using AIO.Core.IServices.Repositories.Insurance_Conditions;
+using AIO.Core.IServices.Repositories.ProjectInsurances;
+using AIO.Core.IServices.Repositories.ProjectPaymentMethods;
 using AIO.Infrastructure.DBContexts;
 using AIO.Infrastructure.Repositories.Custom.Log_System;
 using AIO.Infrastructure.Services.Repositories;
@@ -19,8 +24,11 @@ using AIO.Infrastructure.Services.Repositories.Auth.Roles;
 using AIO.Infrastructure.Services.Repositories.Departments;
 using AIO.Infrastructure.Services.Repositories.Elements;
 using AIO.Infrastructure.Services.Repositories.FileUploader;
+using AIO.Infrastructure.Services.Repositories.Insurance_Conditions;
 using AIO.Infrastructure.Services.Repositories.Languages;
 using AIO.Infrastructure.Services.Repositories.Migrations;
+using AIO.Infrastructure.Services.Repositories.ProjectInsurances;
+using AIO.Infrastructure.Services.Repositories.ProjectPaymentMethods;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
@@ -40,7 +48,21 @@ namespace AIO.Infrastructure.Services.Custom
         public IUserSecurityQuestionRepository UserSecurityQuestions { get; }
         public IProfilePictureRepository ProfilePicture { get; private set; }
 
+        #region Project Insurance
+        public IProjectInsuranceRepository ProjectInsurance { get; private set; }
 
+        #endregion
+
+        #region Project Payment Method
+        public IProjectPaymentMethodRepository ProjectPaymentMethod { get; private set; }
+
+        #endregion
+
+
+        #region Insurance_Condition
+        public IInsuranceConditionsRepository InsuranceCondition { get; private set; }
+
+        #endregion
         #region  Permissions
         public IPermissionModuleRepository PermissionModule { get; private set; }
         public IRolePermissionRepository RolePermission { get; private set; }
@@ -94,6 +116,18 @@ namespace AIO.Infrastructure.Services.Custom
 
             Licences = new LicenceRepository(_context);
             TimeLogs = new TimeLogRepository(_context);
+
+            #region Project Insurance
+            ProjectInsurance = new ProjectInsuranceRepository(_context);
+            #endregion
+
+            #region Insurance Condition
+            InsuranceCondition = new InsuranceConditionsRepository(_context);
+            #endregion
+
+            #region Project Payment Method
+            ProjectPaymentMethod = new ProjectPaymentMethodRepository(_context);
+            #endregion
 
             #region Departments
             Department = new DepartmentRepository(_context);

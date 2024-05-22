@@ -20,5 +20,7 @@ namespace AIO.Infrastructure.Services.Repositories.ProjectInsurances
             _db = context;
 
         }
+
+        
     }
 }

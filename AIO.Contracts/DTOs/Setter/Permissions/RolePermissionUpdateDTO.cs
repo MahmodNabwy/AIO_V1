@@ -5,13 +5,13 @@ namespace AIO.Contracts.DTOs.Setter
 {
     public class RolePermissionUpdateDTO
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         [Required]
         [Display(Name = "module_id")]
-        public long ModuleId { get; set; }
+        public int ModuleId { get; set; }
 
         [Required]
         [Display(Name = "operation_id")]
-        public long OperationId { get; set; }
+        public int OperationId { get; set; }
     }
 }

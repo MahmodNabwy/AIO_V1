@@ -10,7 +10,7 @@ namespace AIO.Core.Entities.Auth
     {
         [Key]
         [Column("token_id")]
-        public long TokenId { get; set; }
+        public int TokenId { get; set; }
 
         [Required, MaxLength(6)]
         [Column("code")]

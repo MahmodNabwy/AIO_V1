@@ -7,7 +7,7 @@ namespace AIO.Contracts.IServices.Services.Departments
     public interface IDepartmentService
     {
         Task<IHolderOfDTO> GetAllAdminAsync();
-        Task<IHolderOfDTO> GetByIdAdminAsync(long id);
+        Task<IHolderOfDTO> GetByIdAdminAsync(int id);
         IHolderOfDTO SearchAdminAsync(DepartmentAdminFilter filter);
         Task<IHolderOfDTO> SaveAsync(DepartmentSetterDTO setterDTO);
         Task<IHolderOfDTO> Update(DepartmentUpdateSetterDTO updateDTO);

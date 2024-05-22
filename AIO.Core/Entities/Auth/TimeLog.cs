@@ -10,7 +10,7 @@ namespace AIO.Core.Entities.Auth
     {
         [Key]
         [Column("id")]
-        public long Id { get; set; } = 0;
+        public int Id { get; set; } = 0;
         [Column("check_time")]
         public DateTime CheckTime { get; set; }
         [Column("created_by")]

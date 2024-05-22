@@ -12,7 +12,7 @@ namespace AIO.Core.Entities.Elements
         public string Value { get; set; }
         [Required(ErrorMessage = "Element Id is required")]
         [Column("element_id")]
-        public long ElementId { get; set; }
+        public int ElementId { get; set; }
         [ForeignKey(nameof(ElementId))]
         public virtual Element Element { get; set; }
     }

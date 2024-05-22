@@ -17,7 +17,7 @@ namespace AIO.Core.Entities
         [Column("user_name")]
         public string UserName { get; set; }
         [Column("module_id")]
-        public long ModuleId { get; set; }
+        public int ModuleId { get; set; }
         [Column("module_name")]
         public string ModuleName { get; set; }
         [Column("item_id")]

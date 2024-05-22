@@ -215,7 +215,7 @@ namespace AIO.Application.Services.Auth
 
         public async Task<IHolderOfDTO> AddNewEmployeeAsync(UserSetterDTO setterDTO)
         {
-            var generatedPassword = _passwordGeneration.Generate();
+            var generatedPassword = "Admin_123-";
 
             if (string.IsNullOrEmpty(setterDTO.Email))
                 return ErrorMessage(_culture.SharedLocalizer["Email is required"].Value);
@@ -234,8 +234,8 @@ namespace AIO.Application.Services.Auth
                 return FailedToAddOrUpdateUser(resultUser);
             _holderOfDTO.Add(Res.id, user.Id.ToString());
             _logger.LogInformation(Res.message, Res.Added);
-            _holderOfDTO.Add(Res.state, _unitOfWork.Complete());
-            await _emailTempleteService.SendUserPasswordMail($"{user.FirstName} {user.LastName}", user.UserName, generatedPassword, user.Email);
+            _holderOfDTO.Add(Res.state, true);
+            //await _emailTempleteService.SendUserPasswordMail($"{user.FirstName} {user.LastName}", user.UserName, generatedPassword, user.Email);
             return _holderOfDTO;
         }
 

@@ -12,6 +12,6 @@ namespace AIO.Core.IServices.Repositories.ProjectInsurances
     public interface IProjectInsuranceRepository : IGenericRepository<ProjectInsurance>
     {
         //IQueryable<Supplier> buildFilterAdminQuery(SectorFilter filter);
-
+       
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-using AIO.Core.Entities.PaymentMethods;
+using AIO.Contracts.Enums;
 using AIO.Core.Entities.Projects;
 using System;
 using System.Collections.Generic;
@@ -12,12 +12,25 @@ using System.Threading.Tasks;
 namespace AIO.Core.Entities.ProjectPaymentMethods
 {
     [Table("project_payment_method")]
-    public class ProjectPaymentMethod
+    public class ProjectPaymentMethod : BaseEntityUpdate
     {
+        [Required(ErrorMessage = "Percentage is required")]
+        [Column("percentage")]
+        public int Percentage { get; set; }
 
-        [Required(ErrorMessage = "Payment Method Id is required")]
-        [Column("payment_method_id")]
-        public int PaymentMethodId { get; set; }
+
+        [Required(ErrorMessage = "Amount is required")]
+        [Column("amount")]
+        public decimal Amount { get; set; }
+
+        [Required(ErrorMessage = "Amount Concurrency  is required")]
+        [Column("amount_concurrency ")]
+        public Concurrency_type AmountConcurrency { get; set; }
+
+
+        [Required(ErrorMessage = "Payment Method Type is required")]
+        [Column("type_id ")]
+        public PaymentMethodTypes TypeId { get; set; }
 
         [Required(ErrorMessage = "Project Id is required")]
         [Column("project_id")]
@@ -26,7 +39,6 @@ namespace AIO.Core.Entities.ProjectPaymentMethods
         [ForeignKey(nameof(ProjectId))]
         public virtual Project Project { get; set; }
 
-        [ForeignKey(nameof(PaymentMethodId))]
-        public virtual PaymentMethod PaymentMethod { get; set; }
+        
     }
 }

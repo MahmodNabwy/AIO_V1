@@ -6,12 +6,12 @@ namespace AIO.Contracts.DTOs.Setter
 {
     public class RolePermissionSetterDTO
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         [Display(Name = "role_id")]
         public string RoleId { get; set; }
         [Display(Name = "module_id")]
-        public long ModuleId { get; set; }
+        public int ModuleId { get; set; }
         [Display(Name = "operation_id")]
-        public long OperationId { get; set; }
+        public int OperationId { get; set; }
     }
 }

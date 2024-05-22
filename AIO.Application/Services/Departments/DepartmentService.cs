@@ -65,7 +65,7 @@ namespace AIO.Application.Services.Departments
             _holderOfDTO.Add(Res.state, lIndicators.All(x => x));
             return _holderOfDTO;
         }
-        public async Task<IHolderOfDTO> GetByIdAdminAsync(long id)
+        public async Task<IHolderOfDTO> GetByIdAdminAsync(int id)
         {
             List<bool> lIndicators = new List<bool>();
             try
@@ -220,7 +220,7 @@ namespace AIO.Application.Services.Departments
         }
 
         #region Helper Method
-        private ICollection<DepartmentTranslation> UpdateRelatedData(ICollection<DepartmentTranslation> DepartmentUpdate, long id)
+        private ICollection<DepartmentTranslation> UpdateRelatedData(ICollection<DepartmentTranslation> DepartmentUpdate, int id)
         {
             var oldObj = _unitOfWork.DepartmentTranslation.FindAllNoTrack(q => q.DepartmentId == id);
             var updatedData = DepartmentUpdate.Where(q => q.Id != 0).ToList();
@@ -228,7 +228,7 @@ namespace AIO.Application.Services.Departments
             AddNewRelatedData(DepartmentUpdate, id);
             return updatedData;
         }
-        private void AddNewRelatedData(ICollection<DepartmentTranslation> updatedData, long id)
+        private void AddNewRelatedData(ICollection<DepartmentTranslation> updatedData, int id)
         {
             var NewData = updatedData.Where(q => q.Id == 0).ToList();
             foreach (var item in NewData)

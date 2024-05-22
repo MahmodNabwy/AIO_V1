@@ -99,7 +99,7 @@ namespace AIO.Application.Services.Auth
             var user = await getUserAsync(setterDTO.PersonalKey);
             _holderOfDTO.Clear();
             if (user.AccessFailedCount >= maxFailedLogins)
-                return ErrorMessage("Account locked due to too many failed login attempts, contact support."); ;
+                return ErrorMessage("Account locked due to too many failed login attempts, contact support.");
             if (user is null || !await _userManager.CheckPasswordAsync(user, setterDTO.Password))
             {
                 UpdateFailedLoginCount(user);
@@ -461,10 +461,7 @@ namespace AIO.Application.Services.Auth
             var jwtSecurityToken = await CreateAccessTokenAsync(user);
             //to Do Update
             // if (user.SubscriptionTypeId == null)
-            {
-                _holderOfDTO.Clear();
-                return ErrorMessage(_culture.SharedLocalizer["Only EndUser account can login"].Value);
-            }
+
             var existUser = _mapper.Map<UserAuthGetterDTO>(user);
             existUser.AccessToken = _encryptionAndDecryptionService.EncryptData(new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken));
             existUser.AccessTokenExpiration = jwtSecurityToken.ValidTo;

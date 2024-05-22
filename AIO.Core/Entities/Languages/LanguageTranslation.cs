@@ -15,7 +15,7 @@ namespace AIO.Core.Entities.Languages
 
         [Required(ErrorMessage = "Language Id is required")]
         [Column("language_id")]
-        public long LanguageId { get; set; }
+        public int LanguageId { get; set; }
         [ForeignKey(nameof(LanguageId))]
         public virtual Language Language { get; set; }
     }

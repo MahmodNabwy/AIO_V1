@@ -16,7 +16,7 @@ namespace AIO.Contracts.IServices.Repositories.Auth
         Task<List<User>> GetAllAdminUsers();
         public List<User> BanUSersByIDs(List<UserSetterDTO> lPostedUsers);
         public List<User> SelectUsersByIDs(List<string> lUsersIDs);
-        public List<string> SelectUserGroup(List<long> GroupsIds);
+        public List<string> SelectUserGroup(List<int> GroupsIds);
         public string GetNameById(string Id);
         Task<int> GetUsersCount();
         Task<List<int>> UserDepartmentIds(string userId);

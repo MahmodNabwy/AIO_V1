@@ -3,7 +3,7 @@ namespace AIO.Contracts.Bases
 {
     public abstract class BaseGetterDTO
     {
-        public long Id { get; set; } = 0;
+        public int Id { get; set; } = 0;
     }
     public abstract class BaseGetterWithUpdateDTO : BaseGetterDTO
     {

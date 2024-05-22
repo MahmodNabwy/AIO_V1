@@ -209,9 +209,9 @@ namespace AIO.Application.Services
                 return false;
             }
         }
-        public async Task<Dictionary<string, List<long>>> GetPermissionByRolesName(List<string> RolesName)
+        public async Task<Dictionary<string, List<int>>> GetPermissionByRolesName(List<string> RolesName)
         {
-            Dictionary<string, List<long>> Roles = new Dictionary<string, List<long>>();
+            Dictionary<string, List<int>> Roles = new Dictionary<string, List<int>>();
             List<bool> lIndicators = new List<bool>();
             try
             {
@@ -228,7 +228,7 @@ namespace AIO.Application.Services
                 foreach (var role in RolePermissionEntity)
                 {
                     if (!Roles.ContainsKey(role.Name))
-                        Roles.Add(role.Name, new List<long> { role.Permission });
+                        Roles.Add(role.Name, new List<int> { role.Permission });
                     else
                         Roles[role.Name].Add(role.Permission);
 

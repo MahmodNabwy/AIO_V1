@@ -169,7 +169,7 @@ namespace AIO.Infrastructure.Services.Repositories.Auth
         {
             throw new NotImplementedException();
         }
-        public List<string> SelectUserGroup(List<long> GroupsIds)
+        public List<string> SelectUserGroup(List<int> GroupsIds)
         {
             var UsersIds = _db.DepartmentUsers.Where(q => GroupsIds.Contains(q.DepartmentId)).Select(x => x.UserId).Distinct().ToList();
             return UsersIds;

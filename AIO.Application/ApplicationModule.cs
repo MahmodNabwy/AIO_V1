@@ -29,6 +29,10 @@ using AIO.Contracts.IServices.Services.PasswordGeneration;
 using AIO.Contracts.IServices.Services.Permissions;
 using AIO.Contracts.IServices.Services.ThumbnailService;
 using AIO.Contracts.models.ThumbnailModel;
+using AIO.Application.Services.ProjectInsurance;
+using AIO.Contracts.Interfaces.Services.ProjectInsurance;
+using AIO.Application.Services.InsuranceCondition;
+using AIO.Contracts.Interfaces.Services.InsuranceCondition;
 
 namespace AIO.Application
 {
@@ -60,7 +64,17 @@ namespace AIO.Application
                 .InstancePerLifetimeScope();
 
             #endregion
+            #region Project Insurance
 
+            builder.RegisterType<ProjectInsuranceService>().As<IProjectInsuranceService>()
+               .InstancePerLifetimeScope();
+
+            #endregion
+
+            #region Insurance Condition
+            builder.RegisterType<InsuranceConditionService>().As<IInsuranceConditionService>()
+            .InstancePerLifetimeScope();
+            #endregion
             #region Permissions and Licence
 
             builder.RegisterType<PermissionService>().As<IPermissionService>()

@@ -58,7 +58,7 @@ namespace AIO.API.Controllers.Admin.Departments
         /// <param name="id" example="1">The  Department id</param>
         [ActionPermissionWithModuleAndOperation((long)Modules.Departments, 1)]
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAsync(long id)
+        public async Task<IActionResult> GetAsync(int id)
         {
             if (!ModelState.IsValid)
                 return NotValidModelState();

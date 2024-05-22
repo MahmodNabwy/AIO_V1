@@ -11,7 +11,7 @@ namespace AIO.Core.Entities.Auth.Roles
         //  public override string UserId { get; set; }
         // public override string RoleId { get; set; }
         [Column("id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
         [Column("created_by")]
         public string CreatedBy { get; set; }
         [Column("created_at")]

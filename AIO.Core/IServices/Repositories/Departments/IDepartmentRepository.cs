@@ -7,8 +7,10 @@ namespace AIO.Contracts.IServices.Repositories.Departments
     public interface IDepartmentRepository : IGenericRepository<Department>
     {
         IQueryable<Department> GetAllAdmin();
-        Department GetByIdAdmin(long id);
+        Department GetByIdAdmin(int id);
         IQueryable<Department> buildFilterAdminQuery(DepartmentAdminFilter filter);
+
+        
     }
 
 }

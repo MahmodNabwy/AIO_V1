@@ -44,7 +44,7 @@ namespace AIO.API.Controllers.Admin.Languages
         /// <param name="id" example="1">The  Language id</param>
         [ActionPermissionWithModuleAndOperation((long)Modules.Languages, 1)]
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAsync(long id)
+        public async Task<IActionResult> GetAsync(int id)
         {
             if (!ModelState.IsValid)
                 return NotValidModelState();
@@ -90,7 +90,7 @@ namespace AIO.API.Controllers.Admin.Languages
         /// <param name="id" example="1">The  Language id</param>
         [ActionPermissionWithModuleAndOperation((long)Modules.Languages, 5)]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(long id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (!ModelState.IsValid)
                 return NotValidModelState();
@@ -106,7 +106,7 @@ namespace AIO.API.Controllers.Admin.Languages
         /// <param name="id" example="1">The  Language id</param>
         [ActionPermissionWithModuleAndOperation((long)Modules.Languages, 4)]
         [HttpPut("Trash/{id}")]
-        public async Task<IActionResult> Trash(long id)
+        public async Task<IActionResult> Trash(int id)
         {
             if (!ModelState.IsValid)
                 return NotValidModelState();
@@ -122,7 +122,7 @@ namespace AIO.API.Controllers.Admin.Languages
         /// <param name="id" example="1">The  Language id</param>
         [ActionPermissionWithModuleAndOperation((long)Modules.Languages, 4)]
         [HttpPut("UnTrash/{id}")]
-        public async Task<IActionResult> UnTrash(long id)
+        public async Task<IActionResult> UnTrash(int id)
         {
             if (!ModelState.IsValid)
                 return NotValidModelState();

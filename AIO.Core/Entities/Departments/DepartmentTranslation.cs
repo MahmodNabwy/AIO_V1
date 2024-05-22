@@ -16,7 +16,7 @@ namespace AIO.Core.Entities.Departments
 
         [Required(ErrorMessage = "Department Id is required")]
         [Column("department_id")]
-        public long DepartmentId { get; set; }
+        public int DepartmentId { get; set; }
 
         [ForeignKey(nameof(DepartmentId))]
         public virtual Department Department { get; set; }

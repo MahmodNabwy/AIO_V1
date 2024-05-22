@@ -52,7 +52,7 @@ namespace AIO.Application.Features.Languages.Commands
             return _holderOfDTO;
         }
         #region Helper Method
-        private ICollection<LanguageTranslation> UpdateRelatedData(ICollection<LanguageTranslation> update, long id)
+        private ICollection<LanguageTranslation> UpdateRelatedData(ICollection<LanguageTranslation> update, int id)
         {
             var oldObj = _unitOfWork.LanguageTranslation.FindAllNoTrack(q => q.LanguageId == id);
             var updatedData = update.Where(q => q.Id != 0).ToList();
@@ -60,7 +60,7 @@ namespace AIO.Application.Features.Languages.Commands
             AddNewRelatedData(update, id);
             return updatedData;
         }
-        private void AddNewRelatedData(ICollection<LanguageTranslation> update, long id)
+        private void AddNewRelatedData(ICollection<LanguageTranslation> update, int id)
         {
             var NewData = update.Where(q => q.Id == 0).ToList();
             foreach (var item in NewData)

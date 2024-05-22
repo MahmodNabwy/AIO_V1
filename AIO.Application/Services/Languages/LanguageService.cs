@@ -239,7 +239,7 @@ namespace AIO.Application.Services.Languages
         }
 
         #region Helper Method
-        private ICollection<LanguageTranslation> UpdateRelatedData(ICollection<LanguageTranslation> LanguageUpdate, long id)
+        private ICollection<LanguageTranslation> UpdateRelatedData(ICollection<LanguageTranslation> LanguageUpdate, int id)
         {
             var oldObj = _unitOfWork.LanguageTranslation.FindAllNoTrack(q => q.LanguageId == id);
             var updatedData = LanguageUpdate.Where(q => q.Id != 0).ToList();
@@ -247,7 +247,7 @@ namespace AIO.Application.Services.Languages
             AddNewRelatedData(LanguageUpdate, id);
             return updatedData;
         }
-        private void AddNewRelatedData(ICollection<LanguageTranslation> newsUpdate, long id)
+        private void AddNewRelatedData(ICollection<LanguageTranslation> newsUpdate, int id)
         {
             var NewData = newsUpdate.Where(q => q.Id == 0).ToList();
             foreach (var item in NewData)

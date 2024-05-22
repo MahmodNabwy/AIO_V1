@@ -18,44 +18,9 @@ namespace AIO.API.Controllers.Auth
         {
             _authService = authService;
         }
+ 
 
-        /// <summary>
-        /// User register in site 
-        /// </summary>
-        /// <returns> User register</returns>
-        /// <remarks> User register in site</remarks>
-        [AllowAnonymous]
-        [HttpPost("RegisterUser")]
-        public async Task<IActionResult> RegisterUserAsync([FromBody] UserRegisterSetterDTO userRegisterSetterDTO)
-        {
-            if (!ModelState.IsValid)
-                return NotValidModelState();
-
-            return State(await _authService.RegisterUserAsync(userRegisterSetterDTO));
-        }
-
-
-        //[HttpPost("ResendEmailConfirmationCode")]
-        //public async Task<IActionResult> ResendEmailConfirmationCodeAsync([FromBody] PersonalKeySetterDTO personalKeySetterDTO)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return NotValidModelState();
-
-        //    return State(await _authService.ResendEmailConfirmationCodeAsync(personalKeySetterDTO));
-        //}
-
-        //[HttpPost("ConfirmEmail")]
-        //public async Task<IActionResult> ConfirmEmailAsync([FromBody] EmailConfirmationSetterDTO emailConfirmationSetterDTO)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return NotValidModelState();
-
-        //    _holderOfDTO = await _authService.EmailConfirmationAsync(emailConfirmationSetterDTO);
-        //    CheckStateAndSetRefreshToken(HttpContext, _holderOfDTO);
-
-        //    return State(_holderOfDTO);
-
-        //}
+         
 
         /// <summary>
         /// User can login in site or admin panal
@@ -69,29 +34,11 @@ namespace AIO.API.Controllers.Auth
             if (!ModelState.IsValid)
                 return NotValidModelState();
 
-            _holderOfDTO = await _authService.LoginAsync(userLoginSetterDTO);
-            //CheckStateAndSetRefreshToken(HttpContext, _holderOfDTO);
-
+            _holderOfDTO = await _authService.LoginAsync(userLoginSetterDTO);  
             return State(_holderOfDTO);
         }
 
-        /// <summary>
-        /// User can login in admin panal
-        /// </summary>
-        /// <returns> User login</returns>
-        /// <remarks> User login in admin panal</remarks>
-        [AllowAnonymous]
-        [HttpPost("LoginAdmin")]
-        public async Task<IActionResult> LoginAdminAsync([FromBody] UserLoginSetterDTO userLoginSetterDTO)
-        {
-            if (!ModelState.IsValid)
-                return NotValidModelState();
-
-            _holderOfDTO = await _authService.LoginAdminAsync(userLoginSetterDTO);
-            // CheckStateAndSetRefreshToken(HttpContext, _holderOfDTO);
-
-            return State(_holderOfDTO);
-        }
+       
         /// <summary>
         /// Auto login in site 
         /// </summary>
@@ -192,35 +139,7 @@ namespace AIO.API.Controllers.Auth
             return State(_holderOfDTO);
         }
 
-        //[Authorize]
-        //[HttpPost("Logout")]
-        //public async Task<IActionResult> LogoutAsync([FromBody] TokenSetterDTO tokenSetterDTO)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return NotValidModelState();
-        //    return State(await _authService.LogoutAsync());
-        //}
-
-        //private void CheckStateAndSetRefreshToken(HttpContext httpContext, IHolderOfDTO holder)
-        //{
-        //    UserAuthGetterDTO userAuthDTO = null;
-        //    if ((bool)holder[Res.state])
-        //    {
-        //        if (holder.ContainsKey(Res.isConfirmed) && (bool)holder[Res.isConfirmed] && holder.ContainsKey(Res.oUserAuth))
-        //            userAuthDTO = (UserAuthGetterDTO)holder[Res.oUserAuth];
-        //    }
-        //    if (userAuthDTO is not null && !string.IsNullOrEmpty(userAuthDTO.RefreshToken))
-        //    {
-        //        var cookieOptions = new CookieOptions
-        //        {
-        //            HttpOnly = true,
-        //            Expires = userAuthDTO.RefreshTokenExpiration.ToUniversalTime()
-        //        };
-        //        RequestUtils.SetCookie(httpContext, Res.refreshToken, userAuthDTO.RefreshToken, cookieOptions);
-        //    }
-        //    else
-        //        RequestUtils.DeleteCookie(httpContext, Res.refreshToken);
-        //}
+        
 
     }
 }

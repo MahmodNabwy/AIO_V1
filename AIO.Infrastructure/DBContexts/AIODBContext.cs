@@ -2,11 +2,34 @@
 using AIO.Core.Entities.AppSettings;
 using AIO.Core.Entities.Auth;
 using AIO.Core.Entities.Auth.Roles;
+using AIO.Core.Entities.Categories;
 using AIO.Core.Entities.Departments;
 using AIO.Core.Entities.Elements;
 using AIO.Core.Entities.FilesLibrary;
+using AIO.Core.Entities.Insurance_conditions;
+using AIO.Core.Entities.InvoiceItems;
+using AIO.Core.Entities.InvoicePaymentOrders;
+using AIO.Core.Entities.Invoices;
+using AIO.Core.Entities.Items;
 using AIO.Core.Entities.Languages;
 using AIO.Core.Entities.Migrations;
+using AIO.Core.Entities.OwnerAttachments;
+using AIO.Core.Entities.Owners;
+using AIO.Core.Entities.ProjectAttachments;
+using AIO.Core.Entities.ProjectInsurances;
+using AIO.Core.Entities.ProjectPaymentMethods;
+using AIO.Core.Entities.Projects;
+using AIO.Core.Entities.ProjectSupplierAttachments;
+using AIO.Core.Entities.ProjectSuppliers;
+using AIO.Core.Entities.StatementCategories;
+using AIO.Core.Entities.Statements;
+using AIO.Core.Entities.SupplierAttachmets;
+using AIO.Core.Entities.SupplierCategories;
+using AIO.Core.Entities.SupplierInsurances;
+using AIO.Core.Entities.SupplierItems;
+using AIO.Core.Entities.SupplierPaymentMethods;
+using AIO.Core.Entities.Suppliers;
+using AIO.Core.Entities.Taxes;
 using AIO.Infrastructure.Configuration;
 using AIO.Infrastructure.Helpers;
 using Microsoft.AspNetCore.Builder;
@@ -77,6 +100,67 @@ namespace AIO.Infrastructure.DBContexts
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
         #region DB Sets
+
+        #region Category
+        public virtual DbSet<Category> Categories { get; set; }
+
+        #endregion
+
+        #region Insurance Conditions
+        public virtual DbSet<Insurance_Condition> Insurance_Conditions { get; set; }
+
+        #endregion
+
+
+        #region Invoice
+        public virtual DbSet<Invoice> Invoices { get; set; }
+        public virtual DbSet<InvoiceItems> InvoicesItems { get; set; }
+        public virtual DbSet<InvoicePaymentOrder> InvoicesPaymentOrders { get; set; }
+
+        #endregion
+
+        #region Items
+
+        public virtual DbSet<Item> Items { get; set; }
+
+        #endregion
+
+        #region Owner
+        public virtual DbSet<Owner> Owners { get; set; }
+        public virtual DbSet<OwnerAttachment> OwnersAttachments { get; set; }
+
+        #endregion
+
+       
+        #region Taxes
+        public virtual DbSet<Taxe> Taxes { get; set; }
+
+        #endregion
+        #region Project
+        public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<ProjectPaymentMethod> ProjectsPaymentMethods { get; set; }
+        public virtual DbSet<ProjectInsurance> ProjectsInsurances { get; set; }
+        public virtual DbSet<ProjectsAttachments> ProjectsAttachments { get; set; }
+
+        #endregion
+        #region Statement
+        public virtual DbSet<Statement> Statements { get; set; }
+        public virtual DbSet<StatementCategory> StatementsCategories { get; set; }
+        #endregion
+
+        #region Supplier
+        public virtual DbSet<Supplier> Suppliers { get; set; }
+        public virtual DbSet<ProjectSupplier> ProjectSuppliers { get; set; }
+        public virtual DbSet<ProjectSupplierAttachment> ProjectsSuppliersAttachments { get; set; }
+        public virtual DbSet<SupplierAttachment> SuppliersAttachments { get; set; }
+        public virtual DbSet<SupplierProjectItem> SuppliersProjectsItems { get; set; }
+        public virtual DbSet<SupplierProjectInsurance> SuppliersProjectsInsurances { get; set; }
+        public virtual DbSet<SupplierPaymentMethod> SuppliersPaymentsMethods { get; set; }
+        public virtual DbSet<SupplierCategory> SuppliersCategories { get; set; }
+
+        #endregion
+
+
 
         public virtual DbSet<UserRole> UserRoles { get; set; }
 

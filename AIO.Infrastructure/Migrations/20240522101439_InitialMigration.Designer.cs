@@ -4,6 +4,7 @@ using AIO.Infrastructure.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AIO.Infrastructure.Migrations
 {
     [DbContext(typeof(AIODBContext))]
-    partial class BoilerplateDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240522101439_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,12 +27,12 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.AppSettings.AppSetting", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
@@ -71,21 +73,21 @@ namespace AIO.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = 1,
                             IsSystem = true,
                             Key = "email_configuration",
                             Value = "{\"From\":\"digitalhub_dev@outlook.com\",\"SmtpServer\":\"smtp-mail.outlook.com\",\"Port\":\"587\",\"UserName\":\"digitalhub_dev@outlook.com\",\"Password\":\"DigitalDevTeam@123\"}"
                         },
                         new
                         {
-                            Id = 2L,
+                            Id = 2,
                             IsSystem = true,
                             Key = "complete_migration_email",
                             Value = " تم رفع الملف ( {0} )بنجاح  "
                         },
                         new
                         {
-                            Id = 3L,
+                            Id = 3,
                             IsSystem = true,
                             Key = "uncomplete_migration_email",
                             Value = " لم يتم رفع الملف  ( {0} ) لوجود اخطاء بالشيت ({1}) بالصف {2} والعمود {3}؛فلابد من مراجعة النشرة ثم قم بإعادة الرفع مره اخرى "
@@ -94,12 +96,12 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.Auth.Roles.RoleTranslation", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
@@ -318,12 +320,12 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.Departments.Department", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)")
@@ -354,8 +356,8 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("name");
 
-                    b.Property<long?>("ParentId")
-                        .HasColumnType("bigint")
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("int")
                         .HasColumnName("parent_id");
 
                     b.Property<string>("PhoneNumber")
@@ -382,12 +384,12 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.Departments.DepartmentTranslation", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)")
@@ -401,8 +403,8 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("created_by");
 
-                    b.Property<long>("DepartmentId")
-                        .HasColumnType("bigint")
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int")
                         .HasColumnName("department_id");
 
                     b.Property<string>("Locale")
@@ -434,12 +436,12 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.Departments.DepartmentUser", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
@@ -449,8 +451,8 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("created_by");
 
-                    b.Property<long>("DepartmentId")
-                        .HasColumnType("bigint")
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int")
                         .HasColumnName("department_id");
 
                     b.Property<bool>("IsDeleted")
@@ -486,12 +488,12 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.Elements.Element", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
@@ -532,12 +534,12 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.Elements.ElementTranslation", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
@@ -547,8 +549,8 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("created_by");
 
-                    b.Property<long>("ElementId")
-                        .HasColumnType("bigint")
+                    b.Property<int>("ElementId")
+                        .HasColumnType("int")
                         .HasColumnName("element_id");
 
                     b.Property<string>("Locale")
@@ -580,12 +582,12 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.FilesLibrary.FilesLibrary", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
@@ -643,12 +645,12 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.Languages.Language", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
@@ -711,7 +713,7 @@ namespace AIO.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = 1,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             Direction = "rtl",
@@ -726,7 +728,7 @@ namespace AIO.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = 2L,
+                            Id = 2,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             Direction = "ltr",
@@ -743,12 +745,12 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.Languages.LanguageTranslation", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
@@ -758,8 +760,8 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("created_by");
 
-                    b.Property<long>("LanguageId")
-                        .HasColumnType("bigint")
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int")
                         .HasColumnName("language_id");
 
                     b.Property<string>("Locale")
@@ -792,10 +794,10 @@ namespace AIO.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = 1,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
-                            LanguageId = 1L,
+                            LanguageId = 1,
                             Locale = "en",
                             Name = "Arabic",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
@@ -803,10 +805,10 @@ namespace AIO.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = 2L,
+                            Id = 2,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
-                            LanguageId = 2L,
+                            LanguageId = 2,
                             Locale = "en",
                             Name = "English",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
@@ -816,12 +818,12 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.Migrations.Migration", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
@@ -879,12 +881,12 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.PermissionModule", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
@@ -922,7 +924,7 @@ namespace AIO.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = 1,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
@@ -933,7 +935,7 @@ namespace AIO.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = 2L,
+                            Id = 2,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
@@ -944,7 +946,7 @@ namespace AIO.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = 3L,
+                            Id = 3,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
@@ -955,7 +957,7 @@ namespace AIO.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = 4L,
+                            Id = 4,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
@@ -966,7 +968,7 @@ namespace AIO.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = 5L,
+                            Id = 5,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
@@ -977,7 +979,7 @@ namespace AIO.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = 6L,
+                            Id = 6,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
@@ -988,7 +990,7 @@ namespace AIO.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = 7L,
+                            Id = 7,
                             CreatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
@@ -999,7 +1001,7 @@ namespace AIO.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = 9L,
+                            Id = 9,
                             CreatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
@@ -1012,12 +1014,12 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.RolePermission", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
@@ -1031,12 +1033,12 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("is_deleted");
 
-                    b.Property<long>("ModuleId")
-                        .HasColumnType("bigint")
+                    b.Property<int>("ModuleId")
+                        .HasColumnType("int")
                         .HasColumnName("module_id");
 
-                    b.Property<long>("OperationId")
-                        .HasColumnType("bigint")
+                    b.Property<int>("OperationId")
+                        .HasColumnType("int")
                         .HasColumnName("operation_id");
 
                     b.Property<string>("RoleId")
@@ -1063,480 +1065,480 @@ namespace AIO.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = 1,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 1L,
-                            OperationId = 1L,
+                            ModuleId = 1,
+                            OperationId = 1,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 2L,
+                            Id = 2,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 1L,
-                            OperationId = 2L,
+                            ModuleId = 1,
+                            OperationId = 2,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 3L,
+                            Id = 3,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 1L,
-                            OperationId = 3L,
+                            ModuleId = 1,
+                            OperationId = 3,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 4L,
+                            Id = 4,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 1L,
-                            OperationId = 4L,
+                            ModuleId = 1,
+                            OperationId = 4,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 5L,
+                            Id = 5,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 1L,
-                            OperationId = 5L,
+                            ModuleId = 1,
+                            OperationId = 5,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 6L,
+                            Id = 6,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 2L,
-                            OperationId = 1L,
+                            ModuleId = 2,
+                            OperationId = 1,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 7L,
+                            Id = 7,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 2L,
-                            OperationId = 2L,
+                            ModuleId = 2,
+                            OperationId = 2,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 8L,
+                            Id = 8,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 2L,
-                            OperationId = 3L,
+                            ModuleId = 2,
+                            OperationId = 3,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 9L,
+                            Id = 9,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 2L,
-                            OperationId = 4L,
+                            ModuleId = 2,
+                            OperationId = 4,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 10L,
+                            Id = 10,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 2L,
-                            OperationId = 5L,
+                            ModuleId = 2,
+                            OperationId = 5,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 11L,
+                            Id = 11,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 3L,
-                            OperationId = 1L,
+                            ModuleId = 3,
+                            OperationId = 1,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 12L,
+                            Id = 12,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 3L,
-                            OperationId = 2L,
+                            ModuleId = 3,
+                            OperationId = 2,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 13L,
+                            Id = 13,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 3L,
-                            OperationId = 3L,
+                            ModuleId = 3,
+                            OperationId = 3,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 14L,
+                            Id = 14,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 3L,
-                            OperationId = 4L,
+                            ModuleId = 3,
+                            OperationId = 4,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 15L,
+                            Id = 15,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 3L,
-                            OperationId = 5L,
+                            ModuleId = 3,
+                            OperationId = 5,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 16L,
+                            Id = 16,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 4L,
-                            OperationId = 1L,
+                            ModuleId = 4,
+                            OperationId = 1,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 17L,
+                            Id = 17,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 4L,
-                            OperationId = 2L,
+                            ModuleId = 4,
+                            OperationId = 2,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 18L,
+                            Id = 18,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 4L,
-                            OperationId = 3L,
+                            ModuleId = 4,
+                            OperationId = 3,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 19L,
+                            Id = 19,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 4L,
-                            OperationId = 4L,
+                            ModuleId = 4,
+                            OperationId = 4,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 20L,
+                            Id = 20,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 4L,
-                            OperationId = 5L,
+                            ModuleId = 4,
+                            OperationId = 5,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 21L,
+                            Id = 21,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 5L,
-                            OperationId = 1L,
+                            ModuleId = 5,
+                            OperationId = 1,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 22L,
+                            Id = 22,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 5L,
-                            OperationId = 2L,
+                            ModuleId = 5,
+                            OperationId = 2,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 23L,
+                            Id = 23,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 5L,
-                            OperationId = 3L,
+                            ModuleId = 5,
+                            OperationId = 3,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 24L,
+                            Id = 24,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 5L,
-                            OperationId = 4L,
+                            ModuleId = 5,
+                            OperationId = 4,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 25L,
+                            Id = 25,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 5L,
-                            OperationId = 5L,
+                            ModuleId = 5,
+                            OperationId = 5,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 26L,
+                            Id = 26,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 6L,
-                            OperationId = 1L,
+                            ModuleId = 6,
+                            OperationId = 1,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 27L,
+                            Id = 27,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 6L,
-                            OperationId = 2L,
+                            ModuleId = 6,
+                            OperationId = 2,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 28L,
+                            Id = 28,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 6L,
-                            OperationId = 3L,
+                            ModuleId = 6,
+                            OperationId = 3,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 29L,
+                            Id = 29,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 6L,
-                            OperationId = 4L,
+                            ModuleId = 6,
+                            OperationId = 4,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 30L,
+                            Id = 30,
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 6L,
-                            OperationId = 5L,
+                            ModuleId = 6,
+                            OperationId = 5,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 31L,
+                            Id = 31,
                             CreatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 7L,
-                            OperationId = 1L,
+                            ModuleId = 7,
+                            OperationId = 1,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 32L,
+                            Id = 32,
                             CreatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 7L,
-                            OperationId = 2L,
+                            ModuleId = 7,
+                            OperationId = 2,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 33L,
+                            Id = 33,
                             CreatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 7L,
-                            OperationId = 3L,
+                            ModuleId = 7,
+                            OperationId = 3,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 34L,
+                            Id = 34,
                             CreatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 7L,
-                            OperationId = 4L,
+                            ModuleId = 7,
+                            OperationId = 4,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 35L,
+                            Id = 35,
                             CreatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 7L,
-                            OperationId = 5L,
+                            ModuleId = 7,
+                            OperationId = 5,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 36L,
+                            Id = 36,
                             CreatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 9L,
-                            OperationId = 1L,
+                            ModuleId = 9,
+                            OperationId = 1,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 37L,
+                            Id = 37,
                             CreatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 9L,
-                            OperationId = 2L,
+                            ModuleId = 9,
+                            OperationId = 2,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 38L,
+                            Id = 38,
                             CreatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 9L,
-                            OperationId = 3L,
+                            ModuleId = 9,
+                            OperationId = 3,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 39L,
+                            Id = 39,
                             CreatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 9L,
-                            OperationId = 4L,
+                            ModuleId = 9,
+                            OperationId = 4,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
                         new
                         {
-                            Id = 40L,
+                            Id = 40,
                             CreatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
                             IsDeleted = false,
-                            ModuleId = 9L,
-                            OperationId = 5L,
+                            ModuleId = 9,
+                            OperationId = 5,
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             UpdatedAt = new DateTime(2023, 2, 20, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
@@ -1793,8 +1795,8 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("created_by");
 
-                    b.Property<long>("Id")
-                        .HasColumnType("bigint")
+                    b.Property<int>("Id")
+                        .HasColumnType("int")
                         .HasColumnName("id");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -1822,7 +1824,7 @@ namespace AIO.Infrastructure.Migrations
                             RoleId = "fd44e5d3-57ed-4276-98b6-844f06045062",
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
-                            Id = 0L,
+                            Id = 0,
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
@@ -1832,7 +1834,7 @@ namespace AIO.Infrastructure.Migrations
                             RoleId = "b17cc416-89b4-455d-a58a-4b4e8503e995",
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
-                            Id = 0L,
+                            Id = 0,
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         },
@@ -1842,7 +1844,7 @@ namespace AIO.Infrastructure.Migrations
                             RoleId = "61580090-2de4-4f3a-8d93-34e32fc48ecb",
                             CreatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             CreatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8",
-                            Id = 0L,
+                            Id = 0,
                             UpdatedAt = new DateTime(2021, 11, 15, 0, 53, 30, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "c1be5862-d402-4a31-b292-6aded859f7a8"
                         });
@@ -1913,12 +1915,12 @@ namespace AIO.Infrastructure.Migrations
 
                     b.OwnsMany("AIO.Core.Entities.Auth.UserValidationToken", "ValidationTokens", b1 =>
                         {
-                            b1.Property<long>("TokenId")
+                            b1.Property<int>("TokenId")
                                 .ValueGeneratedOnAdd()
-                                .HasColumnType("bigint")
+                                .HasColumnType("int")
                                 .HasColumnName("token_id");
 
-                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<long>("TokenId"), 1L, 1);
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("TokenId"), 1L, 1);
 
                             b1.Property<string>("Agent")
                                 .HasMaxLength(400)

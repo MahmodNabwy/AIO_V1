@@ -23,7 +23,7 @@ namespace AIO.Infrastructure.Services.Repositories.Departments
 
             return query;
         }
-        public Department GetByIdAdmin(long id)
+        public Department GetByIdAdmin(int id)
         {
             var query = _db.Departments
                 .Where(q => q.Id == id)

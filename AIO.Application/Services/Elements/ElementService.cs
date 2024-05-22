@@ -262,7 +262,7 @@ namespace AIO.Application.Services.Elements
         }
 
         #region Helper Method
-        private ICollection<ElementTranslation> UpdateRelatedData(ICollection<ElementTranslation> ElementUpdate, long id)
+        private ICollection<ElementTranslation> UpdateRelatedData(ICollection<ElementTranslation> ElementUpdate, int id)
         {
             var oldObj = _unitOfWork.ElementTranslations.FindAllNoTrack(q => q.ElementId == id);
             var updatedData = ElementUpdate.Where(q => q.Id != 0).ToList();
@@ -270,7 +270,7 @@ namespace AIO.Application.Services.Elements
             AddNewRelatedData(ElementUpdate, id);
             return updatedData;
         }
-        private void AddNewRelatedData(ICollection<ElementTranslation> newsUpdate, long id)
+        private void AddNewRelatedData(ICollection<ElementTranslation> newsUpdate, int id)
         {
             var NewData = newsUpdate.Where(q => q.Id == 0).ToList();
             foreach (var item in NewData)

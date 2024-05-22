@@ -161,7 +161,7 @@ namespace AIO.API.Controllers.Auth
         /// <remarks> 
         /// Add user system by user that has Add permisssions
         /// </remarks>
-        [ActionPermissionWithModuleAndOperation((long)Modules.Users, 2)]
+        //[ActionPermissionWithModuleAndOperation((long)Modules.Users, 2)]
         [HttpPost]
         public async Task<IActionResult> AddUserAsync([FromBody] UserSetterDTO setterDTO)
         {
