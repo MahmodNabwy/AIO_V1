@@ -29,10 +29,15 @@ using AIO.Contracts.IServices.Services.PasswordGeneration;
 using AIO.Contracts.IServices.Services.Permissions;
 using AIO.Contracts.IServices.Services.ThumbnailService;
 using AIO.Contracts.models.ThumbnailModel;
-using AIO.Application.Services.ProjectInsurance;
+using AIO.Application.Services.ProjectInsurances;
 using AIO.Contracts.Interfaces.Services.ProjectInsurance;
-using AIO.Application.Services.InsuranceCondition;
-using AIO.Contracts.Interfaces.Services.InsuranceCondition;
+using AIO.Contracts.Interfaces.Services.ProjectAttachments;
+using AIO.Application.Services.ProjectAttachments;
+using AIO.Application.Services.ProjectServices;
+using AIO.Contracts.Interfaces.Services.IProjectServices;
+using AIO.Application.Services.Attachments;
+using AIO.Contracts.Interfaces.Services.Attachments;
+using MediatR;
 
 namespace AIO.Application
 {
@@ -64,6 +69,22 @@ namespace AIO.Application
                 .InstancePerLifetimeScope();
 
             #endregion
+
+            #region Project Attachments
+            builder.RegisterType<ProjectAttachmentService>().As<IProjectAttachmentService>()
+            .InstancePerLifetimeScope();
+            #endregion
+
+            #region Projects
+            builder.RegisterType<ProjectService>().As<IProjectService>()
+              .InstancePerLifetimeScope();
+            #endregion
+
+            #region Attachment
+            builder.RegisterType<AttachmentService>().As<IAttachmentService>()
+             .InstancePerLifetimeScope();
+            #endregion
+
             #region Project Insurance
 
             builder.RegisterType<ProjectInsuranceService>().As<IProjectInsuranceService>()
@@ -71,10 +92,9 @@ namespace AIO.Application
 
             #endregion
 
-            #region Insurance Condition
-            builder.RegisterType<InsuranceConditionService>().As<IInsuranceConditionService>()
-            .InstancePerLifetimeScope();
-            #endregion
+             
+           
+
             #region Permissions and Licence
 
             builder.RegisterType<PermissionService>().As<IPermissionService>()
@@ -143,10 +163,10 @@ namespace AIO.Application
             builder.RegisterType<AppSettingService>().As<IAppSettingService>()
                 .InstancePerLifetimeScope();
             #endregion
-            //#region AppSettingService
-            //builder.RegisterType<Mediator>().As<IMediator>()
-            //    .InstancePerLifetimeScope();
-            //#endregion 
+            #region AppSettingService
+            builder.RegisterType<Mediator>().As<IMediator>()
+                .InstancePerLifetimeScope();
+            #endregion 
 
             #region ThumbnailService
 
@@ -156,6 +176,8 @@ namespace AIO.Application
                 .InstancePerLifetimeScope();
 
             #endregion
+
+
         }
     }
 }

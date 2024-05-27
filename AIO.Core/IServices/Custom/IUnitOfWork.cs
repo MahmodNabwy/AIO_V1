@@ -8,9 +8,11 @@ using AIO.Contracts.IServices.Repositories.FileUploader;
 using AIO.Contracts.IServices.Repositories.Languages;
 using AIO.Contracts.IServices.Repositories.Migrations;
 using AIO.Core.IServices.Custom.Repositories;
-using AIO.Core.IServices.Repositories.Insurance_Conditions;
+using AIO.Core.IServices.Repositories.Attachments;
+using AIO.Core.IServices.Repositories.ProjectAttachments;
 using AIO.Core.IServices.Repositories.ProjectInsurances;
 using AIO.Core.IServices.Repositories.ProjectPaymentMethods;
+using AIO.Core.IServices.Repositories.Projects;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace AIO.Core.IServices.Custom
@@ -27,8 +29,18 @@ namespace AIO.Core.IServices.Custom
         public ITimeLogRepository TimeLogs { get; }
         public IProfilePictureRepository ProfilePicture { get; }
 
+
+        #region Attachments
+        public IAttachmentRepository Attachment { get; }
+        #endregion
+
         #region Project Insurance
         public IProjectInsuranceRepository ProjectInsurance { get; }
+
+        #endregion
+
+        #region Project Attachments
+        public IProjectAttachmentRepository ProjectAttachment { get; }
 
         #endregion
 
@@ -37,11 +49,13 @@ namespace AIO.Core.IServices.Custom
 
         #endregion
 
-
-        #region Insurance_Condition
-        public IInsuranceConditionsRepository InsuranceCondition { get; }
+        #region Project 
+        public IProjectsRepository Projects { get; }
 
         #endregion
+
+
+
 
         #region Departments
         public IDepartmentRepository Department { get; }

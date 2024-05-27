@@ -50,7 +50,7 @@ namespace AIO.Core.Entities.Projects
 
         [Required(ErrorMessage = "Assigned To Date is required")]
         [Column("assigned_to_date")]
-        public DateTime assigned_to_date { get; set; }
+        public DateTime AssignedToDate { get; set; }
 
 
         [Required(ErrorMessage = "Primare Reciept Date is required")]
@@ -109,10 +109,9 @@ namespace AIO.Core.Entities.Projects
         [Required(ErrorMessage = "Owner Id is required")]
         [Column("owner_id")]
         public int OwnerId { get; set; }
-
-        [Required(ErrorMessage = "Tax Id is required")]
+        
         [Column("tax_id")]
-        public int TaxId { get; set; }
+        public int? TaxId { get; set; }
 
         [ForeignKey(nameof(OwnerId))]
         public virtual Owner Owner { get; set; }
@@ -131,8 +130,7 @@ namespace AIO.Core.Entities.Projects
         public virtual ICollection<SupplierProjectInsurance> SupplierProjectInsurances { get; set; }
         public virtual ICollection<SupplierProjectItem> SupplierProjectItems { get; set; }
         public virtual ICollection<ProjectsAttachments> ProjectAttachments { get; set; }
-        public virtual ICollection<SupplierPaymentMethod> ProjectSupplyPaymentMethods { get; set; }
-
+        public virtual ICollection<SupplierPaymentMethod> ProjectSupplyPaymentMethods { get; set; }        
 
 
     }

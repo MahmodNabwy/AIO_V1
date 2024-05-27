@@ -8,27 +8,32 @@ using AIO.Contracts.IServices.Repositories.Elements;
 using AIO.Contracts.IServices.Repositories.FileUploader;
 using AIO.Contracts.IServices.Repositories.Languages;
 using AIO.Contracts.IServices.Repositories.Migrations;
+using AIO.Core.Entities.ProjectAttachments;
 using AIO.Core.Entities.ProjectInsurances;
 using AIO.Core.Entities.ProjectPaymentMethods;
 using AIO.Core.IServices.Custom;
 using AIO.Core.IServices.Custom.Repositories;
-using AIO.Core.IServices.Repositories.Insurance_Conditions;
+using AIO.Core.IServices.Repositories.Attachments;
+using AIO.Core.IServices.Repositories.ProjectAttachments;
 using AIO.Core.IServices.Repositories.ProjectInsurances;
 using AIO.Core.IServices.Repositories.ProjectPaymentMethods;
+using AIO.Core.IServices.Repositories.Projects;
 using AIO.Infrastructure.DBContexts;
 using AIO.Infrastructure.Repositories.Custom.Log_System;
 using AIO.Infrastructure.Services.Repositories;
 using AIO.Infrastructure.Services.Repositories.AppSettings;
+using AIO.Infrastructure.Services.Repositories.Attachments;
 using AIO.Infrastructure.Services.Repositories.Auth;
 using AIO.Infrastructure.Services.Repositories.Auth.Roles;
 using AIO.Infrastructure.Services.Repositories.Departments;
 using AIO.Infrastructure.Services.Repositories.Elements;
 using AIO.Infrastructure.Services.Repositories.FileUploader;
-using AIO.Infrastructure.Services.Repositories.Insurance_Conditions;
 using AIO.Infrastructure.Services.Repositories.Languages;
 using AIO.Infrastructure.Services.Repositories.Migrations;
+using AIO.Infrastructure.Services.Repositories.ProjectAttachments;
 using AIO.Infrastructure.Services.Repositories.ProjectInsurances;
 using AIO.Infrastructure.Services.Repositories.ProjectPaymentMethods;
+using AIO.Infrastructure.Services.Repositories.Projects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
@@ -48,6 +53,17 @@ namespace AIO.Infrastructure.Services.Custom
         public IUserSecurityQuestionRepository UserSecurityQuestions { get; }
         public IProfilePictureRepository ProfilePicture { get; private set; }
 
+
+        #region Attachments
+        public IAttachmentRepository Attachment { get; private set; }
+        #endregion
+
+        #region Project 
+        public IProjectsRepository Projects { get; private set; }
+
+        #endregion
+
+
         #region Project Insurance
         public IProjectInsuranceRepository ProjectInsurance { get; private set; }
 
@@ -58,11 +74,13 @@ namespace AIO.Infrastructure.Services.Custom
 
         #endregion
 
-
-        #region Insurance_Condition
-        public IInsuranceConditionsRepository InsuranceCondition { get; private set; }
+        #region Project Attachments
+        public IProjectAttachmentRepository ProjectAttachment { get; private set; }
 
         #endregion
+
+
+
         #region  Permissions
         public IPermissionModuleRepository PermissionModule { get; private set; }
         public IRolePermissionRepository RolePermission { get; private set; }
@@ -117,12 +135,23 @@ namespace AIO.Infrastructure.Services.Custom
             Licences = new LicenceRepository(_context);
             TimeLogs = new TimeLogRepository(_context);
 
+            #region Project 
+            Projects = new ProjectsRepository(_context);
+            #endregion
+
             #region Project Insurance
             ProjectInsurance = new ProjectInsuranceRepository(_context);
             #endregion
 
-            #region Insurance Condition
-            InsuranceCondition = new InsuranceConditionsRepository(_context);
+
+            #region Attachments
+            Attachment = new AttachmentRepository(_context);
+            #endregion
+
+
+
+            #region Project Attachments
+            ProjectAttachment = new ProjectAttachmentRepository(_context);
             #endregion
 
             #region Project Payment Method

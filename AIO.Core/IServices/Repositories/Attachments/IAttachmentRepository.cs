@@ -1,0 +1,15 @@
+﻿using AIO.Contracts.IServices.Custom;
+using AIO.Core.Entities.Attachments;
+using AIO.Core.Entities.InvoiceItems;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIO.Core.IServices.Repositories.Attachments
+{
+    public interface IAttachmentRepository : IGenericRepository<Attachment>
+    {
+    }
+}

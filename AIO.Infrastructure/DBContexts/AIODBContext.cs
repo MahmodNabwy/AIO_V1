@@ -1,12 +1,12 @@
 ﻿using AIO.Core.Entities;
 using AIO.Core.Entities.AppSettings;
+using AIO.Core.Entities.Attachments;
 using AIO.Core.Entities.Auth;
 using AIO.Core.Entities.Auth.Roles;
 using AIO.Core.Entities.Categories;
 using AIO.Core.Entities.Departments;
 using AIO.Core.Entities.Elements;
 using AIO.Core.Entities.FilesLibrary;
-using AIO.Core.Entities.Insurance_conditions;
 using AIO.Core.Entities.InvoiceItems;
 using AIO.Core.Entities.InvoicePaymentOrders;
 using AIO.Core.Entities.Invoices;
@@ -106,8 +106,8 @@ namespace AIO.Infrastructure.DBContexts
 
         #endregion
 
-        #region Insurance Conditions
-        public virtual DbSet<Insurance_Condition> Insurance_Conditions { get; set; }
+        #region Attachment
+        public virtual DbSet<Attachment> Attachments { get; set; }
 
         #endregion
 

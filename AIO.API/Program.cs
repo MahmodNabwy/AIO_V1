@@ -261,7 +261,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 #endregion
 
 #region API .Net Core IOC Container
-
+builder.Services.AddTransient<HolderOfDTO>();
 #endregion
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

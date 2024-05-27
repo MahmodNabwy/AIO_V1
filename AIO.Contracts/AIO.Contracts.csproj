@@ -24,4 +24,8 @@
     <ProjectReference Include="..\AIO.Shared\AIO.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Projects\Queries\" />
+  </ItemGroup>
+
 </Project>

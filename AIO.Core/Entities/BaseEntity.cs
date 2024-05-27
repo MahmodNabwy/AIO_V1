@@ -21,6 +21,10 @@ namespace AIO.Core.Entities
         [StringLength(36)]
         public string Uid { get; set; }
 
+        [Column("name")]
+        [StringLength(100)]
+        public string Name { get; set; }
+
 
         [NotMapped]
         private string _Url;

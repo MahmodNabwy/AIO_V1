@@ -1,6 +1,7 @@
 ﻿using AIO.Contracts.DTOs.Setter.InsuranceCondition;
-using AIO.Contracts.DTOs.Setter.Projects;
+using AIO.Contracts.DTOs.Setter.ProjectPaymentMethod;
 using AIO.Core.Entities.ProjectInsurances;
+using AIO.Core.Entities.ProjectPaymentMethods;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace AIO.Application.Helpers
 {
     public partial class MappingProfile
     {
-        private void ProjectInsuranceMappingProfile()
+        private void ProjectPaymentMethodMappingProfile()
         {
-            CreateMap<InsuranceConditionSetterDTO, ProjectInsurance>().ReverseMap();
+            CreateMap<ProjectPaymentMethodSetterDTO, ProjectPaymentMethod>().ReverseMap();
         }
     }
 }

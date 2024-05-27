@@ -19,7 +19,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AIO.Application.Services.ProjectInsurance
+namespace AIO.Application.Services.ProjectInsurances
 {
     public class ProjectInsuranceService : BaseService<ProjectInsuranceService>, IProjectInsuranceService
     {
@@ -36,8 +36,7 @@ namespace AIO.Application.Services.ProjectInsurance
             {
                 var oProjectInsurance = new AIO.Core.Entities.ProjectInsurances.ProjectInsurance();
                 oProjectInsurance.CreatedAt = DateTime.Now;
-                oProjectInsurance.ProjectId = projectId;
-                oProjectInsurance.InsuranceConditionId = insuranceId;
+                oProjectInsurance.ProjectId = projectId;                
                 oProjectInsurance.CreatedBy = GetUserId();                
 
                 var oData = await _unitOfWork.ProjectInsurance.AddAsync(oProjectInsurance);

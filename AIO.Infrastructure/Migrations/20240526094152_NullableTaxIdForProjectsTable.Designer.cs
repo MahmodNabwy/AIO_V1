@@ -4,6 +4,7 @@ using AIO.Infrastructure.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AIO.Infrastructure.Migrations
 {
     [DbContext(typeof(AIODBContext))]
-    partial class AIODBContextModelSnapshot : ModelSnapshot
+    [Migration("20240526094152_NullableTaxIdForProjectsTable")]
+    partial class NullableTaxIdForProjectsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,62 +92,6 @@ namespace AIO.Infrastructure.Migrations
                             Key = "uncomplete_migration_email",
                             Value = " لم يتم رفع الملف  ( {0} ) لوجود اخطاء بالشيت ({1}) بالصف {2} والعمود {3}؛فلابد من مراجعة النشرة ثم قم بإعادة الرفع مره اخرى "
                         });
-                });
-
-            modelBuilder.Entity("AIO.Core.Entities.Attachments.Attachment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("created_at");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("created_by");
-
-                    b.Property<int>("MediaType")
-                        .HasColumnType("int")
-                        .HasColumnName("media_type");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
-                        .HasColumnName("name");
-
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("size");
-
-                    b.Property<string>("Uid")
-                        .IsRequired()
-                        .HasMaxLength(36)
-                        .HasColumnType("nvarchar(36)")
-                        .HasColumnName("uid");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("updated_at");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("updated_by");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("url");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("attachments");
                 });
 
             modelBuilder.Entity("AIO.Core.Entities.Auth.Roles.RoleTranslation", b =>
@@ -737,6 +683,68 @@ namespace AIO.Infrastructure.Migrations
                     b.ToTable("files_library");
                 });
 
+            modelBuilder.Entity("AIO.Core.Entities.Insurance_conditions.Insurance_Condition", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)")
+                        .HasColumnName("amount");
+
+                    b.Property<int>("Amount_Concurrency_Type")
+                        .HasColumnType("int")
+                        .HasColumnName("amount_concurrency_type ");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("created_by");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("date");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit")
+                        .HasColumnName("is_deleted");
+
+                    b.Property<int>("Percentage")
+                        .HasColumnType("int")
+                        .HasColumnName("percentage");
+
+                    b.Property<int>("Period")
+                        .HasColumnType("int")
+                        .HasColumnName("period");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int")
+                        .HasColumnName("status_id ");
+
+                    b.Property<int>("TypeId")
+                        .HasColumnType("int")
+                        .HasColumnName("type_id ");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("updated_at");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("updated_by");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("insurance_condition");
+                });
+
             modelBuilder.Entity("AIO.Core.Entities.InvoiceItems.InvoiceItems", b =>
                 {
                     b.Property<int>("Id")
@@ -1199,10 +1207,6 @@ namespace AIO.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AttachmentId")
-                        .HasColumnType("int")
-                        .HasColumnName("attachment_id");
-
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("created_at");
@@ -1211,13 +1215,30 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("created_by");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasColumnName("is_deleted");
+                    b.Property<int>("MediaType")
+                        .HasColumnType("int")
+                        .HasColumnName("media_type");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("name");
 
                     b.Property<int>("OwnerId")
                         .HasColumnType("int")
                         .HasColumnName("owner_id");
+
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasColumnName("size");
+
+                    b.Property<string>("Uid")
+                        .IsRequired()
+                        .HasMaxLength(36)
+                        .HasColumnType("nvarchar(36)")
+                        .HasColumnName("uid");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
@@ -1227,9 +1248,12 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("updated_by");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("url");
 
-                    b.HasIndex("AttachmentId");
+                    b.HasKey("Id");
 
                     b.HasIndex("OwnerId");
 
@@ -1454,10 +1478,6 @@ namespace AIO.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AttachmentId")
-                        .HasColumnType("int")
-                        .HasColumnName("attachment_id");
-
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("created_at");
@@ -1466,13 +1486,30 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("created_by");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasColumnName("is_deleted");
+                    b.Property<int>("MediaType")
+                        .HasColumnType("int")
+                        .HasColumnName("media_type");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("name");
 
                     b.Property<int>("ProjectId")
                         .HasColumnType("int")
                         .HasColumnName("project_id");
+
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasColumnName("size");
+
+                    b.Property<string>("Uid")
+                        .IsRequired()
+                        .HasMaxLength(36)
+                        .HasColumnType("nvarchar(36)")
+                        .HasColumnName("uid");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
@@ -1482,9 +1519,12 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("updated_by");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("url");
 
-                    b.HasIndex("AttachmentId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ProjectId");
 
@@ -1500,14 +1540,6 @@ namespace AIO.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)")
-                        .HasColumnName("amount");
-
-                    b.Property<int>("Amount_Concurrency_Type")
-                        .HasColumnType("int")
-                        .HasColumnName("amount_concurrency_type ");
-
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("created_at");
@@ -1516,33 +1548,17 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("created_by");
 
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("date");
+                    b.Property<int>("InsuranceConditionId")
+                        .HasColumnType("int")
+                        .HasColumnName("insurance_condition_id");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit")
                         .HasColumnName("is_deleted");
 
-                    b.Property<int>("Percentage")
-                        .HasColumnType("int")
-                        .HasColumnName("percentage");
-
-                    b.Property<int>("Period")
-                        .HasColumnType("int")
-                        .HasColumnName("period");
-
                     b.Property<int>("ProjectId")
                         .HasColumnType("int")
                         .HasColumnName("project_id");
-
-                    b.Property<int>("StatusId")
-                        .HasColumnType("int")
-                        .HasColumnName("status_id ");
-
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int")
-                        .HasColumnName("type_id ");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
@@ -1553,6 +1569,8 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnName("updated_by");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("InsuranceConditionId");
 
                     b.HasIndex("ProjectId");
 
@@ -1749,10 +1767,6 @@ namespace AIO.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AttachmentId")
-                        .HasColumnType("int")
-                        .HasColumnName("attachment_id");
-
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("created_at");
@@ -1761,13 +1775,30 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("created_by");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasColumnName("is_deleted");
+                    b.Property<int>("MediaType")
+                        .HasColumnType("int")
+                        .HasColumnName("media_type");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("name");
 
                     b.Property<int>("ProjectSupplierId")
                         .HasColumnType("int")
                         .HasColumnName("project_supplier_id");
+
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasColumnName("size");
+
+                    b.Property<string>("Uid")
+                        .IsRequired()
+                        .HasMaxLength(36)
+                        .HasColumnType("nvarchar(36)")
+                        .HasColumnName("uid");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
@@ -1777,9 +1808,12 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("updated_by");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("url");
 
-                    b.HasIndex("AttachmentId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ProjectSupplierId");
 
@@ -2527,10 +2561,6 @@ namespace AIO.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AttachmentId")
-                        .HasColumnType("int")
-                        .HasColumnName("attachment_id");
-
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("created_at");
@@ -2539,13 +2569,30 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("created_by");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasColumnName("is_deleted");
+                    b.Property<int>("MediaType")
+                        .HasColumnType("int")
+                        .HasColumnName("media_type");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("name");
+
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasColumnName("size");
 
                     b.Property<int>("SupplierId")
                         .HasColumnType("int")
                         .HasColumnName("supplier_id");
+
+                    b.Property<string>("Uid")
+                        .IsRequired()
+                        .HasMaxLength(36)
+                        .HasColumnType("nvarchar(36)")
+                        .HasColumnName("uid");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
@@ -2555,9 +2602,12 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("updated_by");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("url");
 
-                    b.HasIndex("AttachmentId");
+                    b.HasKey("Id");
 
                     b.HasIndex("SupplierId");
 
@@ -2623,14 +2673,6 @@ namespace AIO.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)")
-                        .HasColumnName("amount");
-
-                    b.Property<int>("Amount_Concurrency_Type")
-                        .HasColumnType("int")
-                        .HasColumnName("amount_concurrency_type ");
-
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("created_at");
@@ -2639,37 +2681,21 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("created_by");
 
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("date");
+                    b.Property<int>("InsuranceConditionId")
+                        .HasColumnType("int")
+                        .HasColumnName("insurance_condition_id");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit")
                         .HasColumnName("is_deleted");
 
-                    b.Property<int>("Percentage")
-                        .HasColumnType("int")
-                        .HasColumnName("percentage");
-
-                    b.Property<int>("Period")
-                        .HasColumnType("int")
-                        .HasColumnName("period");
-
                     b.Property<int>("ProjectId")
                         .HasColumnType("int")
                         .HasColumnName("project_id");
 
-                    b.Property<int>("StatusId")
-                        .HasColumnType("int")
-                        .HasColumnName("status_id ");
-
                     b.Property<int>("SupplierId")
                         .HasColumnType("int")
                         .HasColumnName("supplier_id");
-
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int")
-                        .HasColumnName("type_id ");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
@@ -2680,6 +2706,8 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnName("updated_by");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("InsuranceConditionId");
 
                     b.HasIndex("ProjectId");
 
@@ -3459,49 +3487,41 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.OwnerAttachments.OwnerAttachment", b =>
                 {
-                    b.HasOne("AIO.Core.Entities.Attachments.Attachment", "Attachment")
-                        .WithMany()
-                        .HasForeignKey("AttachmentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("AIO.Core.Entities.Owners.Owner", "Owner")
                         .WithMany("OwnerAttachments")
                         .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Attachment");
-
                     b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("AIO.Core.Entities.ProjectAttachments.ProjectsAttachments", b =>
                 {
-                    b.HasOne("AIO.Core.Entities.Attachments.Attachment", "Attachment")
-                        .WithMany()
-                        .HasForeignKey("AttachmentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("AIO.Core.Entities.Projects.Project", "Project")
                         .WithMany("ProjectAttachments")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Attachment");
-
                     b.Navigation("Project");
                 });
 
             modelBuilder.Entity("AIO.Core.Entities.ProjectInsurances.ProjectInsurance", b =>
                 {
+                    b.HasOne("AIO.Core.Entities.Insurance_conditions.Insurance_Condition", "InsuranceCondition")
+                        .WithMany("ProjectInsurances")
+                        .HasForeignKey("InsuranceConditionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("AIO.Core.Entities.Projects.Project", "Project")
                         .WithMany("ProjectInsurances")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("InsuranceCondition");
 
                     b.Navigation("Project");
                 });
@@ -3542,19 +3562,11 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.ProjectSupplierAttachments.ProjectSupplierAttachment", b =>
                 {
-                    b.HasOne("AIO.Core.Entities.Attachments.Attachment", "Attachment")
-                        .WithMany()
-                        .HasForeignKey("AttachmentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("AIO.Core.Entities.ProjectSuppliers.ProjectSupplier", "ProjectSupplier")
                         .WithMany("ProjectSupplierAttachment")
                         .HasForeignKey("ProjectSupplierId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Attachment");
 
                     b.Navigation("ProjectSupplier");
                 });
@@ -3645,19 +3657,11 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.SupplierAttachmets.SupplierAttachment", b =>
                 {
-                    b.HasOne("AIO.Core.Entities.Attachments.Attachment", "Attachment")
-                        .WithMany()
-                        .HasForeignKey("AttachmentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("AIO.Core.Entities.Suppliers.Supplier", "Supplier")
                         .WithMany()
                         .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Attachment");
 
                     b.Navigation("Supplier");
                 });
@@ -3683,6 +3687,12 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.SupplierInsurances.SupplierProjectInsurance", b =>
                 {
+                    b.HasOne("AIO.Core.Entities.Insurance_conditions.Insurance_Condition", "InsuranceCondition")
+                        .WithMany("SupplierProjectInsurances")
+                        .HasForeignKey("InsuranceConditionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("AIO.Core.Entities.Projects.Project", "Project")
                         .WithMany("SupplierProjectInsurances")
                         .HasForeignKey("ProjectId")
@@ -3694,6 +3704,8 @@ namespace AIO.Infrastructure.Migrations
                         .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("InsuranceCondition");
 
                     b.Navigation("Project");
 
@@ -3839,6 +3851,13 @@ namespace AIO.Infrastructure.Migrations
             modelBuilder.Entity("AIO.Core.Entities.Elements.Element", b =>
                 {
                     b.Navigation("ElementTranslations");
+                });
+
+            modelBuilder.Entity("AIO.Core.Entities.Insurance_conditions.Insurance_Condition", b =>
+                {
+                    b.Navigation("ProjectInsurances");
+
+                    b.Navigation("SupplierProjectInsurances");
                 });
 
             modelBuilder.Entity("AIO.Core.Entities.Invoices.Invoice", b =>

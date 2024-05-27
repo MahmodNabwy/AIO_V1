@@ -1,4 +1,4 @@
-﻿using AIO.Application.Services.ProjectInsurance;
+﻿using AIO.Application.Services.ProjectInsurances;
 using AIO.Contracts.DTOs.Setter.ProjectPaymentMethod;
 using AIO.Contracts.Interfaces.Custom;
 using AIO.Contracts.Interfaces.Services.ProjectInsurance;
