@@ -64,7 +64,7 @@ namespace AIO.Core.Entities.Suppliers
         public virtual ICollection<SupplierCategory> SupplierCategories { get; set; }
         public virtual ICollection<SupplierProjectInsurance> SupplierProjectInsurances { get; set; }
         public virtual ICollection<SupplierProjectItem> SupplierProjectItems { get; set; }
-        public virtual ICollection<SupplierPaymentMethod> SupplierPaymentMethods { get; set; }
+        public virtual ICollection<SupplierProjectPaymentMethod> SupplierPaymentMethods { get; set; }
 
     }
 }

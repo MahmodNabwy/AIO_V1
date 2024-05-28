@@ -13,8 +13,8 @@ using System.Threading.Tasks;
 
 namespace AIO.Core.Entities.SupplierPaymentMethods
 {
-    [Table("supplier_payment_method")]
-    public class SupplierPaymentMethod : BaseEntityUpdate
+    [Table("suppliers_projects_payment_methods")]
+    public class SupplierProjectPaymentMethod : BaseEntityUpdate
     {
 
         [Required(ErrorMessage = "Percentage is required")]

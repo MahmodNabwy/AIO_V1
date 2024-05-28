@@ -130,7 +130,7 @@ namespace AIO.Core.Entities.Projects
         public virtual ICollection<SupplierProjectInsurance> SupplierProjectInsurances { get; set; }
         public virtual ICollection<SupplierProjectItem> SupplierProjectItems { get; set; }
         public virtual ICollection<ProjectsAttachments> ProjectAttachments { get; set; }
-        public virtual ICollection<SupplierPaymentMethod> ProjectSupplyPaymentMethods { get; set; }        
+        public virtual ICollection<SupplierProjectPaymentMethod> ProjectSupplyPaymentMethods { get; set; }        
 
 
     }

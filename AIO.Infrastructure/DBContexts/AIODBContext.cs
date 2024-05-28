@@ -155,7 +155,7 @@ namespace AIO.Infrastructure.DBContexts
         public virtual DbSet<SupplierAttachment> SuppliersAttachments { get; set; }
         public virtual DbSet<SupplierProjectItem> SuppliersProjectsItems { get; set; }
         public virtual DbSet<SupplierProjectInsurance> SuppliersProjectsInsurances { get; set; }
-        public virtual DbSet<SupplierPaymentMethod> SuppliersPaymentsMethods { get; set; }
+        public virtual DbSet<SupplierProjectPaymentMethod> SuppliersPaymentsMethods { get; set; }
         public virtual DbSet<SupplierCategory> SuppliersCategories { get; set; }
 
         #endregion

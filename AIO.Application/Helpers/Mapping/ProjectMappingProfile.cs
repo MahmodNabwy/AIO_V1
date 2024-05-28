@@ -1,6 +1,8 @@
-﻿using AIO.Contracts.DTOs.Setter.Departments.Department;
+﻿using AIO.Contracts.DTOs.Getter.Lookups;
+using AIO.Contracts.DTOs.Setter.Departments.Department;
 using AIO.Contracts.DTOs.Setter.Projects;
 using AIO.Core.Entities.Departments;
+using AIO.Core.Entities.Owners;
 using AIO.Core.Entities.Projects;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,8 @@ namespace AIO.Application.Helpers
         private void ProjectMappingProfile()
         {
             CreateMap<ProjectSetterDTO, Project>().ReverseMap();
+            CreateMap<Project, LookupGetterDTO>().ReverseMap();
+
         }
 
     }

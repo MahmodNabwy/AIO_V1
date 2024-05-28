@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace AIO.Infrastructure.Services.Repositories.SupplierPaymentMethods
 {
-    public class SupplierPaymentMethodRepository : GenericRepository<SupplierPaymentMethod>, ISupplierPaymentMethodRepository
+    public class SuppliersProjectsPaymentMethodsRepository : GenericRepository<SupplierProjectPaymentMethod>, ISuppliersProjectsPaymentMethodsRepository
     {
         private readonly AIODBContext _db;
-        public SupplierPaymentMethodRepository(AIODBContext context) : base(context)
+        public SuppliersProjectsPaymentMethodsRepository(AIODBContext context) : base(context)
         {
             _db = context;
 

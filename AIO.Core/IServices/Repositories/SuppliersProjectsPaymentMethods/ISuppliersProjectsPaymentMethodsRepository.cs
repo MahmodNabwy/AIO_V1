@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AIO.Core.IServices.Repositories.SupplierPaymentMethods
 {
-    public interface ISupplierPaymentMethodRepository : IGenericRepository<SupplierPaymentMethod>
+    public interface ISuppliersProjectsPaymentMethodsRepository : IGenericRepository<SupplierProjectPaymentMethod>
     {
     }
 }

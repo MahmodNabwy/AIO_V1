@@ -11,6 +11,8 @@ using AIO.Contracts.IServices.Repositories.Migrations;
 using AIO.Core.Entities.ProjectAttachments;
 using AIO.Core.Entities.ProjectInsurances;
 using AIO.Core.Entities.ProjectPaymentMethods;
+using AIO.Core.Entities.SupplierPaymentMethods;
+using AIO.Core.Entities.Suppliers;
 using AIO.Core.IServices.Custom;
 using AIO.Core.IServices.Custom.Repositories;
 using AIO.Core.IServices.Repositories.Attachments;
@@ -19,6 +21,10 @@ using AIO.Core.IServices.Repositories.ProjectAttachments;
 using AIO.Core.IServices.Repositories.ProjectInsurances;
 using AIO.Core.IServices.Repositories.ProjectPaymentMethods;
 using AIO.Core.IServices.Repositories.Projects;
+using AIO.Core.IServices.Repositories.ProjectSuppliers;
+using AIO.Core.IServices.Repositories.SupplierPaymentMethods;
+using AIO.Core.IServices.Repositories.SupplierProjectInsurances;
+using AIO.Core.IServices.Repositories.Suppliers;
 using AIO.Infrastructure.DBContexts;
 using AIO.Infrastructure.Repositories.Custom.Log_System;
 using AIO.Infrastructure.Services.Repositories;
@@ -36,6 +42,10 @@ using AIO.Infrastructure.Services.Repositories.ProjectAttachments;
 using AIO.Infrastructure.Services.Repositories.ProjectInsurances;
 using AIO.Infrastructure.Services.Repositories.ProjectPaymentMethods;
 using AIO.Infrastructure.Services.Repositories.Projects;
+using AIO.Infrastructure.Services.Repositories.ProjectSuppliers;
+using AIO.Infrastructure.Services.Repositories.SupplierPaymentMethods;
+using AIO.Infrastructure.Services.Repositories.SupplierProjectInsurances;
+using AIO.Infrastructure.Services.Repositories.Suppliers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
@@ -54,6 +64,27 @@ namespace AIO.Infrastructure.Services.Custom
         public ISecurityQuestionRepository SecurityQuestions { get; }
         public IUserSecurityQuestionRepository UserSecurityQuestions { get; }
         public IProfilePictureRepository ProfilePicture { get; private set; }
+
+        #region Project Supplier
+        public IProjectSupplierRepository ProjectSupplier { get; private set; }
+        #endregion
+
+        #region Supplier Project Payment Methods
+        public ISuppliersProjectsPaymentMethodsRepository SupplierProjectPaymentMethod { get; private set; }
+
+        #endregion
+
+        #region Supplier Project Payment Methods
+        public ISupplierProjectInsurancesRepository SupplierProjectInsurance { get; private set; }
+
+        #endregion 
+
+
+        #region Supplier
+
+        public ISupplierRepository Supplier { get; private set; }
+
+        #endregion
 
         #region Owners
         public IOwnerRepository Owners { get; private set; }
@@ -138,6 +169,22 @@ namespace AIO.Infrastructure.Services.Custom
 
             Licences = new LicenceRepository(_context);
             TimeLogs = new TimeLogRepository(_context);
+
+            #region Supplier
+            Supplier = new SupplierRepository(_context);
+            #endregion
+
+            #region Project Supplier
+            ProjectSupplier = new ProjectSupplierRepository(_context);
+            #endregion
+
+            #region Supplier Project Payment Methods
+            SupplierProjectInsurance = new SupplierProjectInsurancesRepository(_context);
+            #endregion
+
+            #region Supplier Project Payment Method
+            SupplierProjectPaymentMethod = new SuppliersProjectsPaymentMethodsRepository(_context);
+            #endregion
 
             #region Owners
 

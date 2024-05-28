@@ -1,6 +1,8 @@
 ﻿using AIO.API.Bases;
 using AIO.Contracts.Features.Owners.Queries;
 using AIO.Contracts.Features.Projects.Commands;
+using AIO.Contracts.Features.Projects.Queries;
+using AIO.Contracts.Features.Suppliers.Queries;
 using AIO.Contracts.Interfaces.Custom;
 using AIO.Contracts.IServices.Services.Lookups;
 using MediatR;
@@ -32,15 +34,24 @@ namespace AIO.API.Controllers.Admin.Lookups
             return State(await _mediator.Send(new GetOwnersLookUpQuery()));
         }
 
-        [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody] ProjectAddCommand request)
+        [HttpGet("Projects")]
+        public async Task<IActionResult> GetProjectsAsync()
         {
             if (!ModelState.IsValid)
                 return NotValidModelState();
-
-
-            return State(await _mediator.Send(request));
+            return State(await _mediator.Send(new GetProjectLookUpQuery()));
         }
+
+
+        [HttpGet(" ")]
+        public async Task<IActionResult> GetSuppliersAsync()
+        {
+            if (!ModelState.IsValid)
+                return NotValidModelState();
+            return State(await _mediator.Send(new GetSupplierLookUpQuery()));
+        }
+
+
 
 
     }

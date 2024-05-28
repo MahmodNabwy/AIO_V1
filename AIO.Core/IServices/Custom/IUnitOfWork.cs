@@ -14,6 +14,10 @@ using AIO.Core.IServices.Repositories.ProjectAttachments;
 using AIO.Core.IServices.Repositories.ProjectInsurances;
 using AIO.Core.IServices.Repositories.ProjectPaymentMethods;
 using AIO.Core.IServices.Repositories.Projects;
+using AIO.Core.IServices.Repositories.ProjectSuppliers;
+using AIO.Core.IServices.Repositories.SupplierPaymentMethods;
+using AIO.Core.IServices.Repositories.SupplierProjectInsurances;
+using AIO.Core.IServices.Repositories.Suppliers;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace AIO.Core.IServices.Custom
@@ -29,6 +33,25 @@ namespace AIO.Core.IServices.Custom
         public ILicenceRepository Licences { get; }
         public ITimeLogRepository TimeLogs { get; }
         public IProfilePictureRepository ProfilePicture { get; }
+
+        #region Project Supplier
+        public IProjectSupplierRepository ProjectSupplier { get; }
+
+        #endregion
+
+        #region Supplier Project Insurances
+        public ISupplierProjectInsurancesRepository SupplierProjectInsurance { get; }
+
+        #endregion
+
+        #region Supplier Project Payment Methods
+        public ISuppliersProjectsPaymentMethodsRepository SupplierProjectPaymentMethod { get; }
+
+        #endregion
+
+        #region Supplier
+        public ISupplierRepository Supplier { get; }
+        #endregion
 
         #region Owners
         public IOwnerRepository Owners { get; }
