@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Owners\Commands\" />
     <Folder Include="Features\Projects\Queries\" />
   </ItemGroup>
 

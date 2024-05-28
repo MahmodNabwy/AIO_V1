@@ -1,6 +1,9 @@
 ﻿using AIO.API.Bases;
+using AIO.Contracts.Features.Owners.Queries;
+using AIO.Contracts.Features.Projects.Commands;
 using AIO.Contracts.Interfaces.Custom;
 using AIO.Contracts.IServices.Services.Lookups;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,54 +14,34 @@ namespace AIO.API.Controllers.Admin.Lookups
     [ApiController]
     public class LookupController : APIControllerBase
     {
-        private readonly ILookupService _lookupService;
+        private readonly IMediator _mediator;
 
-        public LookupController(IHolderOfDTO holderOfDTO, ILookupService lookupService) : base(holderOfDTO)
+
+        public LookupController(IHolderOfDTO holderOfDTO, IMediator mediator) : base(holderOfDTO)
         {
-            _lookupService = lookupService;
+            _mediator = mediator;
         }
 
 
-        /// <summary>
-        /// Get User lookups in admin panal 
-        /// </summary>
-        /// <returns> Get User lookups in admin panal</returns>
-        /// <remarks> Get User lookups in admin panal</remarks>
-        [HttpGet("Users")]
-        public async Task<IActionResult> GetUserAsync()
+
+        [HttpGet("Owners")]
+        public async Task<IActionResult> GetOwnersAsync()
+        {
+            if (!ModelState.IsValid)
+                return NotValidModelState();
+            return State(await _mediator.Send(new GetOwnersLookUpQuery()));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostAsync([FromBody] ProjectAddCommand request)
         {
             if (!ModelState.IsValid)
                 return NotValidModelState();
 
-            return State(await _lookupService.GetUserAsync());
+
+            return State(await _mediator.Send(request));
         }
 
-        /// <summary>
-        /// Get Role lookups in admin panal 
-        /// </summary>
-        /// <returns> Get Role lookups in admin panal</returns>
-        /// <remarks> Get Role lookups in admin panal</remarks>
-        [HttpGet("Roles")]
-        public async Task<IActionResult> GetRoleAsync()
-        {
-            if (!ModelState.IsValid)
-                return NotValidModelState();
 
-            return State(await _lookupService.GetRoleAsync());
-        }
-
-        /// <summary>
-        /// Get Language lookups in admin panal 
-        /// </summary>
-        /// <returns> Get Language lookups in admin panal</returns>
-        /// <remarks> Get Language lookups in admin panal</remarks>
-        [HttpGet("Languages")]
-        public async Task<IActionResult> GetLanguageAsync()
-        {
-            if (!ModelState.IsValid)
-                return NotValidModelState();
-
-            return State(await _lookupService.GetLanguageAsync());
-        }
     }
 }

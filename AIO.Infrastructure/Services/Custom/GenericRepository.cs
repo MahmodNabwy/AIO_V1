@@ -361,6 +361,12 @@ namespace AIO.Infrastructure.Services.Custom
 
             return await query.Where(criteria).ToListAsync();
         }
+        public async Task<IEnumerable<TEntity>> FindAllAsync(Expression<Func<TEntity, bool>> criteria)
+        {
+            IQueryable<TEntity> query = DbSet();            
+
+            return await query.Where(criteria).ToListAsync();
+        }
         public async Task<IEnumerable<TEntity>> FindAllAsync(Expression<Func<TEntity, bool>> criteria, string[] includes = null, Expression<Func<TEntity, object>> orderBy = null, string orderByDirection = OrderBy.Ascending)
         {
             IQueryable<TEntity> query = _context.Set<TEntity>().Where(criteria);

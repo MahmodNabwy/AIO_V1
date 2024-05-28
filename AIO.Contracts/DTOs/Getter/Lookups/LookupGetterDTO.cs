@@ -6,7 +6,7 @@ namespace AIO.Contracts.DTOs.Getter.Lookups
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public List<LookupTranslationGetterDTO> Translations { get; set; }
+        
     }
     public class LookupTranslationGetterDTO
     {

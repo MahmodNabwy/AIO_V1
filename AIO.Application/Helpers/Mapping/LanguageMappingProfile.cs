@@ -25,8 +25,8 @@ namespace AIO.Application.Helpers
 
             CreateMap<Language, LanguageDataGetterDTO>();
 
-            CreateMap<Language, LookupGetterDTO>()
-                .ForMember(d => d.Translations, o => o.MapFrom(x => x.LanguageTranslations));
+            //CreateMap<Language, LookupGetterDTO>()
+            //    .ForMember(d => d.Translations, o => o.MapFrom(x => x.LanguageTranslations));
             #endregion
 
             #region Language Translation

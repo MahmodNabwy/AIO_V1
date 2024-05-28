@@ -24,8 +24,8 @@ namespace AIO.Application.Helpers
 
             CreateMap<Department, DepartmentDataGetterDTO>();
 
-            CreateMap<Department, LookupGetterDTO>()
-                .ForMember(d => d.Translations, o => o.MapFrom(x => x.DepartmentTranslations));
+            //CreateMap<Department, LookupGetterDTO>()
+            //    .ForMember(d => d.Translations, o => o.MapFrom(x => x.DepartmentTranslations));
 
             #endregion
 

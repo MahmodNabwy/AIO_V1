@@ -14,6 +14,7 @@ using AIO.Core.Entities.ProjectPaymentMethods;
 using AIO.Core.IServices.Custom;
 using AIO.Core.IServices.Custom.Repositories;
 using AIO.Core.IServices.Repositories.Attachments;
+using AIO.Core.IServices.Repositories.Owners;
 using AIO.Core.IServices.Repositories.ProjectAttachments;
 using AIO.Core.IServices.Repositories.ProjectInsurances;
 using AIO.Core.IServices.Repositories.ProjectPaymentMethods;
@@ -30,6 +31,7 @@ using AIO.Infrastructure.Services.Repositories.Elements;
 using AIO.Infrastructure.Services.Repositories.FileUploader;
 using AIO.Infrastructure.Services.Repositories.Languages;
 using AIO.Infrastructure.Services.Repositories.Migrations;
+using AIO.Infrastructure.Services.Repositories.Owners;
 using AIO.Infrastructure.Services.Repositories.ProjectAttachments;
 using AIO.Infrastructure.Services.Repositories.ProjectInsurances;
 using AIO.Infrastructure.Services.Repositories.ProjectPaymentMethods;
@@ -53,7 +55,9 @@ namespace AIO.Infrastructure.Services.Custom
         public IUserSecurityQuestionRepository UserSecurityQuestions { get; }
         public IProfilePictureRepository ProfilePicture { get; private set; }
 
-
+        #region Owners
+        public IOwnerRepository Owners { get; private set; }
+        #endregion
         #region Attachments
         public IAttachmentRepository Attachment { get; private set; }
         #endregion
@@ -135,6 +139,10 @@ namespace AIO.Infrastructure.Services.Custom
             Licences = new LicenceRepository(_context);
             TimeLogs = new TimeLogRepository(_context);
 
+            #region Owners
+
+            Owners = new OwnerRepository(_context);
+            #endregion
             #region Project 
             Projects = new ProjectsRepository(_context);
             #endregion

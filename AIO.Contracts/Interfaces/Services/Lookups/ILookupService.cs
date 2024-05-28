@@ -9,5 +9,6 @@ namespace AIO.Contracts.IServices.Services.Lookups
         Task<IHolderOfDTO> GetUserAsync();
         Task<IHolderOfDTO> GetRoleAsync();
         Task<IHolderOfDTO> GetLanguageAsync();
+        Task<IHolderOfDTO> GetOwnersAsync();
     }
 }

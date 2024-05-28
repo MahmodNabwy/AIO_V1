@@ -92,5 +92,24 @@ namespace AIO.Application.Services.Lookups
             return _holderOfDTO;
         }
 
+
+        public async Task<IHolderOfDTO> GetOwnersAsync()
+        {
+            List<bool> lIndicators = new List<bool>();
+            try
+            {
+                var query = await _unitOfWork.Owners.FindAllAsync(q => !q.IsDeleted);
+                _holderOfDTO.Add(Res.Response, _mapper.Map<IEnumerable<LookupGetterDTO>>(query.ToList()));
+                lIndicators.Add(true);
+            }
+            catch (Exception ex)
+            {
+                _holderOfDTO.Add(Res.message, ex.Message);
+                lIndicators.Add(false);
+            }
+            _holderOfDTO.Add(Res.state, lIndicators.All(x => x));
+            return _holderOfDTO;
+        }
+
     }
 }

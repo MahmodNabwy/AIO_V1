@@ -67,6 +67,7 @@ namespace AIO.Contracts.IServices.Custom
         Task<IEnumerable<TEntity>> FindAllAsync(string[] includes = null);
         IEnumerable<TEntity> FindAllNoTrack(Expression<Func<TEntity, bool>> criteria, bool disableTracking = true);
         Task<IEnumerable<TEntity>> FindAllAsync(Expression<Func<TEntity, bool>> criteria = null, string[] includes = null);
+        Task<IEnumerable<TEntity>> FindAllAsync(Expression<Func<TEntity, bool>> criteria = null);
         Task<IEnumerable<TEntity>> FindAll(Expression<Func<TEntity, bool>> criteria, string[] includes = null, bool disableTracking = true);
         Task<IEnumerable<TEntity>> GetAllAsync(Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, bool disableTracking = true);
         Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, string[] includes = null, Expression<Func<TEntity, object>> orderBy = null, string orderByDirection = OrderBy.Ascending, bool disableTracking = true);

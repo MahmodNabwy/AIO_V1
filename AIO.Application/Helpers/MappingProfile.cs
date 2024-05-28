@@ -37,7 +37,10 @@ namespace AIO.Application.Helpers
             ProjectMappingProfile();
 
             ProjectPaymentMethodMappingProfile();
+
             ProjectInsuranceMappingProfile();
+
+            OwnerMappingProfile();
         }
 
         public int getRoleUserCount(string roleId)

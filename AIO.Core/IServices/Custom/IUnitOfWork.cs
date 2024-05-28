@@ -9,6 +9,7 @@ using AIO.Contracts.IServices.Repositories.Languages;
 using AIO.Contracts.IServices.Repositories.Migrations;
 using AIO.Core.IServices.Custom.Repositories;
 using AIO.Core.IServices.Repositories.Attachments;
+using AIO.Core.IServices.Repositories.Owners;
 using AIO.Core.IServices.Repositories.ProjectAttachments;
 using AIO.Core.IServices.Repositories.ProjectInsurances;
 using AIO.Core.IServices.Repositories.ProjectPaymentMethods;
@@ -29,7 +30,9 @@ namespace AIO.Core.IServices.Custom
         public ITimeLogRepository TimeLogs { get; }
         public IProfilePictureRepository ProfilePicture { get; }
 
-
+        #region Owners
+        public IOwnerRepository Owners { get; }
+        #endregion
         #region Attachments
         public IAttachmentRepository Attachment { get; }
         #endregion
