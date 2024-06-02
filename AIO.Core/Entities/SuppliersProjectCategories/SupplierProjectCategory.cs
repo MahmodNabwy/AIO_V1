@@ -1,5 +1,6 @@
 ﻿using AIO.Core.Entities.Categories;
 using AIO.Core.Entities.Owners;
+using AIO.Core.Entities.Projects;
 using AIO.Core.Entities.Suppliers;
 using AIO.Core.Entities.Taxes;
 using System;
@@ -12,8 +13,8 @@ using System.Threading.Tasks;
 
 namespace AIO.Core.Entities.SupplierCategories
 {
-    [Table("suppliers_categories")]
-    public class SupplierCategory : BaseEntityUpdate
+    [Table("suppliers_projects_categories")]
+    public class SupplierProjectCategory : BaseEntityUpdate
     {
         [Required(ErrorMessage = "Total Price is required")]
         [Column("total_price")]
@@ -28,7 +29,10 @@ namespace AIO.Core.Entities.SupplierCategories
         [Required(ErrorMessage = "Category Id is required")]
         [Column("category_id")]
         public int CategoryId { get; set; }
-
+       
+        [Required(ErrorMessage = "Project Id is required")]
+        [Column("project_id")]
+        public int ProjectId { get; set; }
 
 
         [ForeignKey(nameof(SupplierId))]
@@ -37,5 +41,8 @@ namespace AIO.Core.Entities.SupplierCategories
 
         [ForeignKey(nameof(CategoryId))]
         public virtual Category Category { get; set; }
+
+        [ForeignKey(nameof(ProjectId))]
+        public virtual Project Project { get; set; }
     }
 }

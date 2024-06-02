@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AIO.Core.IServices.Repositories.SupplierCategories
 {
-    public interface ISupplierCategoryRepository : IGenericRepository<SupplierCategory>
+    public interface ISupplierProjectCategoryRepository : IGenericRepository<SupplierProjectCategory>
     {
     }
 }

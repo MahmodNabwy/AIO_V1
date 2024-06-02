@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AIO.Core.Entities.ProjectsTaxes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,5 +16,7 @@ namespace AIO.Core.Entities.Taxes
         [StringLength(500, ErrorMessage = "Max length is 500 characters")]
         [Column("name")]
         public string Name { get; set; }
+
+        public virtual ICollection<ProjectTaxe> ProjectTaxes { get; set; }
     }
 }

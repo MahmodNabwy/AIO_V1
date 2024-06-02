@@ -8,6 +8,7 @@ using AIO.Core.Entities.ProjectAttachments;
 using AIO.Core.Entities.ProjectInsurances;
 using AIO.Core.Entities.ProjectPaymentMethods;
 using AIO.Core.Entities.Projects;
+using AIO.Core.Entities.ProjectsTaxes;
 using AIO.Core.IServices.Custom;
 using AIO.Shared.Consts;
 using AIO.Shared.Interfaces;
@@ -41,14 +42,24 @@ namespace AIO.Application.Services.ProjectServices
                     var oProject = await _unitOfWork.Projects.AddAsync(_mapper.Map<Project>(setterDTO.ProjectData));
                     if (_unitOfWork.Complete() > 0)
                     {
+                        var ProjectId= oProject.Id;
                         // Add Project Insurnace Conditions
                         foreach (var item in setterDTO.InsuranceConditions)
                         {
-                            item.ProjectId = oProject.Id;
+                            item.ProjectId = ProjectId;
                         }
                         foreach (var item in setterDTO.ProjectPaymentMethods)
                         {
-                            item.ProjectId = oProject.Id;
+                            item.ProjectId = ProjectId;
+
+                        }
+                        foreach (var item in setterDTO.TaxeIds)
+                        {
+                            ProjectTaxe oProjectTaxes = new ProjectTaxe();
+                            oProjectTaxes.ProjectId = ProjectId;
+                            oProjectTaxes.TaxeId = item;
+                             await _unitOfWork.ProjectTaxes.AddAsync(oProjectTaxes);
+                            _unitOfWork.Complete();
 
                         }
                         var projectsInsuranceList = _mapper.Map<IList<ProjectInsurance>>(setterDTO.InsuranceConditions);

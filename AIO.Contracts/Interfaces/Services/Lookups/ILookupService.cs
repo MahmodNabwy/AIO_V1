@@ -1,4 +1,5 @@
-﻿using AIO.Contracts.Interfaces.Custom;
+﻿using AIO.Contracts.Features.Suppliers.Queries;
+using AIO.Contracts.Interfaces.Custom;
 
 namespace AIO.Contracts.IServices.Services.Lookups
 {
@@ -11,6 +12,6 @@ namespace AIO.Contracts.IServices.Services.Lookups
         Task<IHolderOfDTO> GetLanguageAsync();
         Task<IHolderOfDTO> GetOwnersAsync();
         Task<IHolderOfDTO> GetProjectsAsync();
-        Task<IHolderOfDTO> GetSuppliersAsync();
+        Task<IHolderOfDTO> GetSuppliersAsync(GetSupplierLookUpQuery request);
     }
 }

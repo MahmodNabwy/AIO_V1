@@ -32,7 +32,7 @@ namespace AIO.Application.Features.Suppliers.Queries
         }
         public async Task<IHolderOfDTO> Handle(GetSupplierLookUpQuery request, CancellationToken cancellationToken)
         {
-            return await _lookupService.GetSuppliersAsync();
+            return await _lookupService.GetSuppliersAsync(request);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using AIO.Core.Entities.Categories;
-using AIO.Core.Entities.Items;
 using AIO.Core.Entities.Projects;
 using AIO.Core.Entities.Suppliers;
 using System;
@@ -15,33 +14,35 @@ namespace AIO.Core.Entities.SupplierItems
     [Table("suppliers_project_items")]
     public class SupplierProjectItem : BaseEntityUpdate
     {
+        
+        [Required(ErrorMessage = "Supplier Id is required")]
+        [Column("supplier_id")]
+        public int SupplierId { get; set; }
+
+        [Required(ErrorMessage = "Project Id is required")]
+        [Column("project_id")]
+        public int ProjectId { get; set; }
+
+        [StringLength(100)]
+        [Column("code")]
+        public string Code { get; set; }
+
+
+        [Required(ErrorMessage = "Amount is required")]
+        [Column("amount")]
+        public int Amount { get; set; }
+
+        [Required(ErrorMessage = "Unit Price is required")]
+        [Column("unit_price")]
+        public decimal UnitPrice { get; set; }
 
         [Required(ErrorMessage = "Total Price is required")]
         [Column("total_price")]
         public decimal TotalPrice { get; set; }
 
 
-        [Required(ErrorMessage = "Supplier Id is required")]
-        [Column("supplier_id")]
-        public int SupplierId { get; set; }
-
-
-        [Required(ErrorMessage = "Item Id is required")]
-        [Column("item_id")]
-        public int ItemId { get; set; }
-
-
-        [Required(ErrorMessage = "Project Id is required")]
-        [Column("project_id")]
-        public int ProjectId { get; set; }
-
-
         [ForeignKey(nameof(SupplierId))]
         public virtual Supplier Supplier { get; set; }
-
-
-        [ForeignKey(nameof(ItemId))]
-        public virtual Item Item { get; set; }
 
 
         [ForeignKey(nameof(ProjectId))]

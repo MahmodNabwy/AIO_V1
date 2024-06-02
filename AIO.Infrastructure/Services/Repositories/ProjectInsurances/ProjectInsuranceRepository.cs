@@ -1,6 +1,4 @@
-﻿using AIO.Core.Entities.Items;
-using AIO.Core.Entities.ProjectInsurances;
-using AIO.Core.IServices.Repositories.Item;
+﻿using AIO.Core.Entities.ProjectInsurances;
 using AIO.Core.IServices.Repositories.ProjectInsurances;
 using AIO.Infrastructure.DBContexts;
 using AIO.Infrastructure.Services.Custom;
@@ -21,6 +19,6 @@ namespace AIO.Infrastructure.Services.Repositories.ProjectInsurances
 
         }
 
-        
+
     }
 }

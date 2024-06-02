@@ -1,7 +1,5 @@
 ﻿using AIO.Core.Entities.InvoiceItems;
-using AIO.Core.Entities.Items;
 using AIO.Core.IServices.Repositories.Invoice_Items;
-using AIO.Core.IServices.Repositories.Item;
 using AIO.Infrastructure.DBContexts;
 using AIO.Infrastructure.Services.Custom;
 using System;

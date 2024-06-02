@@ -1,4 +1,5 @@
-﻿using AIO.Contracts.IServices.Custom;
+﻿using AIO.Contracts.DTOs.Getter.ProjectSupplier;
+using AIO.Contracts.IServices.Custom;
 using AIO.Core.Entities.ProjectSuppliers;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace AIO.Core.IServices.Repositories.ProjectSuppliers
 {
     public interface IProjectSupplierRepository : IGenericRepository<ProjectSupplier>
     {
-        //IQueryable<Supplier> buildFilterAdminQuery(SectorFilter filter);
+        IQueryable<ProjectSupplierDataDTO> GetAll(int projectId,int supplierTypeId);
 
     }
 }

@@ -10,5 +10,6 @@ namespace AIO.Contracts.Features.Suppliers.Queries
 {
     public class GetSupplierLookUpQuery : IRequest<IHolderOfDTO>
     {
+        public int TypeId { get; set; }
     }
 }

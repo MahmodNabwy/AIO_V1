@@ -10,7 +10,6 @@ using AIO.Core.Entities.FilesLibrary;
 using AIO.Core.Entities.InvoiceItems;
 using AIO.Core.Entities.InvoicePaymentOrders;
 using AIO.Core.Entities.Invoices;
-using AIO.Core.Entities.Items;
 using AIO.Core.Entities.Languages;
 using AIO.Core.Entities.Migrations;
 using AIO.Core.Entities.OwnerAttachments;
@@ -19,6 +18,8 @@ using AIO.Core.Entities.ProjectAttachments;
 using AIO.Core.Entities.ProjectInsurances;
 using AIO.Core.Entities.ProjectPaymentMethods;
 using AIO.Core.Entities.Projects;
+using AIO.Core.Entities.ProjectsSuppliersTaxes;
+using AIO.Core.Entities.ProjectsTaxes;
 using AIO.Core.Entities.ProjectSupplierAttachments;
 using AIO.Core.Entities.ProjectSuppliers;
 using AIO.Core.Entities.StatementCategories;
@@ -111,19 +112,12 @@ namespace AIO.Infrastructure.DBContexts
 
         #endregion
 
-
         #region Invoice
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<InvoiceItems> InvoicesItems { get; set; }
         public virtual DbSet<InvoicePaymentOrder> InvoicesPaymentOrders { get; set; }
 
-        #endregion
-
-        #region Items
-
-        public virtual DbSet<Item> Items { get; set; }
-
-        #endregion
+        #endregion     
 
         #region Owner
         public virtual DbSet<Owner> Owners { get; set; }
@@ -136,6 +130,7 @@ namespace AIO.Infrastructure.DBContexts
         public virtual DbSet<Taxe> Taxes { get; set; }
 
         #endregion
+        
         #region Project
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<ProjectPaymentMethod> ProjectsPaymentMethods { get; set; }
@@ -143,10 +138,22 @@ namespace AIO.Infrastructure.DBContexts
         public virtual DbSet<ProjectsAttachments> ProjectsAttachments { get; set; }
 
         #endregion
+
+        #region Project Taxe
+        public virtual DbSet<ProjectTaxe> ProjectsTaxes { get; set; }
+
+        #endregion
+
+        #region Project Supplier Taxe
+        public virtual DbSet<ProjectSupplierTaxe> ProjectSupplierTaxe { get; set; }
+
+        #endregion
+
         #region Statement
         public virtual DbSet<Statement> Statements { get; set; }
         public virtual DbSet<StatementCategory> StatementsCategories { get; set; }
         #endregion
+
 
         #region Supplier
         public virtual DbSet<Supplier> Suppliers { get; set; }
@@ -156,11 +163,9 @@ namespace AIO.Infrastructure.DBContexts
         public virtual DbSet<SupplierProjectItem> SuppliersProjectsItems { get; set; }
         public virtual DbSet<SupplierProjectInsurance> SuppliersProjectsInsurances { get; set; }
         public virtual DbSet<SupplierProjectPaymentMethod> SuppliersPaymentsMethods { get; set; }
-        public virtual DbSet<SupplierCategory> SuppliersCategories { get; set; }
+        public virtual DbSet<SupplierProjectCategory> SupplierProjectCategory { get; set; }
 
         #endregion
-
-
 
         public virtual DbSet<UserRole> UserRoles { get; set; }
 

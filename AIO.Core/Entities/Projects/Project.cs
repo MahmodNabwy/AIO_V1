@@ -7,8 +7,10 @@ using AIO.Core.Entities.Owners;
 using AIO.Core.Entities.ProjectAttachments;
 using AIO.Core.Entities.ProjectInsurances;
 using AIO.Core.Entities.ProjectPaymentMethods;
+using AIO.Core.Entities.ProjectsTaxes;
 using AIO.Core.Entities.ProjectSuppliers;
 using AIO.Core.Entities.Statements;
+using AIO.Core.Entities.SupplierCategories;
 using AIO.Core.Entities.SupplierInsurances;
 using AIO.Core.Entities.SupplierItems;
 using AIO.Core.Entities.SupplierPaymentMethods;
@@ -106,18 +108,18 @@ namespace AIO.Core.Entities.Projects
         public ProjectType ProjectTypeId { get; set; }
 
 
+        [Column("has_discount")]
+        public bool? HasDiscount { get; set; } = false;
+         
+        [Column("total_price_after_discount")]
+        public decimal?  TotalPriceAfterDiscount { get; set; }
+
         [Required(ErrorMessage = "Owner Id is required")]
         [Column("owner_id")]
         public int OwnerId { get; set; }
-        
-        [Column("tax_id")]
-        public int? TaxId { get; set; }
-
+                
         [ForeignKey(nameof(OwnerId))]
-        public virtual Owner Owner { get; set; }
-
-        [ForeignKey(nameof(TaxId))]
-        public virtual Taxe Taxe { get; set; }
+        public virtual Owner Owner { get; set; }       
 
         [ForeignKey(nameof(ParentId))]
         public virtual Project ParentProject { get; set; }
@@ -130,8 +132,8 @@ namespace AIO.Core.Entities.Projects
         public virtual ICollection<SupplierProjectInsurance> SupplierProjectInsurances { get; set; }
         public virtual ICollection<SupplierProjectItem> SupplierProjectItems { get; set; }
         public virtual ICollection<ProjectsAttachments> ProjectAttachments { get; set; }
-        public virtual ICollection<SupplierProjectPaymentMethod> ProjectSupplyPaymentMethods { get; set; }        
-
+        public virtual ICollection<SupplierProjectPaymentMethod> ProjectSupplyPaymentMethods { get; set; }
+        public virtual ICollection<ProjectTaxe> ProjectTaxes { get; set; }
 
     }
 }

@@ -904,56 +904,6 @@ namespace AIO.Infrastructure.Migrations
                     b.ToTable("invoices");
                 });
 
-            modelBuilder.Entity("AIO.Core.Entities.Items.Item", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("created_at");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("created_by");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)")
-                        .HasColumnName("description");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasColumnName("is_deleted");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("name");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)")
-                        .HasColumnName("price");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("updated_at");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("updated_by");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("items");
-                });
-
             modelBuilder.Entity("AIO.Core.Entities.Languages.Language", b =>
                 {
                     b.Property<int>("Id")
@@ -1652,6 +1602,10 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("final_reciept_date");
 
+                    b.Property<bool?>("HasDiscount")
+                        .HasColumnType("bit")
+                        .HasColumnName("has_discount");
+
                     b.Property<int>("ImplementationPeriod")
                         .HasColumnType("int")
                         .HasColumnName("implementation_period");
@@ -1709,13 +1663,13 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasColumnName("project_type_id ");
 
-                    b.Property<int?>("TaxId")
-                        .HasColumnType("int")
-                        .HasColumnName("tax_id");
-
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)")
                         .HasColumnName("total_price");
+
+                    b.Property<decimal?>("TotalPriceAfterDiscount")
+                        .HasColumnType("decimal(18,2)")
+                        .HasColumnName("total_price_after_discount");
 
                     b.Property<int>("TotalPriceConcurrency")
                         .HasColumnType("int")
@@ -1735,9 +1689,105 @@ namespace AIO.Infrastructure.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.HasIndex("TaxId");
-
                     b.ToTable("projects");
+                });
+
+            modelBuilder.Entity("AIO.Core.Entities.ProjectsSuppliersTaxes.ProjectSupplierTaxe", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("created_by");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit")
+                        .HasColumnName("is_deleted");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int")
+                        .HasColumnName("project_id");
+
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int")
+                        .HasColumnName("supplier_id");
+
+                    b.Property<int>("TaxeId")
+                        .HasColumnType("int")
+                        .HasColumnName("taxe_id");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("updated_at");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("updated_by");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("SupplierId");
+
+                    b.HasIndex("TaxeId");
+
+                    b.ToTable("projects_suppliers_taxes");
+                });
+
+            modelBuilder.Entity("AIO.Core.Entities.ProjectsTaxes.ProjectTaxe", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("created_by");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit")
+                        .HasColumnName("is_deleted");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int")
+                        .HasColumnName("project_id");
+
+                    b.Property<int>("TaxeId")
+                        .HasColumnType("int")
+                        .HasColumnName("taxe_id");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("updated_at");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("updated_by");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("TaxeId");
+
+                    b.ToTable("projects_taxes");
                 });
 
             modelBuilder.Entity("AIO.Core.Entities.ProjectSupplierAttachments.ProjectSupplierAttachment", b =>
@@ -1842,10 +1892,6 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasColumnName("supplier_id");
 
-                    b.Property<int>("TaxId")
-                        .HasColumnType("int")
-                        .HasColumnName("tax_id");
-
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)")
                         .HasColumnName("total_price");
@@ -1867,8 +1913,6 @@ namespace AIO.Infrastructure.Migrations
                     b.HasIndex("ProjectId");
 
                     b.HasIndex("SupplierId");
-
-                    b.HasIndex("TaxId");
 
                     b.ToTable("projects_suppliers");
                 });
@@ -2564,7 +2608,7 @@ namespace AIO.Infrastructure.Migrations
                     b.ToTable("suppliers_attachments");
                 });
 
-            modelBuilder.Entity("AIO.Core.Entities.SupplierCategories.SupplierCategory", b =>
+            modelBuilder.Entity("AIO.Core.Entities.SupplierCategories.SupplierProjectCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2589,6 +2633,10 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("is_deleted");
 
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int")
+                        .HasColumnName("project_id");
+
                     b.Property<int>("SupplierId")
                         .HasColumnType("int")
                         .HasColumnName("supplier_id");
@@ -2609,9 +2657,11 @@ namespace AIO.Infrastructure.Migrations
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("ProjectId");
+
                     b.HasIndex("SupplierId");
 
-                    b.ToTable("suppliers_categories");
+                    b.ToTable("suppliers_projects_categories");
                 });
 
             modelBuilder.Entity("AIO.Core.Entities.SupplierInsurances.SupplierProjectInsurance", b =>
@@ -2697,6 +2747,16 @@ namespace AIO.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("Amount")
+                        .HasColumnType("int")
+                        .HasColumnName("amount");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("code");
+
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("created_at");
@@ -2708,10 +2768,6 @@ namespace AIO.Infrastructure.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit")
                         .HasColumnName("is_deleted");
-
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int")
-                        .HasColumnName("item_id");
 
                     b.Property<int>("ProjectId")
                         .HasColumnType("int")
@@ -2725,6 +2781,10 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("decimal(18,2)")
                         .HasColumnName("total_price");
 
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)")
+                        .HasColumnName("unit_price");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("updated_at");
@@ -2734,8 +2794,6 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnName("updated_by");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ItemId");
 
                     b.HasIndex("ProjectId");
 
@@ -3529,13 +3587,53 @@ namespace AIO.Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("ParentId");
 
-                    b.HasOne("AIO.Core.Entities.Taxes.Taxe", "Taxe")
-                        .WithMany()
-                        .HasForeignKey("TaxId");
-
                     b.Navigation("Owner");
 
                     b.Navigation("ParentProject");
+                });
+
+            modelBuilder.Entity("AIO.Core.Entities.ProjectsSuppliersTaxes.ProjectSupplierTaxe", b =>
+                {
+                    b.HasOne("AIO.Core.Entities.Projects.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("AIO.Core.Entities.Suppliers.Supplier", "Supplier")
+                        .WithMany("ProjectSupplierTaxes")
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("AIO.Core.Entities.Taxes.Taxe", "Taxe")
+                        .WithMany()
+                        .HasForeignKey("TaxeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Project");
+
+                    b.Navigation("Supplier");
+
+                    b.Navigation("Taxe");
+                });
+
+            modelBuilder.Entity("AIO.Core.Entities.ProjectsTaxes.ProjectTaxe", b =>
+                {
+                    b.HasOne("AIO.Core.Entities.Projects.Project", "Project")
+                        .WithMany("ProjectTaxes")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("AIO.Core.Entities.Taxes.Taxe", "Taxe")
+                        .WithMany("ProjectTaxes")
+                        .HasForeignKey("TaxeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Project");
 
                     b.Navigation("Taxe");
                 });
@@ -3573,17 +3671,9 @@ namespace AIO.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("AIO.Core.Entities.Taxes.Taxe", "Taxe")
-                        .WithMany()
-                        .HasForeignKey("TaxId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Project");
 
                     b.Navigation("Supplier");
-
-                    b.Navigation("Taxe");
                 });
 
             modelBuilder.Entity("AIO.Core.Entities.RolePermission", b =>
@@ -3662,11 +3752,17 @@ namespace AIO.Infrastructure.Migrations
                     b.Navigation("Supplier");
                 });
 
-            modelBuilder.Entity("AIO.Core.Entities.SupplierCategories.SupplierCategory", b =>
+            modelBuilder.Entity("AIO.Core.Entities.SupplierCategories.SupplierProjectCategory", b =>
                 {
                     b.HasOne("AIO.Core.Entities.Categories.Category", "Category")
                         .WithMany("SupplierCategories")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("AIO.Core.Entities.Projects.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -3677,6 +3773,8 @@ namespace AIO.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+
+                    b.Navigation("Project");
 
                     b.Navigation("Supplier");
                 });
@@ -3702,12 +3800,6 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.SupplierItems.SupplierProjectItem", b =>
                 {
-                    b.HasOne("AIO.Core.Entities.Items.Item", "Item")
-                        .WithMany("SupplierProjectItems")
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("AIO.Core.Entities.Projects.Project", "Project")
                         .WithMany("SupplierProjectItems")
                         .HasForeignKey("ProjectId")
@@ -3719,8 +3811,6 @@ namespace AIO.Infrastructure.Migrations
                         .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Item");
 
                     b.Navigation("Project");
 
@@ -3846,11 +3936,6 @@ namespace AIO.Infrastructure.Migrations
                     b.Navigation("InvoicePaymentOrders");
                 });
 
-            modelBuilder.Entity("AIO.Core.Entities.Items.Item", b =>
-                {
-                    b.Navigation("SupplierProjectItems");
-                });
-
             modelBuilder.Entity("AIO.Core.Entities.Languages.Language", b =>
                 {
                     b.Navigation("LanguageTranslations");
@@ -3883,6 +3968,8 @@ namespace AIO.Infrastructure.Migrations
 
                     b.Navigation("ProjectSupplyPaymentMethods");
 
+                    b.Navigation("ProjectTaxes");
+
                     b.Navigation("Statements");
 
                     b.Navigation("SupplierProjectInsurances");
@@ -3902,6 +3989,8 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.Suppliers.Supplier", b =>
                 {
+                    b.Navigation("ProjectSupplierTaxes");
+
                     b.Navigation("ProjectSuppliers");
 
                     b.Navigation("SupplierCategories");
@@ -3911,6 +4000,11 @@ namespace AIO.Infrastructure.Migrations
                     b.Navigation("SupplierProjectInsurances");
 
                     b.Navigation("SupplierProjectItems");
+                });
+
+            modelBuilder.Entity("AIO.Core.Entities.Taxes.Taxe", b =>
+                {
+                    b.Navigation("ProjectTaxes");
                 });
 
             modelBuilder.Entity("AIO.Core.Entities.Auth.Roles.Role", b =>

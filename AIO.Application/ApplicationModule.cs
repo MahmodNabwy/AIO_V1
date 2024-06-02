@@ -40,6 +40,8 @@ using AIO.Contracts.Interfaces.Services.Attachments;
 using MediatR;
 using AIO.Application.Services.ProjectSuppliers;
 using AIO.Contracts.Interfaces.Services.ProjectSupplier;
+using AIO.Application.Services.SupplierProjectItemService;
+using AIO.Contracts.Interfaces.Services.SupplierProjectItemServices;
 
 namespace AIO.Application
 {
@@ -70,6 +72,11 @@ namespace AIO.Application
             builder.RegisterType<DepartmentUserService>().As<IDepartmentUserService>()
                 .InstancePerLifetimeScope();
 
+            #endregion
+
+            #region supplier project items
+            builder.RegisterType<SupplierProjectItemService>().As<ISupplierProjectItemService>()
+              .InstancePerLifetimeScope();
             #endregion
 
             #region Project Supplier

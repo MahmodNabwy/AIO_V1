@@ -20,7 +20,10 @@ namespace AIO.Core.Entities.Categories
 
 
         public virtual ICollection<StatementCategory> StatementCategories { get; set; }
-        public virtual ICollection<SupplierCategory> SupplierCategories { get; set; }
+        public virtual ICollection<SupplierProjectCategory> SupplierCategories { get; set; }
+
+      
+
 
 
     }

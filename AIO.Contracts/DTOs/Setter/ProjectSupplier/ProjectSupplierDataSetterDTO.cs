@@ -11,7 +11,6 @@ namespace AIO.Contracts.DTOs.Setter.ProjectSupplier
     {
         public int SupplierId { get; set; }
         public int ProjectId { get; set; }
-        public int TaxId { get; set; }
         public string ContractNumber { get; set; }
         public DateTime PrimaryRecieptDate { get; set; }
         public DateTime FinalRecieptDate { get; set; }
@@ -20,5 +19,9 @@ namespace AIO.Contracts.DTOs.Setter.ProjectSupplier
         public int ImplementationPeriod { get; set; }
         public int InsurancePeriod { get; set; }
         public string PaymentCondition { get; set; }
+
+        public bool? HasDiscount { get; set; } = false;
+        public decimal? TotalPriceAfterDiscount { get; set; }
+
     }
 }

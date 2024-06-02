@@ -18,6 +18,8 @@ namespace AIO.Contracts.Features.ProjectsSuppliers.Commands
         public ProjectSupplierDataSetterDTO projectSupplierDataSetterDTO { get; set; }
         public List<SupplierProjectInsurancesSetterDTO> InsuranceConditions { get; set; }
         public List<SupplierProjectSupplierPaymentMethodSetterDTO> PaymentMethods { get; set; }
+        public List<int> TaxesIds { get; set; }
+        
 
     }
 

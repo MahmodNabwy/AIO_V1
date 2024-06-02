@@ -16,5 +16,6 @@ namespace AIO.Contracts.Features.Projects.Commands
         public ProjectSetterDTO ProjectData { get; set; }
         public List<InsuranceConditionSetterDTO> InsuranceConditions { get; set; }
         public List<ProjectPaymentMethodSetterDTO> ProjectPaymentMethods { get; set; }
+        public List<int> TaxeIds { get; set; }
     }
 }

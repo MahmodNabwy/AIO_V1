@@ -1,5 +1,7 @@
 ﻿using AIO.API.Bases;
 using AIO.Contracts.Features.Projects.Commands;
+using AIO.Contracts.Features.ProjectsSuppliers.Commands;
+using AIO.Contracts.Features.ProjectsSuppliers.Queries;
 using AIO.Contracts.Helpers;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -8,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AIO.API.Controllers.Admin.ProjectsSuppliers
 {
-    [Route("api/[controller]")]
+    [Route("api/admin/[controller]")]
     [Authorize]
     [ApiController]
     public class ProjectsSuppliersController : APIControllerBase
@@ -20,13 +22,25 @@ namespace AIO.API.Controllers.Admin.ProjectsSuppliers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody] ProjectAddCommand request)
+        public async Task<IActionResult> PostAsync([FromBody] ProjectSupplierAddCommand request)
         {
             if (!ModelState.IsValid)
                 return NotValidModelState();
 
 
             return State(await _mediator.Send(request));
+        }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetAsync([FromQuery] GetProjectSuppliersQuery request)
+        {
+            if (!ModelState.IsValid)
+                return NotValidModelState();
+
+            return State(await _mediator.Send(request));
+          
         }
     }
 }

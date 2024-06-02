@@ -43,7 +43,7 @@ namespace AIO.API.Controllers.Admin.Lookups
         }
 
 
-        [HttpGet(" ")]
+        [HttpGet("Suppliers")]
         public async Task<IActionResult> GetSuppliersAsync()
         {
             if (!ModelState.IsValid)

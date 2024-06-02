@@ -13,7 +13,7 @@ namespace AIO.Contracts.DTOs.Setter.Projects
     {
         public ProjectSetterDTO ProjectData { get; set; }
         public List<InsuranceConditionSetterDTO> InsuranceConditions { get; set; }
-        public List<ProjectPaymentMethodSetterDTO> ProjectPaymentMethods { get; set; }
-         
+        public List<ProjectPaymentMethodSetterDTO> ProjectPaymentMethods { get; set; }              
+
     }
 }

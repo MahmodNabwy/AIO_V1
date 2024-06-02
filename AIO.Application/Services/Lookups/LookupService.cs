@@ -9,6 +9,7 @@ using AIO.Shared.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using AIO.Contracts.Features.Suppliers.Queries;
 
 namespace AIO.Application.Services.Lookups
 {
@@ -129,12 +130,12 @@ namespace AIO.Application.Services.Lookups
             return _holderOfDTO;
         }
 
-        public async Task<IHolderOfDTO> GetSuppliersAsync()
+        public async Task<IHolderOfDTO> GetSuppliersAsync(GetSupplierLookUpQuery request)
         {
             List<bool> lIndicators = new List<bool>();
             try
             {
-                var query = await _unitOfWork.Supplier.FindAllAsync(q => !q.IsDeleted);
+                var query = await _unitOfWork.Supplier.FindAllAsync(q => !q.IsDeleted && (int)q.TypeId == request.TypeId);
                 _holderOfDTO.Add(Res.Response, _mapper.Map<IEnumerable<LookupGetterDTO>>(query.ToList()));
                 lIndicators.Add(true);
             }

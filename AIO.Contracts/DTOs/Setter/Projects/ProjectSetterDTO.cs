@@ -26,8 +26,11 @@ namespace AIO.Contracts.DTOs.Setter.Projects
         public bool IsNew { get; set; } // اعمال مستجدة او مشروع جديد
         public int? ParentId { get; set; } // Refer tp project id when is New = true (اعمال مستجدة)
         public int ProjectTypeId { get; set; } // نوع المشروع
-        public int OwnerId { get; set; } // الجهة المالكة
-        public int? TaxId { get; set; } // if tax id is null so project has no taxes         
+        public int OwnerId { get; set; } // الجهة المالكة                                 
+        public bool? HasDiscount { get; set; } = false; //خصم خاص
+        public decimal? TotalPriceAfterDiscount { get; set; } // إجمالي قيمة العقد بعد الخصم
+
+
 
     }
 }

@@ -47,6 +47,8 @@ namespace AIO.Application.Helpers
             SupplierProjectInsuranceMappingProfile();
 
             SupplierProjectPaymentMethodProfile();
+
+            SupplierProjectItemMappingProfile();
         }
 
         public int getRoleUserCount(string roleId)

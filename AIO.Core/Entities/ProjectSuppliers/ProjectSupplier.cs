@@ -58,13 +58,11 @@ namespace AIO.Core.Entities.ProjectSuppliers
         public string PaymentCondition { get; set; }
 
 
-        [Required(ErrorMessage = "Tax Id is required")]
-        [Column("tax_id")]
-        public int TaxId { get; set; }
+        [Column("has_discount")]
+        public bool? HasDiscount { get; set; } = false;
 
-
-        [ForeignKey(nameof(TaxId))]
-        public virtual Taxe Taxe { get; set; }
+        [Column("total_price_after_discount")]
+        public decimal? TotalPriceAfterDiscount { get; set; }
 
 
         [Required(ErrorMessage = "Project Id is required")]

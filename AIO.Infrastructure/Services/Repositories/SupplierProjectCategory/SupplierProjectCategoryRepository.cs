@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace AIO.Infrastructure.Services.Repositories.SupplierCategories
 {
-    public class SupplierCategoryRepository : GenericRepository<SupplierCategory>, ISupplierCategoryRepository
+    public class SupplierProjectCategoryRepository : GenericRepository<SupplierProjectCategory>, ISupplierProjectCategoryRepository
     {
         private readonly AIODBContext _db;
 
-        public SupplierCategoryRepository(AIODBContext context) : base(context)
+        public SupplierProjectCategoryRepository(AIODBContext context) : base(context)
         {
             _db = context;
 

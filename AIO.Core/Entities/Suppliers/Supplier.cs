@@ -1,4 +1,5 @@
 ﻿using AIO.Contracts.Enums;
+using AIO.Core.Entities.ProjectsSuppliersTaxes;
 using AIO.Core.Entities.ProjectSuppliers;
 using AIO.Core.Entities.SupplierCategories;
 using AIO.Core.Entities.SupplierInsurances;
@@ -61,10 +62,13 @@ namespace AIO.Core.Entities.Suppliers
         public SupplierType TypeId { get; set; }
 
         public virtual ICollection<ProjectSupplier> ProjectSuppliers { get; set; }
-        public virtual ICollection<SupplierCategory> SupplierCategories { get; set; }
+        public virtual ICollection<SupplierProjectCategory> SupplierCategories { get; set; }
         public virtual ICollection<SupplierProjectInsurance> SupplierProjectInsurances { get; set; }
         public virtual ICollection<SupplierProjectItem> SupplierProjectItems { get; set; }
         public virtual ICollection<SupplierProjectPaymentMethod> SupplierPaymentMethods { get; set; }
+        public virtual ICollection<ProjectSupplierTaxe> ProjectSupplierTaxes { get; set; }
+       
+          
 
     }
 }
