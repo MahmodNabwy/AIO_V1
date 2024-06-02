@@ -1,6 +1,7 @@
 ﻿using AIO.API.Bases;
 using AIO.Contracts.DTOs.Setter.Projects;
 using AIO.Contracts.Features.Projects.Commands;
+using AIO.Contracts.Features.Projects.Queries;
 using AIO.Contracts.Helpers;
 using AIO.Contracts.Interfaces.Custom;
 using AIO.Contracts.Interfaces.Services.IProjectServices;
@@ -32,6 +33,27 @@ namespace AIO.API.Controllers.Admin.Projects
                 return NotValidModelState();
             
              
+            return State(await _mediator.Send(request));
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllAsync([FromQuery] GetAllProjectsQuery request)
+        {
+            if (!ModelState.IsValid)
+                return NotValidModelState();
+
+
+            return State(await _mediator.Send(request));
+        }
+
+        [HttpGet("Search")]
+        public async Task<IActionResult> SearchAsync([FromQuery] GetProjectsSearchQuery request)
+        {
+            if (!ModelState.IsValid)
+                return NotValidModelState();
+
+
             return State(await _mediator.Send(request));
         }
     }

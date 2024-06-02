@@ -1,6 +1,10 @@
 ﻿
+using AIO.Application.Extentions;
+using AIO.Contracts.DTOs.Getter.ProjectSupplier;
 using AIO.Contracts.DTOs.Setter.Projects;
 using AIO.Contracts.Features.Projects.Commands;
+using AIO.Contracts.Features.Projects.Queries;
+using AIO.Contracts.Helpers;
 using AIO.Contracts.Interfaces.Custom;
 using AIO.Contracts.Interfaces.Services.IProjectServices;
 using AIO.Core.Bases;
@@ -14,6 +18,7 @@ using AIO.Shared.Consts;
 using AIO.Shared.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
@@ -42,7 +47,7 @@ namespace AIO.Application.Services.ProjectServices
                     var oProject = await _unitOfWork.Projects.AddAsync(_mapper.Map<Project>(setterDTO.ProjectData));
                     if (_unitOfWork.Complete() > 0)
                     {
-                        var ProjectId= oProject.Id;
+                        var ProjectId = oProject.Id;
                         // Add Project Insurnace Conditions
                         foreach (var item in setterDTO.InsuranceConditions)
                         {
@@ -58,7 +63,7 @@ namespace AIO.Application.Services.ProjectServices
                             ProjectTaxe oProjectTaxes = new ProjectTaxe();
                             oProjectTaxes.ProjectId = ProjectId;
                             oProjectTaxes.TaxeId = item;
-                             await _unitOfWork.ProjectTaxes.AddAsync(oProjectTaxes);
+                            await _unitOfWork.ProjectTaxes.AddAsync(oProjectTaxes);
                             _unitOfWork.Complete();
 
                         }
@@ -67,7 +72,7 @@ namespace AIO.Application.Services.ProjectServices
                         _unitOfWork.Complete();
 
                         var projectPaymentMethodList = _mapper.Map<IList<ProjectPaymentMethod>>(setterDTO.ProjectPaymentMethods);
-                        var oProjectPaymentMethods = await _unitOfWork.ProjectPaymentMethod.AddRangeAsync(projectPaymentMethodList);                        
+                        var oProjectPaymentMethods = await _unitOfWork.ProjectPaymentMethod.AddRangeAsync(projectPaymentMethodList);
 
                         lIndicators.Add(_unitOfWork.Complete() > 0);
                         _logger.LogInformation(Res.message, Res.Added);
@@ -83,6 +88,57 @@ namespace AIO.Application.Services.ProjectServices
             {
                 ExceptionError(lIndicators, ex.Message);
 
+            }
+            _holderOfDTO.Add(Res.state, lIndicators.All(x => x));
+            return _holderOfDTO;
+        }
+
+        public async Task<IHolderOfDTO> GetAllAsync(GetAllProjectsQuery request)
+        {
+            List<bool> lIndicators = new List<bool>();
+            try
+            {
+
+
+                var query = _unitOfWork.Projects.GetAll();
+                int totalCount = await query.CountAsync();
+                var page = new Pager();
+                page.Set(request.PageSize, request.CurrentPage, totalCount);
+                _holderOfDTO.Add(Res.page, page);
+                query = query.AddPage(page.Skip, page.PageSize);
+                _holderOfDTO.Add(Res.Response, query.ToList());
+                _logger.LogInformation(Res.message, Res.DataFetch);
+                lIndicators.Add(true);
+
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionError(lIndicators, ex.Message);
+
+            }
+            _holderOfDTO.Add(Res.state, lIndicators.All(x => x));
+            return _holderOfDTO;
+        }
+
+        public async Task<IHolderOfDTO> SearchAsync(GetProjectsSearchQuery filter)
+        {
+            List<bool> lIndicators = new List<bool>();
+            try
+            {
+                var query = _unitOfWork.Projects.buildFilterQuery(filter);
+                int totalCount = await query.CountAsync();
+                var page = new Pager();
+                page.Set(filter.PageSize, filter.CurrentPage, totalCount);
+                _holderOfDTO.Add(Res.page, page);
+                query = query.AddPage(page.Skip, page.PageSize);
+                _holderOfDTO.Add(Res.Response, query.ToList());
+                _logger.LogInformation(Res.message, Res.DataFetch);
+                lIndicators.Add(true);
+            }
+            catch (Exception ex)
+            {
+                ExceptionError(lIndicators, ex.Message);
             }
             _holderOfDTO.Add(Res.state, lIndicators.All(x => x));
             return _holderOfDTO;

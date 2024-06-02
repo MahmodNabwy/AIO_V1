@@ -8,8 +8,8 @@ namespace AIO.Contracts.Enums
 {
     public enum SupplierType
     {
-        Supplier = 1,
-        Contractor = 2,
-        Consultant = 3
+        Supplier = 1, //مورد
+        Contractor = 2, //مقاول
+        Consultant = 3 //إستشاري
     }
 }

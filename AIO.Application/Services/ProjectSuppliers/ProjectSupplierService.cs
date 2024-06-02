@@ -121,15 +121,7 @@ namespace AIO.Application.Services.ProjectSuppliers
                 _logger.LogInformation(Res.message, Res.DataFetch);
                 lIndicators.Add(true);
 
-                //lIndicators.Add(_unitOfWork.Complete() > 0);
-                //_logger.LogInformation(Res.message, Res.Added);
-                //_holderOfDTO.Add(Res.id, oProjectSupplier.Id);
-                //_holderOfDTO.Add(Res.Response, setterDTO.projectSupplierDataSetterDTO);
-
-
-
-
-
+               
             }
             catch (Exception ex)
             {

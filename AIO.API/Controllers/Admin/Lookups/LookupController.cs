@@ -44,11 +44,11 @@ namespace AIO.API.Controllers.Admin.Lookups
 
 
         [HttpGet("Suppliers")]
-        public async Task<IActionResult> GetSuppliersAsync()
+        public async Task<IActionResult> GetSuppliersAsync([FromQuery]GetSupplierLookUpQuery request)
         {
             if (!ModelState.IsValid)
                 return NotValidModelState();
-            return State(await _mediator.Send(new GetSupplierLookUpQuery()));
+            return State(await _mediator.Send(request));
         }
 
 
