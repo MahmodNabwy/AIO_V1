@@ -1,4 +1,5 @@
 ﻿using AIO.Contracts.DTOs.Getter.Projects;
+using AIO.Contracts.Features.Projects.Queries;
 using AIO.Contracts.Filters;
 using AIO.Core.Entities.Owners;
 using AIO.Core.Entities.Projects;
@@ -37,7 +38,8 @@ namespace AIO.Infrastructure.Services.Repositories.Projects
                                         OwnerName = c.Owner.Name,
                                         TotalPrice = c.TotalPrice,
                                         TotalPriceConcurrency = (int)c.TotalPriceConcurrency,
-                                        IsNew = c.IsNew
+                                        IsNew = c.IsNew,
+                                        IsConfirmed = c.IsConfirmed
                                     }).AsQueryable();
 
 
@@ -77,8 +79,69 @@ namespace AIO.Infrastructure.Services.Repositories.Projects
                                          OwnerName = c.Owner.Name,
                                          TotalPrice = c.TotalPrice,
                                          TotalPriceConcurrency = (int)c.TotalPriceConcurrency,
-                                         IsNew = c.IsNew
+                                         IsNew = c.IsNew,
+                                         IsConfirmed = c.IsConfirmed,
                                      }).AsQueryable();
+            return result;
+        }
+
+        public async Task<List<ProjectDateGetterByIdDTO>> GetByIdAsync(GetProjectByIdQuery request)
+        {
+            var result = await _db.Projects.AsNoTracking()
+                                     .Where(c => c.Id == request.ProjectId)
+                                     .Select(c => new ProjectDateGetterByIdDTO
+                                     {
+                                         Id = c.Id,
+                                         Name = c.Name,
+                                         ContractNumber = c.ContractNumber,
+                                         OwnerName = c.Owner.Name,
+                                         TotalPrice = c.TotalPrice,
+                                         TotalPriceConcurrency = (int)c.TotalPriceConcurrency,
+                                         IsNew = c.IsNew,
+                                         AssignedNumber = c.AssignedNumber,
+                                         AssignedToDate = c.AssignedToDate,
+                                         FinalRecieptDate = c.FinalRecieptDate,
+                                         HasDiscount = c.HasDiscount,
+                                         ImplementationPeriod = c.ImplementationPeriod,
+                                         InsurancePeriod = c.InsurancePeriod,
+                                         LimitOfLiability = c.LimitOfLiability,
+                                         OwnerId = c.OwnerId,
+                                         ParentId = c.ParentId,
+                                         PaymentCondition = c.PaymentCondition,
+                                         PoNumber = c.PoNumber,
+                                         PrimaryRecieptDate = c.PrimaryRecieptDate,
+                                         ProjectTypeId = (int)c.ProjectTypeId,
+                                         ProjectProfitabilityRatio = c.ProjectProfitabilityRatio,
+                                         TotalPriceAfterDiscount = c.TotalPriceAfterDiscount,
+                                         Insurances = c.ProjectInsurances.Select(x => new ProjectInsurancesDataGetterDTO
+                                         {
+                                             Amount = x.Amount,
+                                             Amount_Concurrency_Type = (int)x.Amount_Concurrency_Type,
+                                             Date = x.Date,
+                                             Id = x.Id,
+                                             InsuranceLetterValue = x.InsuranceLetterValue,
+                                             Insurance_letter_Concurrency_Type = x.Insurance_letter_Concurrency_Type == null ? null :
+                                                                                (int)x.Insurance_letter_Concurrency_Type,
+                                             Percentage = x.Percentage,
+                                             Period = x.Period,
+                                             StatusId = x.StatusId,
+                                             TypeId = (int)x.TypeId
+                                         }).ToList(),
+                                         Taxes = c.ProjectTaxes.Select(x => new ProjectTaxesGetterDTO
+                                         {
+                                             Id = x.Id,
+                                             TaxId = x.TaxId
+                                         }).ToList(),
+                                         PaymentMethods = c.ProjectPaymentMethods.Select(x => new ProjectPaymentMethodGetterDTO
+                                         {
+                                             Id = x.Id,
+                                             Amount = x.Amount,
+                                             AmountConcurrency = (int)x.AmountConcurrency,
+                                             Date = x.Date,
+                                             Percentage = x.Percentage,
+                                             TypeId = (int)x.TypeId,
+                                         }).ToList()
+                                     }).ToListAsync();
             return result;
         }
     }

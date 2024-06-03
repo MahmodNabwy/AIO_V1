@@ -23,6 +23,10 @@ namespace AIO.Core.Entities.ProjectPaymentMethods
         [Column("amount")]
         public decimal Amount { get; set; }
 
+        [Required(ErrorMessage = "date is required")]
+        [Column("date")]
+        public DateTime Date { get; set; }
+
         [Required(ErrorMessage = "Amount Concurrency  is required")]
         [Column("amount_concurrency ")]
         public Concurrency_type AmountConcurrency { get; set; }

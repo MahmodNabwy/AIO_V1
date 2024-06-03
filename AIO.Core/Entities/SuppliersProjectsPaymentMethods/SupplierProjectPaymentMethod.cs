@@ -20,7 +20,10 @@ namespace AIO.Core.Entities.SupplierPaymentMethods
         [Required(ErrorMessage = "Percentage is required")]
         [Column("percentage")]
         public int Percentage { get; set; }
-
+       
+        [Required(ErrorMessage = "date is required")]
+        [Column("date")]
+        public DateTime Date { get; set; }
 
         [Required(ErrorMessage = "Amount is required")]
         [Column("amount")]

@@ -45,6 +45,13 @@ namespace AIO.Core.Entities.ProjectInsurances
         [Column("amount_concurrency_type ")]
         public Concurrency_type Amount_Concurrency_Type { get; set; }
 
+        [Column("insurance_letter_value")]
+        public decimal? InsuranceLetterValue { get; set; }
+
+
+        [Column("insurance_letter_concurrency_type ")]
+        public Concurrency_type? Insurance_letter_Concurrency_Type { get; set; }
+
         [Required(ErrorMessage = "Insurance Letter Status is required")]
         [Column("status_id ")]
         public Inusrance_letter_status StatusId { get; set; }

@@ -12,6 +12,7 @@ namespace AIO.Contracts.IServices.Services.Lookups
         Task<IHolderOfDTO> GetLanguageAsync();
         Task<IHolderOfDTO> GetOwnersAsync();
         Task<IHolderOfDTO> GetProjectsAsync();
+        Task<IHolderOfDTO> GetTaxesAsync();
         Task<IHolderOfDTO> GetSuppliersAsync(GetSupplierLookUpQuery request);
     }
 }

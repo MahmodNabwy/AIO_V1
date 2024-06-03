@@ -4,6 +4,7 @@ using AIO.Infrastructure.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AIO.Infrastructure.Migrations
 {
     [DbContext(typeof(AIODBContext))]
-    partial class AIODBContextModelSnapshot : ModelSnapshot
+    [Migration("20240603084934_RenameTaxTableAndAddDateColumnToProjectPaymentMethod")]
+    partial class RenameTaxTableAndAddDateColumnToProjectPaymentMethod
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2858,10 +2860,6 @@ namespace AIO.Infrastructure.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("created_by");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("date");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit")

@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace AIO.Core.Entities.Taxes
 {
-    [Table("taxe")]
-    public class Taxe : BaseEntityUpdate
+    [Table("tax")]
+    public class Tax : BaseEntityUpdate
     {
         [Required(ErrorMessage = "Name is required")]
         [StringLength(500, ErrorMessage = "Max length is 500 characters")]

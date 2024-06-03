@@ -17,6 +17,7 @@ namespace AIO.Core.IServices.Repositories.Projects
     {
         IQueryable<ProjectsDataGetterDTO> buildFilterQuery(ProjectFilter filter);
         IQueryable<ProjectsDataGetterDTO> GetAll();
+        Task<List<ProjectDateGetterByIdDTO>> GetByIdAsync(GetProjectByIdQuery request);
 
     }
 }

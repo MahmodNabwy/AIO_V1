@@ -4,6 +4,7 @@ using AIO.Infrastructure.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AIO.Infrastructure.Migrations
 {
     [DbContext(typeof(AIODBContext))]
-    partial class AIODBContextModelSnapshot : ModelSnapshot
+    [Migration("20240603071948_AddInsuranceLetterValueColumnToProjectInsuranceAndSupplierProjectInsurances")]
+    partial class AddInsuranceLetterValueColumnToProjectInsuranceAndSupplierProjectInsurances
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1542,10 +1544,6 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("created_by");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("date");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit")
                         .HasColumnName("is_deleted");
@@ -1625,10 +1623,6 @@ namespace AIO.Infrastructure.Migrations
                     b.Property<int>("InsurancePeriod")
                         .HasColumnType("int")
                         .HasColumnName("insurance_period");
-
-                    b.Property<bool>("IsConfirmed")
-                        .HasColumnType("bit")
-                        .HasColumnName("is_confirmed");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit")
@@ -1737,9 +1731,9 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasColumnName("supplier_id");
 
-                    b.Property<int>("TaxId")
+                    b.Property<int>("TaxeId")
                         .HasColumnType("int")
-                        .HasColumnName("tax_id");
+                        .HasColumnName("taxe_id");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
@@ -1755,7 +1749,7 @@ namespace AIO.Infrastructure.Migrations
 
                     b.HasIndex("SupplierId");
 
-                    b.HasIndex("TaxId");
+                    b.HasIndex("TaxeId");
 
                     b.ToTable("projects_suppliers_taxes");
                 });
@@ -1785,9 +1779,9 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasColumnName("project_id");
 
-                    b.Property<int>("TaxId")
+                    b.Property<int>("TaxeId")
                         .HasColumnType("int")
-                        .HasColumnName("tax_id");
+                        .HasColumnName("taxe_id");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
@@ -1801,7 +1795,7 @@ namespace AIO.Infrastructure.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.HasIndex("TaxId");
+                    b.HasIndex("TaxeId");
 
                     b.ToTable("projects_taxes");
                 });
@@ -2859,10 +2853,6 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("created_by");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("date");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit")
                         .HasColumnName("is_deleted");
@@ -2980,7 +2970,7 @@ namespace AIO.Infrastructure.Migrations
                     b.ToTable("supplier");
                 });
 
-            modelBuilder.Entity("AIO.Core.Entities.Taxes.Tax", b =>
+            modelBuilder.Entity("AIO.Core.Entities.Taxes.Taxe", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -3017,7 +3007,7 @@ namespace AIO.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tax");
+                    b.ToTable("taxe");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -3642,9 +3632,9 @@ namespace AIO.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("AIO.Core.Entities.Taxes.Tax", "Taxe")
+                    b.HasOne("AIO.Core.Entities.Taxes.Taxe", "Taxe")
                         .WithMany()
-                        .HasForeignKey("TaxId")
+                        .HasForeignKey("TaxeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -3663,9 +3653,9 @@ namespace AIO.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("AIO.Core.Entities.Taxes.Tax", "Taxe")
+                    b.HasOne("AIO.Core.Entities.Taxes.Taxe", "Taxe")
                         .WithMany("ProjectTaxes")
-                        .HasForeignKey("TaxId")
+                        .HasForeignKey("TaxeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -4038,7 +4028,7 @@ namespace AIO.Infrastructure.Migrations
                     b.Navigation("SupplierProjectItems");
                 });
 
-            modelBuilder.Entity("AIO.Core.Entities.Taxes.Tax", b =>
+            modelBuilder.Entity("AIO.Core.Entities.Taxes.Taxe", b =>
                 {
                     b.Navigation("ProjectTaxes");
                 });

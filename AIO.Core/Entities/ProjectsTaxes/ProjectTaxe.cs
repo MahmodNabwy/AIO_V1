@@ -17,14 +17,14 @@ namespace AIO.Core.Entities.ProjectsTaxes
         [Column("project_id")]
         public int ProjectId { get; set; }
 
-        [Required(ErrorMessage = "Taxe Id is required")]
-        [Column("taxe_id")]
-        public int TaxeId { get; set; }
+        [Required(ErrorMessage = "Tax Id is required")]
+        [Column("tax_id")]
+        public int TaxId { get; set; }
 
         [ForeignKey(nameof(ProjectId))]
         public virtual Project Project { get; set; }
 
-        [ForeignKey(nameof(TaxeId))]
-        public virtual Taxe Taxe { get; set; }
+        [ForeignKey(nameof(TaxId))]
+        public virtual Tax Taxe { get; set; }
     }
 }

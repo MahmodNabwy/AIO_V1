@@ -17,6 +17,7 @@ using AIO.Core.IServices.Custom;
 using AIO.Shared.Consts;
 using AIO.Shared.Interfaces;
 using AutoMapper;
+using Hangfire.Storage.Monitoring;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
@@ -62,7 +63,7 @@ namespace AIO.Application.Services.ProjectServices
                         {
                             ProjectTaxe oProjectTaxes = new ProjectTaxe();
                             oProjectTaxes.ProjectId = ProjectId;
-                            oProjectTaxes.TaxeId = item;
+                            oProjectTaxes.TaxId = item;
                             await _unitOfWork.ProjectTaxes.AddAsync(oProjectTaxes);
                             _unitOfWork.Complete();
 
@@ -139,6 +140,62 @@ namespace AIO.Application.Services.ProjectServices
             catch (Exception ex)
             {
                 ExceptionError(lIndicators, ex.Message);
+            }
+            _holderOfDTO.Add(Res.state, lIndicators.All(x => x));
+            return _holderOfDTO;
+        }
+
+        public async Task<IHolderOfDTO> ConfirmProjectAsync(int projectId)
+        {
+            List<bool> lIndicators = new List<bool>();
+            try
+            {
+
+
+                var oProject = await _unitOfWork.Projects.FirstOrDefaultAsync(c => c.Id == projectId);
+                if (oProject is not null)
+                {
+                    oProject.IsConfirmed = true;
+                    await _unitOfWork.Projects.UpdateAsync(oProject);
+                    lIndicators.Add(_unitOfWork.Complete() > 0);
+                    _logger.LogInformation(Res.message, Res.Updated);
+                    _holderOfDTO.Add(Res.id, oProject.Id);
+
+                }
+                else
+                {
+                    lIndicators.Add(false);
+                    _logger.LogInformation(Res.error, Res.error);
+                    NotFoundError(lIndicators);
+                }
+                 
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionError(lIndicators, ex.Message);
+
+            }
+            _holderOfDTO.Add(Res.state, lIndicators.All(x => x));
+            return _holderOfDTO;
+        }
+
+        public async Task<IHolderOfDTO> GetByIdAsync(GetProjectByIdQuery request)
+        {
+            List<bool> lIndicators = new List<bool>();
+            try
+            { 
+                var query = await _unitOfWork.Projects.GetByIdAsync(request);                
+                _holderOfDTO.Add(Res.Response, query);
+                _logger.LogInformation(Res.message, Res.DataFetch);
+                lIndicators.Add(true);
+
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionError(lIndicators, ex.Message);
+
             }
             _holderOfDTO.Add(Res.state, lIndicators.All(x => x));
             return _holderOfDTO;

@@ -103,6 +103,10 @@ namespace AIO.Core.Entities.Projects
         [Column("parent_id")]
         public int? ParentId { get; set; }
 
+
+        [Column("is_confirmed")]
+        public bool IsConfirmed { get; set; } = false;
+
         [Required(ErrorMessage = "Project Type Id is required")]
         [Column("project_type_id ")]
         public ProjectType ProjectTypeId { get; set; }
@@ -110,16 +114,16 @@ namespace AIO.Core.Entities.Projects
 
         [Column("has_discount")]
         public bool? HasDiscount { get; set; } = false;
-         
+
         [Column("total_price_after_discount")]
-        public decimal?  TotalPriceAfterDiscount { get; set; }
+        public decimal? TotalPriceAfterDiscount { get; set; }
 
         [Required(ErrorMessage = "Owner Id is required")]
         [Column("owner_id")]
         public int OwnerId { get; set; }
-                
+
         [ForeignKey(nameof(OwnerId))]
-        public virtual Owner Owner { get; set; }       
+        public virtual Owner Owner { get; set; }
 
         [ForeignKey(nameof(ParentId))]
         public virtual Project ParentProject { get; set; }

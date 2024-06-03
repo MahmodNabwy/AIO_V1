@@ -30,7 +30,9 @@ namespace AIO.Infrastructure.Services.Repositories.ProjectSuppliers
 
             var result = (from q in _db.ProjectSuppliers.AsNoTracking()
                           where q.ProjectId == projectId && (int)q.Supplier.TypeId == supplierTypeId
-
+                          let oInsurance = q.Project.SupplierProjectInsurances
+                               .Where(c => c.SupplierId == q.SupplierId && (int)c.StatusId != NothingLetterValue)
+                               .AsEnumerable()
                           select new ProjectSupplierDataDTO
                           {
                               Id = q.Id,
@@ -38,10 +40,8 @@ namespace AIO.Infrastructure.Services.Repositories.ProjectSuppliers
                               Name = q.Supplier.Name,
                               ContractNumber = q.ContractNumber,
                               TotalPrice = q.TotalPrice,
-                              //InsurancesLettersTotal =
-                              InsurancesLettersCount = q.Project.SupplierProjectInsurances
-                              .Where(c => c.SupplierId == q.SupplierId && (int)c.StatusId != NothingLetterValue)
-                              .Select(c => c.StatusId).Count(),       
+                              InsurancesLettersTotal = oInsurance.Select(c => c.InsuranceLetterValue).Sum(),
+                              InsurancesLettersCount = oInsurance.Select(c => c.StatusId).Count(),
 
                           }).AsQueryable();
             return result;

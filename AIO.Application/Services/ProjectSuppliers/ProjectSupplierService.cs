@@ -73,7 +73,7 @@ namespace AIO.Application.Services.ProjectSuppliers
                         foreach (var item in setterDTO.TaxesIds)
                         {
                             ProjectSupplierTaxe oProjectSupplierTaxe = new ProjectSupplierTaxe();
-                            oProjectSupplierTaxe.TaxeId = item;
+                            oProjectSupplierTaxe.TaxId = item;
                             oProjectSupplierTaxe.SupplierId = setterDTO.projectSupplierDataSetterDTO.SupplierId;
                             oProjectSupplierTaxe.ProjectId = setterDTO.projectSupplierDataSetterDTO.ProjectId;
 

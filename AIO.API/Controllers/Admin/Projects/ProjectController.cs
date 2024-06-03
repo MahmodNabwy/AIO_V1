@@ -21,7 +21,7 @@ namespace AIO.API.Controllers.Admin.Projects
     {
         private readonly IMediator _mediator;
 
-        public ProjectController(HolderOfDTO holderOfDTO,IMediator mediator) : base(holderOfDTO)
+        public ProjectController(HolderOfDTO holderOfDTO, IMediator mediator) : base(holderOfDTO)
         {
             _mediator = mediator;
         }
@@ -31,8 +31,20 @@ namespace AIO.API.Controllers.Admin.Projects
         {
             if (!ModelState.IsValid)
                 return NotValidModelState();
-            
-             
+
+
+            return State(await _mediator.Send(request));
+        }
+
+
+
+        [HttpPost("Confirm")]
+        public async Task<IActionResult> ConfirmProjectAsync([FromBody] ConfirmProjectCommand request)
+        {
+            if (!ModelState.IsValid)
+                return NotValidModelState();
+
+
             return State(await _mediator.Send(request));
         }
 
@@ -45,6 +57,17 @@ namespace AIO.API.Controllers.Admin.Projects
 
 
             return State(await _mediator.Send(request));
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByIdAsync(int id)
+        {
+            if (!ModelState.IsValid)
+                return NotValidModelState();
+
+
+            return State(await _mediator.Send(new GetProjectByIdQuery() { ProjectId = id }));
         }
 
         [HttpGet("Search")]

@@ -14,6 +14,6 @@ namespace AIO.Contracts.DTOs.Getter.ProjectSupplier
         public string ContractNumber { get; set; }
         public decimal TotalPrice { get; set; }
         public int InsurancesLettersCount { get; set; }
-        public decimal InsurancesLettersTotal { get; set; }
+        public decimal? InsurancesLettersTotal { get; set; }
     }
 }

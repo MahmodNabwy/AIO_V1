@@ -23,6 +23,7 @@
     <Folder Include="Features\Owners\Commands\" />
     <Folder Include="Features\SuppliersProjectsItems\Queries\" />
     <Folder Include="Features\Suppliers\Commands\" />
+    <Folder Include="Features\Taxes\Commands\" />
   </ItemGroup>
 
 </Project>

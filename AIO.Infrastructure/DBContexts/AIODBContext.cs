@@ -127,7 +127,7 @@ namespace AIO.Infrastructure.DBContexts
 
        
         #region Taxes
-        public virtual DbSet<Taxe> Taxes { get; set; }
+        public virtual DbSet<Tax> Taxes { get; set; }
 
         #endregion
         

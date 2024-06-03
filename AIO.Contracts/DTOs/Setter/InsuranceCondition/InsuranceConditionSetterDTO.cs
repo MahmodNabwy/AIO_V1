@@ -19,7 +19,9 @@ namespace AIO.Contracts.DTOs.Setter.InsuranceCondition
         public DateTime? Date { get; set; }
         public int Period { get; set; }
         public int Amount_Concurrency_Type { get; set; }
-        public int StatusId { get; set; }
+        public int StatusId { get; set; }        
+        public decimal? InsuranceLetterValue { get; set; }        
+        public Concurrency_type? Insurance_letter_Concurrency_Type { get; set; }
 
     }
 }

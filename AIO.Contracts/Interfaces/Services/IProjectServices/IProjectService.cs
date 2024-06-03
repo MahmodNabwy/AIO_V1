@@ -17,8 +17,10 @@ namespace AIO.Contracts.Interfaces.Services.IProjectServices
     {
         Task<IHolderOfDTO> AddNewProject(ProjectAddCommand setterDTO);
         Task<IHolderOfDTO> GetAllAsync(GetAllProjectsQuery request);
-
+        Task<IHolderOfDTO> GetByIdAsync(GetProjectByIdQuery request);
         Task<IHolderOfDTO> SearchAsync(GetProjectsSearchQuery filter);
+
+        Task<IHolderOfDTO> ConfirmProjectAsync(int projectId);
 
     }
 }

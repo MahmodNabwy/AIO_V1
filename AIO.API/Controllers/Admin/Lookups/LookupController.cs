@@ -3,6 +3,7 @@ using AIO.Contracts.Features.Owners.Queries;
 using AIO.Contracts.Features.Projects.Commands;
 using AIO.Contracts.Features.Projects.Queries;
 using AIO.Contracts.Features.Suppliers.Queries;
+using AIO.Contracts.Features.Taxes.Queries;
 using AIO.Contracts.Interfaces.Custom;
 using AIO.Contracts.IServices.Services.Lookups;
 using MediatR;
@@ -52,6 +53,13 @@ namespace AIO.API.Controllers.Admin.Lookups
         }
 
 
+        [HttpGet("Taxes")]
+        public async Task<IActionResult> GetTaxesAsync([FromQuery] GetTaxesLookUpQuery request)
+        {
+            if (!ModelState.IsValid)
+                return NotValidModelState();
+            return State(await _mediator.Send(request));
+        }
 
 
     }

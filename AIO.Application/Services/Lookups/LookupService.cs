@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using AIO.Contracts.Features.Suppliers.Queries;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace AIO.Application.Services.Lookups
 {
@@ -148,5 +149,22 @@ namespace AIO.Application.Services.Lookups
             return _holderOfDTO;
         }
 
+        public async Task<IHolderOfDTO> GetTaxesAsync()
+        {
+            List<bool> lIndicators = new List<bool>();
+            try
+            {
+                var query = await _unitOfWork.Taxes.FindAllAsync(q => !q.IsDeleted);
+                _holderOfDTO.Add(Res.Response, _mapper.Map<IEnumerable<LookupGetterDTO>>(query.ToList()));
+                lIndicators.Add(true);
+            }
+            catch (Exception ex)
+            {
+                _holderOfDTO.Add(Res.message, ex.Message);
+                lIndicators.Add(false);
+            }
+            _holderOfDTO.Add(Res.state, lIndicators.All(x => x));
+            return _holderOfDTO;
+        }
     }
 }

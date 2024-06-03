@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AIO.Infrastructure.Services.Repositories.Taxes
 {
-    public class TaxesRepository : GenericRepository<Taxe>, ITaxesRepository
+    public class TaxesRepository : GenericRepository<Tax>, ITaxesRepository
     {
         private readonly AIODBContext _db;
         public TaxesRepository(AIODBContext context) : base(context)

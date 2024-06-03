@@ -18,9 +18,9 @@ namespace AIO.Core.Entities.ProjectsSuppliersTaxes
         [Column("project_id")]
         public int ProjectId { get; set; }
 
-        [Required(ErrorMessage = "Taxe Id is required")]
-        [Column("taxe_id")]
-        public int TaxeId { get; set; }
+        [Required(ErrorMessage = "Tax Id is required")]
+        [Column("tax_id")]
+        public int TaxId { get; set; }
 
 
         [Required(ErrorMessage = "Supplier Id is required")]
@@ -30,8 +30,8 @@ namespace AIO.Core.Entities.ProjectsSuppliersTaxes
         [ForeignKey(nameof(ProjectId))]
         public virtual Project Project { get; set; }
 
-        [ForeignKey(nameof(TaxeId))]
-        public virtual Taxe Taxe { get; set; }
+        [ForeignKey(nameof(TaxId))]
+        public virtual Tax Taxe { get; set; }
 
         [ForeignKey(nameof(SupplierId))]
         public virtual Supplier Supplier { get; set; }

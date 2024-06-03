@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AIO.Core.IServices.Repositories.Taxes
 {
-    public interface ITaxesRepository : IGenericRepository<Taxe>
+    public interface ITaxesRepository : IGenericRepository<Tax>
     {
         //IQueryable<Supplier> buildFilterAdminQuery(SectorFilter filter);
 

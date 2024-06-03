@@ -31,6 +31,7 @@ using AIO.Core.IServices.Repositories.SupplierPaymentMethods;
 using AIO.Core.IServices.Repositories.SupplierProjectInsurances;
 using AIO.Core.IServices.Repositories.SupplierProjectItems;
 using AIO.Core.IServices.Repositories.Suppliers;
+using AIO.Core.IServices.Repositories.Taxes;
 using AIO.Infrastructure.DBContexts;
 using AIO.Infrastructure.Repositories.Custom.Log_System;
 using AIO.Infrastructure.Services.Repositories;
@@ -55,6 +56,7 @@ using AIO.Infrastructure.Services.Repositories.SupplierPaymentMethods;
 using AIO.Infrastructure.Services.Repositories.SupplierProjectInsurances;
 using AIO.Infrastructure.Services.Repositories.SupplierProjectItems;
 using AIO.Infrastructure.Services.Repositories.Suppliers;
+using AIO.Infrastructure.Services.Repositories.Taxes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
@@ -73,6 +75,10 @@ namespace AIO.Infrastructure.Services.Custom
         public ISecurityQuestionRepository SecurityQuestions { get; }
         public IUserSecurityQuestionRepository UserSecurityQuestions { get; }
         public IProfilePictureRepository ProfilePicture { get; private set; }
+
+        #region Tax
+        public ITaxesRepository Taxes { get; private set; }
+        #endregion
 
         #region Project Supplier Taxe
         public IProjectSupplierTaxeRepository ProjectSupplierTaxe { get; private set; }
@@ -193,6 +199,9 @@ namespace AIO.Infrastructure.Services.Custom
             Licences = new LicenceRepository(_context);
             TimeLogs = new TimeLogRepository(_context);
 
+            #region Tax
+            Taxes = new TaxesRepository(_context);
+            #endregion
 
             #region Project Supplier Taxe
             ProjectSupplierTaxe = new ProjectSupplierTaxeRepository(_context);

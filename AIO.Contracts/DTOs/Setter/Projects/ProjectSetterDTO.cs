@@ -29,7 +29,7 @@ namespace AIO.Contracts.DTOs.Setter.Projects
         public int OwnerId { get; set; } // الجهة المالكة                                 
         public bool? HasDiscount { get; set; } = false; //خصم خاص
         public decimal? TotalPriceAfterDiscount { get; set; } // إجمالي قيمة العقد بعد الخصم
-
+        public bool IsConfirmed { get; set; } = false; 
 
 
     }

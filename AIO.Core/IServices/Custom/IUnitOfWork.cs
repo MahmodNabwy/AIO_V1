@@ -21,6 +21,7 @@ using AIO.Core.IServices.Repositories.SupplierPaymentMethods;
 using AIO.Core.IServices.Repositories.SupplierProjectInsurances;
 using AIO.Core.IServices.Repositories.SupplierProjectItems;
 using AIO.Core.IServices.Repositories.Suppliers;
+using AIO.Core.IServices.Repositories.Taxes;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace AIO.Core.IServices.Custom
@@ -40,6 +41,10 @@ namespace AIO.Core.IServices.Custom
 
         #region Project Supplier Taxe
         public IProjectSupplierTaxeRepository ProjectSupplierTaxe { get; }
+        #endregion
+
+        #region Tax
+        public ITaxesRepository Taxes { get; }
         #endregion
 
         #region Project Taxes
