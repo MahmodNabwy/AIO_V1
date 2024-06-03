@@ -38,9 +38,9 @@ namespace AIO.Core.Entities.ProjectSuppliers
         public decimal TotalPrice { get; set; }
 
 
-        [Required(ErrorMessage = "Total Price Concurrency is required")]
-        [Column("total_price_concurrency")]
-        public Concurrency_type TotalPriceConcurrency { get; set; }
+        [Required(ErrorMessage = "currency is required")]
+        [Column("currency")]
+        public currency_type currency { get; set; }
 
 
         [Required(ErrorMessage = "Implementation Period is required")]

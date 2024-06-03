@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AIO.Contracts.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,8 +18,8 @@ namespace AIO.Contracts.DTOs.Getter.Projects
         public DateTime AssignedToDate { get; init; }
         public DateTime PrimaryRecieptDate { get; init; }
         public DateTime FinalRecieptDate { get; init; }
-        public decimal TotalPrice { get; init; }
-        public int TotalPriceConcurrency { get; init; }
+        public decimal TotalPrice { get; init; }      
+        public int currency { get; init; }
         public decimal LimitOfLiability { get; init; }
         public int? ProjectProfitabilityRatio { get; init; }
         public int ImplementationPeriod { get; init; }
@@ -30,9 +31,9 @@ namespace AIO.Contracts.DTOs.Getter.Projects
         public int OwnerId { get; init; }
         public bool? HasDiscount { get; init; } = false;
         public decimal? TotalPriceAfterDiscount { get; init; }
-
+        public bool IncludeTaxes { get; init; }  
         public List<ProjectInsurancesDataGetterDTO> Insurances { get; set; }
-        public List<ProjectTaxesGetterDTO> Taxes { get; set; }
+        public List<ProjectTaxesGetterDTO>? Taxes { get; set; }
 
         public List<ProjectPaymentMethodGetterDTO> PaymentMethods { get; set; }
     }

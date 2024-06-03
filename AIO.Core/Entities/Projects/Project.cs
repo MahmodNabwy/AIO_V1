@@ -69,9 +69,9 @@ namespace AIO.Core.Entities.Projects
         public decimal TotalPrice { get; set; }
 
 
-        [Required(ErrorMessage = "Total Price Concurrency is required")]
-        [Column("total_price_concurrency")]
-        public Concurrency_type TotalPriceConcurrency { get; set; }
+        [Required(ErrorMessage = "currency is required")]
+        [Column("currency")]
+        public currency_type currency { get; set; }
 
         [Required(ErrorMessage = "Limit Of Liability is required")]
         [Column("limit_of_liability")]
@@ -98,6 +98,10 @@ namespace AIO.Core.Entities.Projects
         [Required(ErrorMessage = "Is New is required")]
         [Column("is_new")]
         public bool IsNew { get; set; }
+
+        [Required(ErrorMessage = "Include Taxes is required")]
+        [Column("include_taxes")]
+        public bool IncludeTaxes { get; set; }
 
 
         [Column("parent_id")]

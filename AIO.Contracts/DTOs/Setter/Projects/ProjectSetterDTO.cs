@@ -17,7 +17,7 @@ namespace AIO.Contracts.DTOs.Setter.Projects
         public DateTime PrimaryRecieptDate { get; set; } // تاريخ الاستلام الابتدائي
         public DateTime FinalRecieptDate { get; set; } // تاريخ الاستلام النهائي
         public decimal TotalPrice { get; set; } // قيمة العقد
-        public int TotalPriceConcurrency { get; set; } // نوع عملة قيمة العقد
+        public int currency { get; set; } // نوع عملة قيمة العقد
         public decimal LimitOfLiability { get; set; }
         public int? ProjectProfitabilityRatio { get; set; } // نسبة ربحية المشروع
         public int ImplementationPeriod { get; set; }//فترة التنفيذ
@@ -29,8 +29,8 @@ namespace AIO.Contracts.DTOs.Setter.Projects
         public int OwnerId { get; set; } // الجهة المالكة                                 
         public bool? HasDiscount { get; set; } = false; //خصم خاص
         public decimal? TotalPriceAfterDiscount { get; set; } // إجمالي قيمة العقد بعد الخصم
-        public bool IsConfirmed { get; set; } = false; 
-
+        public bool IsConfirmed { get; set; } = false;
+        public bool IncludeTaxes { get; set; } = false;
 
     }
 }

@@ -37,20 +37,21 @@ namespace AIO.Core.Entities.ProjectInsurances
         [Column("period")]
         public int Period { get; set; }
 
+        [Required(ErrorMessage = "Is Returned Is Required")]
+        [Column("is_returned")]
+        public bool IsReturned { get; set; }
+
         [Required(ErrorMessage = "Insurance Type is required")]
         [Column("type_id ")]
         public Insurance_types TypeId { get; set; }
 
-        [Required(ErrorMessage = "Amount Concurrency Type is required")]
-        [Column("amount_concurrency_type ")]
-        public Concurrency_type Amount_Concurrency_Type { get; set; }
+        [Required(ErrorMessage = "currency is required")]
+        [Column("currency")]
+        public currency_type currency { get; set; }
 
         [Column("insurance_letter_value")]
         public decimal? InsuranceLetterValue { get; set; }
-
-
-        [Column("insurance_letter_concurrency_type ")]
-        public Concurrency_type? Insurance_letter_Concurrency_Type { get; set; }
+        
 
         [Required(ErrorMessage = "Insurance Letter Status is required")]
         [Column("status_id ")]

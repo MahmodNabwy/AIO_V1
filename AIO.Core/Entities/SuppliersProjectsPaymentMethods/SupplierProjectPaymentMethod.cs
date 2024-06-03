@@ -20,7 +20,7 @@ namespace AIO.Core.Entities.SupplierPaymentMethods
         [Required(ErrorMessage = "Percentage is required")]
         [Column("percentage")]
         public int Percentage { get; set; }
-       
+
         [Required(ErrorMessage = "date is required")]
         [Column("date")]
         public DateTime Date { get; set; }
@@ -29,9 +29,9 @@ namespace AIO.Core.Entities.SupplierPaymentMethods
         [Column("amount")]
         public decimal Amount { get; set; }
 
-        [Required(ErrorMessage = "Amount Concurrency  is required")]
-        [Column("amount_concurrency ")]
-        public Concurrency_type AmountConcurrency { get; set; }
+        [Required(ErrorMessage = "currency is required")]
+        [Column("currency")]
+        public currency_type currency { get; set; }
 
 
         [Required(ErrorMessage = "Payment Method Type is required")]

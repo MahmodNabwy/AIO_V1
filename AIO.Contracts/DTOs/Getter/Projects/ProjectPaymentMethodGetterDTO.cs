@@ -12,7 +12,7 @@ namespace AIO.Contracts.DTOs.Getter.Projects
         public int Id { get; set; }
         public int Percentage { get; set; }
         public decimal Amount { get; set; }
-        public int AmountConcurrency { get; set; }
+        public int currency { get; set; }
         public int TypeId { get; set; }
         public DateTime Date { get; set; }
 

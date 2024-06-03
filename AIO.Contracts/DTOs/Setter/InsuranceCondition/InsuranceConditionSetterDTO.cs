@@ -18,10 +18,11 @@ namespace AIO.Contracts.DTOs.Setter.InsuranceCondition
         public decimal Amount { get; set; }
         public DateTime? Date { get; set; }
         public int Period { get; set; }
-        public int Amount_Concurrency_Type { get; set; }
-        public int StatusId { get; set; }        
-        public decimal? InsuranceLetterValue { get; set; }        
-        public Concurrency_type? Insurance_letter_Concurrency_Type { get; set; }
+        public int currency { get; set; }
+        public int StatusId { get; set; }
+        public bool IsReturned { get; set; }
+
+        public decimal? InsuranceLetterValue { get; set; }
 
     }
 }

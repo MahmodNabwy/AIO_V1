@@ -27,9 +27,9 @@ namespace AIO.Core.Entities.ProjectPaymentMethods
         [Column("date")]
         public DateTime Date { get; set; }
 
-        [Required(ErrorMessage = "Amount Concurrency  is required")]
-        [Column("amount_concurrency ")]
-        public Concurrency_type AmountConcurrency { get; set; }
+        [Required(ErrorMessage = "currency is required")]
+        [Column("currency")]
+        public currency_type currency { get; set; }
 
 
         [Required(ErrorMessage = "Payment Method Type is required")]

@@ -38,7 +38,7 @@ namespace AIO.Application.Services.ProjectPaymentMethods
                 oProjectPaymentMethod.ProjectId = projectId;
                 oProjectPaymentMethod.TypeId = (Contracts.Enums.PaymentMethodTypes)setterDTO.TypeId;
                 oProjectPaymentMethod.Amount = setterDTO.Amount;
-                oProjectPaymentMethod.AmountConcurrency = (Contracts.Enums.Concurrency_type)setterDTO.AmountConcurrency;
+                oProjectPaymentMethod.currency = (Contracts.Enums.currency_type)setterDTO.currency;
                 oProjectPaymentMethod.Percentage = setterDTO.Percentage;
 
                 var oData = await _unitOfWork.ProjectPaymentMethod.AddAsync(oProjectPaymentMethod);

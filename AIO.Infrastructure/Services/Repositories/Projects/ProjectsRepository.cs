@@ -37,9 +37,10 @@ namespace AIO.Infrastructure.Services.Repositories.Projects
                                         ProjectStatus = c.FinalRecieptDate < DateTime.Now.Date ? "أنتهت" : "مستمرة",
                                         OwnerName = c.Owner.Name,
                                         TotalPrice = c.TotalPrice,
-                                        TotalPriceConcurrency = (int)c.TotalPriceConcurrency,
+                                        currency = (int)c.currency,
                                         IsNew = c.IsNew,
-                                        IsConfirmed = c.IsConfirmed
+                                        IsConfirmed = c.IsConfirmed,
+                                        IncludeTaxes = c.IncludeTaxes,
                                     }).AsQueryable();
 
 
@@ -78,9 +79,10 @@ namespace AIO.Infrastructure.Services.Repositories.Projects
                                          ProjectStatus = c.FinalRecieptDate < DateTime.Now.Date ? "أنتهت" : "مستمرة",
                                          OwnerName = c.Owner.Name,
                                          TotalPrice = c.TotalPrice,
-                                         TotalPriceConcurrency = (int)c.TotalPriceConcurrency,
+                                         currency = (int)c.currency,
                                          IsNew = c.IsNew,
                                          IsConfirmed = c.IsConfirmed,
+                                         IncludeTaxes = c.IncludeTaxes,
                                      }).AsQueryable();
             return result;
         }
@@ -96,7 +98,7 @@ namespace AIO.Infrastructure.Services.Repositories.Projects
                                          ContractNumber = c.ContractNumber,
                                          OwnerName = c.Owner.Name,
                                          TotalPrice = c.TotalPrice,
-                                         TotalPriceConcurrency = (int)c.TotalPriceConcurrency,
+                                         currency = (int)c.currency,
                                          IsNew = c.IsNew,
                                          AssignedNumber = c.AssignedNumber,
                                          AssignedToDate = c.AssignedToDate,
@@ -116,27 +118,26 @@ namespace AIO.Infrastructure.Services.Repositories.Projects
                                          Insurances = c.ProjectInsurances.Select(x => new ProjectInsurancesDataGetterDTO
                                          {
                                              Amount = x.Amount,
-                                             Amount_Concurrency_Type = (int)x.Amount_Concurrency_Type,
+                                             currency = (int)x.currency,
                                              Date = x.Date,
                                              Id = x.Id,
                                              InsuranceLetterValue = x.InsuranceLetterValue,
-                                             Insurance_letter_Concurrency_Type = x.Insurance_letter_Concurrency_Type == null ? null :
-                                                                                (int)x.Insurance_letter_Concurrency_Type,
+
                                              Percentage = x.Percentage,
                                              Period = x.Period,
                                              StatusId = x.StatusId,
                                              TypeId = (int)x.TypeId
                                          }).ToList(),
-                                         Taxes = c.ProjectTaxes.Select(x => new ProjectTaxesGetterDTO
+                                         Taxes = c.IncludeTaxes == true ? c.ProjectTaxes.Select(x => new ProjectTaxesGetterDTO
                                          {
                                              Id = x.Id,
                                              TaxId = x.TaxId
-                                         }).ToList(),
+                                         }).ToList() : null,
                                          PaymentMethods = c.ProjectPaymentMethods.Select(x => new ProjectPaymentMethodGetterDTO
                                          {
                                              Id = x.Id,
                                              Amount = x.Amount,
-                                             AmountConcurrency = (int)x.AmountConcurrency,
+                                             currency = (int)x.currency,
                                              Date = x.Date,
                                              Percentage = x.Percentage,
                                              TypeId = (int)x.TypeId,

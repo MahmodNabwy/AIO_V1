@@ -4,6 +4,7 @@ using AIO.Infrastructure.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AIO.Infrastructure.Migrations
 {
     [DbContext(typeof(AIODBContext))]
-    partial class AIODBContextModelSnapshot : ModelSnapshot
+    [Migration("20240603132804_MakeCurrencyGlobalOnProject")]
+    partial class MakeCurrencyGlobalOnProject
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1474,10 +1476,6 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("is_deleted");
 
-                    b.Property<bool>("IsReturned")
-                        .HasColumnType("bit")
-                        .HasColumnName("is_returned");
-
                     b.Property<int>("Percentage")
                         .HasColumnType("int")
                         .HasColumnName("percentage");
@@ -1621,10 +1619,6 @@ namespace AIO.Infrastructure.Migrations
                     b.Property<int>("ImplementationPeriod")
                         .HasColumnType("int")
                         .HasColumnName("implementation_period");
-
-                    b.Property<bool>("IncludeTaxes")
-                        .HasColumnType("bit")
-                        .HasColumnName("include_taxes");
 
                     b.Property<int>("InsurancePeriod")
                         .HasColumnType("int")
@@ -2728,10 +2722,6 @@ namespace AIO.Infrastructure.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit")
                         .HasColumnName("is_deleted");
-
-                    b.Property<bool>("IsReturned")
-                        .HasColumnType("bit")
-                        .HasColumnName("is_returned");
 
                     b.Property<int>("Percentage")
                         .HasColumnType("int")

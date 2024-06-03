@@ -15,11 +15,10 @@ namespace AIO.Contracts.DTOs.Setter.ProjectSupplier
         public DateTime PrimaryRecieptDate { get; set; }
         public DateTime FinalRecieptDate { get; set; }
         public decimal TotalPrice { get; set; }
-        public Concurrency_type TotalPriceConcurrency { get; set; }
+        public currency_type currency { get; set; }
         public int ImplementationPeriod { get; set; }
         public int InsurancePeriod { get; set; }
         public string PaymentCondition { get; set; }
-
         public bool? HasDiscount { get; set; } = false;
         public decimal? TotalPriceAfterDiscount { get; set; }
 
