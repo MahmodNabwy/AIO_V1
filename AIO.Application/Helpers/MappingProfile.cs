@@ -52,6 +52,8 @@ namespace AIO.Application.Helpers
 
             TaxesMappingProfile();
 
+            ItemsMappingProfile();
+
         }
 
         public int getRoleUserCount(string roleId)

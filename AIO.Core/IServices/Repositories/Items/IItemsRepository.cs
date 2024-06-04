@@ -1,4 +1,5 @@
-﻿using AIO.Contracts.IServices.Custom;
+﻿using AIO.Contracts.DTOs.Getter.Items;
+using AIO.Contracts.IServices.Custom;
 using AIO.Core.Entities.Invoices;
 using AIO.Core.Entities.Items;
 using System;
@@ -11,5 +12,6 @@ namespace AIO.Core.IServices.Repositories.Items
 {
     public interface IItemsRepository : IGenericRepository<Item>
     {
+        Task<List<ItemGetterDTO>> GetAllAsync();
     }
 }
