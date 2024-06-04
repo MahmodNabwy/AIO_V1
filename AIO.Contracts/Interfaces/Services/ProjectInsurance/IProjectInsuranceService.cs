@@ -14,6 +14,7 @@ namespace AIO.Contracts.Interfaces.Services.ProjectInsurance
         Task<IHolderOfDTO> SaveAsync(ProjectInsurancesAddCommand request);
         Task<IHolderOfDTO> UpdateAsync(ProjectInsurancesUpdateCommand request);
         Task<IHolderOfDTO> GetAllAsync(GetAllProjectInsurancesQuery request);
+        Task<IHolderOfDTO> DeleteAsync(int Id);
 
     }
 }

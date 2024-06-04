@@ -103,5 +103,28 @@ namespace AIO.Application.Services.ProjectInsurances
             _holderOfDTO.Add(Res.state, lIndicators.All(x => x));
             return _holderOfDTO;
         }
+
+        public async Task<IHolderOfDTO> DeleteAsync(int Id)
+        {
+            List<bool> lIndicators = new List<bool>();
+            try
+            {
+                var obj = await _unitOfWork.ProjectInsurance.FirstOrDefaultAsync(q => q.Id == Id);
+                if (obj != null)
+                {
+                    _unitOfWork.ProjectInsurance.Delete(obj);
+                    lIndicators.Add(_unitOfWork.Complete() > 0);
+                    _logger.LogInformation(Res.message, Res.SoftDeleted);
+                }
+                else
+                    NotFoundError(lIndicators);
+            }
+            catch (Exception ex)
+            {
+                ExceptionError(lIndicators, ex.Message);
+            }
+            _holderOfDTO.Add(Res.state, lIndicators.All(x => x));
+            return _holderOfDTO;
+        }
     }
 }

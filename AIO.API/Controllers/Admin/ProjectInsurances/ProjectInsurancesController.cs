@@ -55,5 +55,16 @@ namespace AIO.API.Controllers.Admin.ProjectInsurances
             return State(await _mediator.Send(request));
         }
 
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAsync([FromQuery] ProjectInsuranceDeleteCommand request)
+        {
+            if (!ModelState.IsValid)
+                return NotValidModelState();
+
+
+            return State(await _mediator.Send(request));
+        }
+
     }
 }
