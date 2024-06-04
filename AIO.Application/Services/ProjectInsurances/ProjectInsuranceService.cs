@@ -1,4 +1,7 @@
-﻿using AIO.Application.Services.Departments;
+﻿using AIO.Application.Extentions;
+using AIO.Application.Services.Departments;
+using AIO.Contracts.Features.ProjectInsurances.Commands;
+using AIO.Contracts.Features.ProjectInsurances.Queries;
 using AIO.Contracts.Interfaces.Custom;
 using AIO.Contracts.Interfaces.Services.ProjectInsurance;
 using AIO.Contracts.IServices.Services.Departments;
@@ -10,6 +13,7 @@ using AIO.Shared.Interfaces;
 using AutoMapper;
 using Hangfire.Storage.Monitoring;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
@@ -29,24 +33,72 @@ namespace AIO.Application.Services.ProjectInsurances
         {
         }
 
-        public async Task<IHolderOfDTO> AddNewProjectInsurance(int projectId, int insuranceId)
+        public async Task<IHolderOfDTO> SaveAsync(ProjectInsurancesAddCommand request)
         {
             List<bool> lIndicators = new List<bool>();
             try
             {
-                var oProjectInsurance = new AIO.Core.Entities.ProjectInsurances.ProjectInsurance();
-                oProjectInsurance.CreatedAt = DateTime.Now;
-                oProjectInsurance.ProjectId = projectId;                
-                oProjectInsurance.CreatedBy = GetUserId();                
-
-                var oData = await _unitOfWork.ProjectInsurance.AddAsync(oProjectInsurance);
+                var dbSetterDTO = _mapper.Map<ProjectInsurance>(request);
+                AddCreateData(dbSetterDTO);
+                var oData = await _unitOfWork.ProjectInsurance.AddAsync(dbSetterDTO);
                 lIndicators.Add(_unitOfWork.Complete() > 0);
-                _logger.LogInformation(Res.message, Res.Added);                
+                _logger.LogInformation(Res.message, Res.Added);
 
             }
             catch (Exception ex)
             {
                 ExceptionError(lIndicators, ex.Message);
+            }
+            _holderOfDTO.Add(Res.state, lIndicators.All(x => x));
+            return _holderOfDTO;
+        }
+
+        public async Task<IHolderOfDTO> UpdateAsync(ProjectInsurancesUpdateCommand request)
+        {
+            List<bool> lIndicators = new List<bool>();
+            try
+            {
+                var oldObj = await _unitOfWork.ProjectInsurance.FirstOrDefaultAsync(q => q.Id == request.Id);
+
+                if (oldObj != null)
+                {
+                    request.ProjectId = oldObj.ProjectId;
+                    var dbSetterDTO = _mapper.Map<ProjectInsurance>(request);
+                    AddUpdateData(dbSetterDTO);
+                    var oData = await _unitOfWork.ProjectInsurance.UpdateAsync(dbSetterDTO);
+                    lIndicators.Add(_unitOfWork.Complete() > 0);
+                    _holderOfDTO.Add(Res.id, oData.Id);
+                    _logger.LogInformation(Res.message, Res.Updated);
+                }
+                else
+                    NotFoundError(lIndicators);
+            }
+            catch (Exception ex)
+            {
+                ExceptionError(lIndicators, ex.Message);
+            }
+            _holderOfDTO.Add(Res.state, lIndicators.All(x => x));
+            return _holderOfDTO;
+        }
+
+        public async Task<IHolderOfDTO> GetAllAsync(GetAllProjectInsurancesQuery request)
+        {
+            List<bool> lIndicators = new List<bool>();
+            try
+            {
+
+                var query = await _unitOfWork.ProjectInsurance.GetListAsync(request.ProjectId);
+
+                _holderOfDTO.Add(Res.Response, query);
+                _logger.LogInformation(Res.message, Res.DataFetch);
+                lIndicators.Add(true);
+
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionError(lIndicators, ex.Message);
+
             }
             _holderOfDTO.Add(Res.state, lIndicators.All(x => x));
             return _holderOfDTO;

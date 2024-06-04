@@ -1,4 +1,5 @@
-﻿using AIO.Contracts.IServices.Custom;
+﻿using AIO.Contracts.DTOs.Getter.Projects;
+using AIO.Contracts.IServices.Custom;
 using AIO.Core.Entities.ProjectInsurances;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace AIO.Core.IServices.Repositories.ProjectInsurances
     public interface IProjectInsuranceRepository : IGenericRepository<ProjectInsurance>
     {
         //IQueryable<Supplier> buildFilterAdminQuery(SectorFilter filter);
+        Task<List<ProjectInsurancesDataGetterDTO>> GetListAsync(int projectId);
        
     }
 }

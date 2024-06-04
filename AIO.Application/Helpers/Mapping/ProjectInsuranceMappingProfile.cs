@@ -1,5 +1,6 @@
 ﻿using AIO.Contracts.DTOs.Setter.InsuranceCondition;
 using AIO.Contracts.DTOs.Setter.Projects;
+using AIO.Contracts.Features.ProjectInsurances.Commands;
 using AIO.Core.Entities.ProjectInsurances;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace AIO.Application.Helpers
         private void ProjectInsuranceMappingProfile()
         {
             CreateMap<InsuranceConditionSetterDTO, ProjectInsurance>().ReverseMap();
+            CreateMap<ProjectInsurancesAddCommand, ProjectInsurance>().ReverseMap();
+            CreateMap<ProjectInsurancesUpdateCommand, ProjectInsurance>().ReverseMap();
         }
     }
 }

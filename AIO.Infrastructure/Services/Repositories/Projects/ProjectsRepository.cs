@@ -125,7 +125,7 @@ namespace AIO.Infrastructure.Services.Repositories.Projects
 
                                              Percentage = x.Percentage,
                                              Period = x.Period,
-                                             StatusId = x.StatusId,
+                                             StatusId = (int)x.StatusId,
                                              TypeId = (int)x.TypeId
                                          }).ToList(),
                                          Taxes = c.IncludeTaxes == true ? c.ProjectTaxes.Select(x => new ProjectTaxesGetterDTO
