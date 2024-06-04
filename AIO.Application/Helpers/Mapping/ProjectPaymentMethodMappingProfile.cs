@@ -1,5 +1,7 @@
 ﻿using AIO.Contracts.DTOs.Setter.InsuranceCondition;
 using AIO.Contracts.DTOs.Setter.ProjectPaymentMethod;
+using AIO.Contracts.Features.ProjectInsurances.Commands;
+using AIO.Contracts.Features.ProjectPaymentMethod.Commands;
 using AIO.Core.Entities.ProjectInsurances;
 using AIO.Core.Entities.ProjectPaymentMethods;
 using System;
@@ -15,6 +17,8 @@ namespace AIO.Application.Helpers
         private void ProjectPaymentMethodMappingProfile()
         {
             CreateMap<ProjectPaymentMethodSetterDTO, ProjectPaymentMethod>().ReverseMap();
+            CreateMap<ProjectPaymentMethodAddCommand, ProjectPaymentMethod>().ReverseMap();
+            CreateMap<ProjectPaymentMethodUpdateCommand, ProjectPaymentMethod>().ReverseMap();
         }
     }
 }

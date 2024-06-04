@@ -1,4 +1,5 @@
-﻿using AIO.Contracts.IServices.Custom;
+﻿using AIO.Contracts.DTOs.Getter.Projects;
+using AIO.Contracts.IServices.Custom;
 using AIO.Core.Entities.ProjectInsurances;
 using AIO.Core.Entities.ProjectPaymentMethods;
 using System;
@@ -11,5 +12,7 @@ namespace AIO.Core.IServices.Repositories.ProjectPaymentMethods
 {
     public interface IProjectPaymentMethodRepository : IGenericRepository<ProjectPaymentMethod>
     {
+        Task<List<ProjectPaymentMethodGetterDTO>> GetListAsync(int projectId);
+
     }
 }

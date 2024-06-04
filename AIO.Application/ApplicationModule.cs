@@ -42,6 +42,8 @@ using AIO.Application.Services.ProjectSuppliers;
 using AIO.Contracts.Interfaces.Services.ProjectSupplier;
 using AIO.Application.Services.SupplierProjectItemService;
 using AIO.Contracts.Interfaces.Services.SupplierProjectItemServices;
+using AIO.Application.Services.ProjectPaymentMethods;
+using AIO.Contracts.Interfaces.Services.ProjectPaymentMethods;
 
 namespace AIO.Application
 {
@@ -77,6 +79,11 @@ namespace AIO.Application
             #region supplier project items
             builder.RegisterType<SupplierProjectItemService>().As<ISupplierProjectItemService>()
               .InstancePerLifetimeScope();
+            #endregion
+
+            #region Project Payment Methods
+            builder.RegisterType<ProjectPaymentMethodService>().As<IProjectPaymentMethodService>()
+            .InstancePerLifetimeScope();
             #endregion
 
             #region Project Supplier
