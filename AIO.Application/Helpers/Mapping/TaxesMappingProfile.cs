@@ -1,5 +1,9 @@
 ﻿using AIO.Contracts.DTOs.Getter.Lookups;
+using AIO.Contracts.Features.ProjectInsurances.Commands;
+using AIO.Contracts.Features.ProjectTaxes.Commands;
 using AIO.Core.Entities.Owners;
+using AIO.Core.Entities.ProjectInsurances;
+using AIO.Core.Entities.ProjectsTaxes;
 using AIO.Core.Entities.Taxes;
 using System;
 using System.Collections.Generic;
@@ -14,6 +18,8 @@ namespace AIO.Application.Helpers
         private void TaxesMappingProfile()
         {
             CreateMap<Tax, LookupGetterDTO>().ReverseMap();
+            CreateMap<ProjectInsurancesAddCommand, ProjectInsurance>().ReverseMap();
+            CreateMap<ProjectTaxesUpdateCommand, ProjectTaxe>().ReverseMap();
         }
     }
 }

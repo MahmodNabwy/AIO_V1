@@ -10,5 +10,6 @@ namespace AIO.Contracts.DTOs.Getter.Projects
     {
         public int Id { get; set; }
         public int TaxId { get; set; }
+        public string name { get; set; }
     }
 }

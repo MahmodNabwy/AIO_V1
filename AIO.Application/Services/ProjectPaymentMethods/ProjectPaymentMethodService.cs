@@ -42,6 +42,7 @@ namespace AIO.Application.Services.ProjectPaymentMethods
                 var oData = await _unitOfWork.ProjectPaymentMethod.AddAsync(dbSetterDTO);
                 lIndicators.Add(_unitOfWork.Complete() > 0);
                 _logger.LogInformation(Res.message, Res.Added);
+                _logger.LogInformation(Res.id, oData.Id);
 
             }
             catch (Exception ex)

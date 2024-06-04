@@ -43,6 +43,8 @@ namespace AIO.Application.Services.ProjectInsurances
                 var oData = await _unitOfWork.ProjectInsurance.AddAsync(dbSetterDTO);
                 lIndicators.Add(_unitOfWork.Complete() > 0);
                 _logger.LogInformation(Res.message, Res.Added);
+                _logger.LogInformation(Res.id, oData.Id);
+
 
             }
             catch (Exception ex)
