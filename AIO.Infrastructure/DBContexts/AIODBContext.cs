@@ -10,6 +10,7 @@ using AIO.Core.Entities.FilesLibrary;
 using AIO.Core.Entities.InvoiceItems;
 using AIO.Core.Entities.InvoicePaymentOrders;
 using AIO.Core.Entities.Invoices;
+using AIO.Core.Entities.Items;
 using AIO.Core.Entities.Languages;
 using AIO.Core.Entities.Migrations;
 using AIO.Core.Entities.OwnerAttachments;
@@ -125,7 +126,12 @@ namespace AIO.Infrastructure.DBContexts
 
         #endregion
 
-       
+
+        #region Items
+        public virtual DbSet<Item> Items { get; set; }
+
+        #endregion
+
         #region Taxes
         public virtual DbSet<Tax> Taxes { get; set; }
 

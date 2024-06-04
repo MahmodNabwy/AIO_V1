@@ -29,7 +29,8 @@ namespace AIO.Core.Entities.ProjectPaymentMethods
 
         [Required(ErrorMessage = "currency is required")]
         [Column("currency")]
-        public currency_type currency { get; set; }
+        [NotMapped]
+        public currency_type currency { get { return Project.currency; } }
 
 
         [Required(ErrorMessage = "Payment Method Type is required")]

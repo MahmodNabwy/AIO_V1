@@ -4,6 +4,7 @@ using AIO.Infrastructure.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AIO.Infrastructure.Migrations
 {
     [DbContext(typeof(AIODBContext))]
-    partial class AIODBContextModelSnapshot : ModelSnapshot
+    [Migration("20240604113816_MakeCurrencyNotMapped")]
+    partial class MakeCurrencyNotMapped
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -902,51 +904,6 @@ namespace AIO.Infrastructure.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("invoices");
-                });
-
-            modelBuilder.Entity("AIO.Core.Entities.Items.Item", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
-                        .HasColumnName("code");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("created_at");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("created_by");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("description");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasColumnName("is_deleted");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("updated_at");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("updated_by");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("items");
                 });
 
             modelBuilder.Entity("AIO.Core.Entities.Languages.Language", b =>
@@ -2824,6 +2781,12 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasColumnName("amount");
 
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("code");
+
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("created_at");
@@ -2835,10 +2798,6 @@ namespace AIO.Infrastructure.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit")
                         .HasColumnName("is_deleted");
-
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int")
-                        .HasColumnName("item_id");
 
                     b.Property<int>("ProjectId")
                         .HasColumnType("int")
@@ -2865,8 +2824,6 @@ namespace AIO.Infrastructure.Migrations
                         .HasColumnName("updated_by");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ItemId");
 
                     b.HasIndex("ProjectId");
 
@@ -3873,12 +3830,6 @@ namespace AIO.Infrastructure.Migrations
 
             modelBuilder.Entity("AIO.Core.Entities.SupplierItems.SupplierProjectItem", b =>
                 {
-                    b.HasOne("AIO.Core.Entities.Items.Item", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("AIO.Core.Entities.Projects.Project", "Project")
                         .WithMany("SupplierProjectItems")
                         .HasForeignKey("ProjectId")
@@ -3890,8 +3841,6 @@ namespace AIO.Infrastructure.Migrations
                         .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Item");
 
                     b.Navigation("Project");
 

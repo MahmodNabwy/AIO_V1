@@ -47,11 +47,12 @@ namespace AIO.Core.Entities.ProjectInsurances
 
         [Required(ErrorMessage = "currency is required")]
         [Column("currency")]
-        public currency_type currency { get; set; }
+        [NotMapped]
+        public currency_type currency { get { return Project.currency; } }
 
         [Column("insurance_letter_value")]
         public decimal? InsuranceLetterValue { get; set; }
-        
+
 
         [Required(ErrorMessage = "Insurance Letter Status is required")]
         [Column("status_id ")]

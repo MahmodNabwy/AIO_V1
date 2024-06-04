@@ -46,6 +46,8 @@ using AIO.Application.Services.ProjectPaymentMethods;
 using AIO.Contracts.Interfaces.Services.ProjectPaymentMethods;
 using AIO.Application.Services.ProjectTaxes;
 using AIO.Contracts.Interfaces.Services.ProjectTaxes;
+using AIO.Application.Services.Items;
+using AIO.Contracts.Interfaces.Services.Items;
 
 namespace AIO.Application
 {
@@ -74,6 +76,16 @@ namespace AIO.Application
                 .InstancePerLifetimeScope();
 
             builder.RegisterType<DepartmentUserService>().As<IDepartmentUserService>()
+                .InstancePerLifetimeScope();
+
+            #endregion
+
+
+            #region Items
+
+          
+
+            builder.RegisterType<ItemsService>().As<IItemService>()
                 .InstancePerLifetimeScope();
 
             #endregion

@@ -1,4 +1,5 @@
 ﻿using AIO.Core.Entities.Categories;
+using AIO.Core.Entities.Items;
 using AIO.Core.Entities.Projects;
 using AIO.Core.Entities.Suppliers;
 using System;
@@ -23,9 +24,10 @@ namespace AIO.Core.Entities.SupplierItems
         [Column("project_id")]
         public int ProjectId { get; set; }
 
-        [StringLength(100)]
-        [Column("code")]
-        public string Code { get; set; }
+
+        [Required(ErrorMessage = "Item Id is required")]
+        [Column("item_id")]
+        public int ItemId { get; set; }
 
 
         [Required(ErrorMessage = "Amount is required")]
@@ -47,6 +49,10 @@ namespace AIO.Core.Entities.SupplierItems
 
         [ForeignKey(nameof(ProjectId))]
         public virtual Project Project { get; set; }
+
+
+        [ForeignKey(nameof(ItemId))]
+        public virtual Item Item { get; set; }
 
 
     }

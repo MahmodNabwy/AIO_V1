@@ -9,6 +9,7 @@ using AIO.Contracts.IServices.Repositories.Languages;
 using AIO.Contracts.IServices.Repositories.Migrations;
 using AIO.Core.IServices.Custom.Repositories;
 using AIO.Core.IServices.Repositories.Attachments;
+using AIO.Core.IServices.Repositories.Items;
 using AIO.Core.IServices.Repositories.Owners;
 using AIO.Core.IServices.Repositories.ProjectAttachments;
 using AIO.Core.IServices.Repositories.ProjectInsurances;
@@ -41,6 +42,11 @@ namespace AIO.Core.IServices.Custom
 
         #region Project Supplier Taxe
         public IProjectSupplierTaxeRepository ProjectSupplierTaxe { get; }
+        #endregion
+
+        #region Items
+        public IItemsRepository Items { get; }
+
         #endregion
 
         #region Tax

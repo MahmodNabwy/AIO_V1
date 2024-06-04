@@ -51,7 +51,8 @@ namespace AIO.Core.Entities.SupplierInsurances
 
         [Required(ErrorMessage = "currency is required")]
         [Column("currency")]
-        public currency_type currency { get; set; }
+        [NotMapped]
+        public currency_type currency { get { return Project.currency; } }
 
         [Column("insurance_letter_value")]
         public decimal? InsuranceLetterValue { get; set; }

@@ -25,6 +25,6 @@ namespace AIO.Core.Entities.ProjectsTaxes
         public virtual Project Project { get; set; }
 
         [ForeignKey(nameof(TaxId))]
-        public virtual Tax Taxe { get; set; }
+        public virtual Tax Tax { get; set; }
     }
 }

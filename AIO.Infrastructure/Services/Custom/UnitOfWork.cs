@@ -19,6 +19,7 @@ using AIO.Core.Entities.Suppliers;
 using AIO.Core.IServices.Custom;
 using AIO.Core.IServices.Custom.Repositories;
 using AIO.Core.IServices.Repositories.Attachments;
+using AIO.Core.IServices.Repositories.Items;
 using AIO.Core.IServices.Repositories.Owners;
 using AIO.Core.IServices.Repositories.ProjectAttachments;
 using AIO.Core.IServices.Repositories.ProjectInsurances;
@@ -42,6 +43,7 @@ using AIO.Infrastructure.Services.Repositories.Auth.Roles;
 using AIO.Infrastructure.Services.Repositories.Departments;
 using AIO.Infrastructure.Services.Repositories.Elements;
 using AIO.Infrastructure.Services.Repositories.FileUploader;
+using AIO.Infrastructure.Services.Repositories.Items;
 using AIO.Infrastructure.Services.Repositories.Languages;
 using AIO.Infrastructure.Services.Repositories.Migrations;
 using AIO.Infrastructure.Services.Repositories.Owners;
@@ -75,6 +77,10 @@ namespace AIO.Infrastructure.Services.Custom
         public ISecurityQuestionRepository SecurityQuestions { get; }
         public IUserSecurityQuestionRepository UserSecurityQuestions { get; }
         public IProfilePictureRepository ProfilePicture { get; private set; }
+
+        #region Items
+        public IItemsRepository Items { get; private set; } 
+        #endregion
 
         #region Tax
         public ITaxesRepository Taxes { get; private set; }
@@ -198,6 +204,10 @@ namespace AIO.Infrastructure.Services.Custom
 
             Licences = new LicenceRepository(_context);
             TimeLogs = new TimeLogRepository(_context);
+
+            #region Items
+            Items = new ItemsRepository(_context);
+            #endregion
 
             #region Tax
             Taxes = new TaxesRepository(_context);

@@ -29,7 +29,7 @@ namespace AIO.Infrastructure.Services.Repositories.ProjectsTaxes
                                                 .Select(c => new ProjectTaxesGetterDTO
                                                 {
                                                     Id = c.Id,
-                                                    name = c.Taxe.Name,
+                                                    name = c.Tax.Name,
                                                     TaxId = c.TaxId
                                                 }).ToListAsync();
             return result;
