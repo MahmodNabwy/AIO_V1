@@ -3,12 +3,14 @@ using AIO.Contracts.Features.Projects.Commands;
 using AIO.Contracts.Features.SuppliersProjectsItems.Commands;
 using AIO.Contracts.Helpers;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AIO.API.Controllers.Admin.SupplierProjectItem
 {
     [Route("api/admin/[controller]")]
+    [Authorize]
     [ApiController]
     public class SupplierProjectItemController : APIControllerBase
     {

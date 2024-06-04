@@ -1,4 +1,5 @@
-﻿using AIO.Contracts.DTOs.Setter.SupplierProjectPaymentMethods;
+﻿using AIO.Contracts.DTOs.Setter.SupplierProjectItems;
+using AIO.Contracts.DTOs.Setter.SupplierProjectPaymentMethods;
 using AIO.Contracts.Features.SuppliersProjectsItems.Commands;
 using AIO.Core.Entities.SupplierItems;
 using AIO.Core.Entities.SupplierPaymentMethods;
@@ -14,7 +15,9 @@ namespace AIO.Application.Helpers
     {
         private void SupplierProjectItemMappingProfile()
         {
-            CreateMap<SupplierProjectItemsAddCommand, SupplierProjectItem>().ReverseMap();
+            //CreateMap<IEnumerable<SupplierProjectItemsAddCommand>, SupplierProjectItem>().ReverseMap();
+            CreateMap<SupplierProjectItemsSetterDTO, SupplierProjectItem>();
+
         }
     }
 }

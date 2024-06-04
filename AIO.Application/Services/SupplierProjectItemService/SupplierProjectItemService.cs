@@ -4,6 +4,7 @@ using AIO.Contracts.Interfaces.Custom;
 using AIO.Contracts.Interfaces.Services.ProjectSupplier;
 using AIO.Contracts.Interfaces.Services.SupplierProjectItemServices;
 using AIO.Core.Bases;
+using AIO.Core.Entities.ProjectAttachments;
 using AIO.Core.Entities.ProjectInsurances;
 using AIO.Core.Entities.ProjectPaymentMethods;
 using AIO.Core.Entities.SupplierItems;
@@ -37,8 +38,8 @@ namespace AIO.Application.Services.SupplierProjectItemService
             List<bool> lIndicators = new List<bool>();
             try
             {
-
-                var oSupplierProjectItems = await _unitOfWork.SupplierProjectItems.AddAsync(_mapper.Map<SupplierProjectItem>(request));
+                var oSupplierProjectItemsList = _mapper.Map<IList<SupplierProjectItem>>(request.items);
+                var oSupplierProjectItems = await _unitOfWork.SupplierProjectItems.AddRangeAsync(oSupplierProjectItemsList);
 
                 lIndicators.Add(_unitOfWork.Complete() > 0);
                 _logger.LogInformation(Res.message, Res.Added);
