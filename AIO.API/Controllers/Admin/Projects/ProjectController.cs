@@ -36,6 +36,16 @@ namespace AIO.API.Controllers.Admin.Projects
             return State(await _mediator.Send(request));
         }
 
+        [HttpPut]
+        public async Task<IActionResult> PutAsync([FromBody] ProjectUpdateCommand request)
+        {
+            if (!ModelState.IsValid)
+                return NotValidModelState();
+
+
+            return State(await _mediator.Send(request));
+        }
+
 
 
         [HttpPost("Confirm")]

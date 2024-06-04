@@ -168,7 +168,7 @@ namespace AIO.Application.Services.ProjectServices
                     _logger.LogInformation(Res.error, Res.error);
                     NotFoundError(lIndicators);
                 }
-                 
+
 
             }
             catch (Exception ex)
@@ -184,8 +184,8 @@ namespace AIO.Application.Services.ProjectServices
         {
             List<bool> lIndicators = new List<bool>();
             try
-            { 
-                var query = await _unitOfWork.Projects.GetByIdAsync(request);                
+            {
+                var query = await _unitOfWork.Projects.GetByIdAsync(request);
                 _holderOfDTO.Add(Res.Response, query);
                 _logger.LogInformation(Res.message, Res.DataFetch);
                 lIndicators.Add(true);
@@ -196,6 +196,37 @@ namespace AIO.Application.Services.ProjectServices
             {
                 ExceptionError(lIndicators, ex.Message);
 
+            }
+            _holderOfDTO.Add(Res.state, lIndicators.All(x => x));
+            return _holderOfDTO;
+        }
+
+
+        public async Task<IHolderOfDTO> UpdateAsync(ProjectUpdateCommand request)
+        {
+            List<bool> lIndicators = new List<bool>();
+            try
+            {
+                var oldObj = await _unitOfWork.Projects.FirstOrDefaultAsync(q => q.Id == request.Id);
+
+                if (oldObj != null)
+                {
+                    if (request.HasDiscount == false)
+                        request.TotalPriceAfterDiscount = null;
+
+                    var dbSetterDTO = _mapper.Map<Project>(request);
+                    AddUpdateData(dbSetterDTO);
+                    var oData = await _unitOfWork.Projects.UpdateAsync(dbSetterDTO);
+                    lIndicators.Add(_unitOfWork.Complete() > 0);
+                    _holderOfDTO.Add(Res.id, oData.Id);
+                    _logger.LogInformation(Res.message, Res.Updated);
+                }
+                else
+                    NotFoundError(lIndicators);
+            }
+            catch (Exception ex)
+            {
+                ExceptionError(lIndicators, ex.Message);
             }
             _holderOfDTO.Add(Res.state, lIndicators.All(x => x));
             return _holderOfDTO;

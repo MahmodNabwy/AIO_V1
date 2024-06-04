@@ -21,6 +21,7 @@ namespace AIO.Contracts.Interfaces.Services.IProjectServices
         Task<IHolderOfDTO> SearchAsync(GetProjectsSearchQuery filter);
 
         Task<IHolderOfDTO> ConfirmProjectAsync(int projectId);
+        Task<IHolderOfDTO> UpdateAsync(ProjectUpdateCommand request);
 
     }
 }
